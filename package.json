@@ -1,0 +1,9 @@
+{
+  "name": "Superfox-Web",
+  "description": "Um sistema de supermercados bem completo.",
+  "version": "0.0.1",
+  "author": "Joao Victor Firmino, Juanes Adriano, Marcio Lucas, Oto Gloria e Sadrak",
+  "repository": "https://github.com/marciioluucas/superfox",
+  "license": "MIT",
+  "homepage": "https://marciioluucas.github.io/superfox-site/"
+}
