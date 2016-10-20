@@ -22,4 +22,6 @@ class FuncoesString
             return false;
         }
     }
+
+    
 }
