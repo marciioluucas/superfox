@@ -6,3 +6,10 @@
  * Time: 19:52
  */
 //TODO: LOG DE QUEM ESTÁ ENTRENDO NO SITE E DE ONDE.
+
+function ola() {
+    return "Em breve Superfox here ";
+}
+echo ola();
+?>
+
