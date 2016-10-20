@@ -26,6 +26,7 @@ class Banco
     {
         $query = FuncoesString::paraCaixaAlta($query);
         $this->mysqli->query($query);
+        return $this->descobreAcaoBanco($query);
     }
 
     function descobreAcaoBanco($query) {
