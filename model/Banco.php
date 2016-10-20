@@ -1,7 +1,7 @@
 <?php
-require_once 'ConfBD.php';
-require_once '../util/FuncoesString.php';
-require_once '../util/FuncoesVariaveis.php';
+require_once "ConfBD.php";
+require_once "../util/FuncoesString.php";
+require_once "../util/FuncoesVariaveis.php";
 
 /**
  * Created by PhpStorm.
@@ -74,6 +74,6 @@ class Banco
         } elseif (FuncoesString::verificaStringExistente($query, "SELECT")) {
 
         }
-        return 'Comando não tratado no método descobreAcaoBanco na classe Banco de dados';
+        return "Comando não tratado no método descobreAcaoBanco na classe Banco de dados";
     }
 }
