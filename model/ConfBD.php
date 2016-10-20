@@ -9,8 +9,20 @@
  */
 class ConfBD
 {
-    public static $HOST = "jdbc:postgresql://192.168.1.177/empresa";
+    /**
+     * @var string
+     */
+    public static $HOST = "localhost";
+    /**
+     * @var string
+     */
     public static $USER = "admin";
+    /**
+     * @var string
+     */
     public static $PWD = "%superfox%";
+    /**
+     * @var string
+     */
     public static $BASE = "org.postgresql.Driver";
 }
