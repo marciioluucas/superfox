@@ -9,22 +9,54 @@
  */
 class FuncoesReflections
 {
-    public static function nomeClasseObjeto($obj)
+    /**
+     * @param $obj
+     * @return string
+     */
+    public static function pegaNomeClasseObjeto($obj)
     {
         return get_class($obj);
     }
 
-    public static function atributosDoObjeto($obj)
+    /**
+     * @param $obj
+     * @return array
+     */
+    public static function pegaAtributosDoObjeto($obj)
     {
-     print_r(get_object_vars($obj));
-        return get_object_vars($obj); // [nome_campo] => valor_campo
+        $metodos = FuncoesReflections::pegaNomesMetodosClasse($obj);
+
+        $metodosGet = array_filter($metodos, function ($au) {
+            return FuncoesString::verificaStringExistente($au, "get");
+        });
+
+        $nomeAtributos = array_map(function ($aux) {
+            return strtolower(substr($aux, 3));
+        }, $metodosGet);
+
+        $nomeAtributos = array_values($nomeAtributos);
+        $nomesFinal = [];
+
+        for ($i = 0; $i < count($nomeAtributos); $i++) {
+            if (property_exists(FuncoesReflections::pegaNomeClasseObjeto($obj), $nomeAtributos[$i])) {
+                $nomesFinal[$i] = $nomeAtributos[$i];
+            }
+        }
+
+        $nomesFinal = array_values($nomesFinal);
+
+        return $nomesFinal;
     }
 
-    public static function getNomesCamposClasse($obj)
+
+    /**
+     * @param $obj
+     * @return array
+     */
+    public static function pegaNomesMetodosClasse($obj)
     {
-        print_r($obj);
-        $a = self::atributosDoObjeto($obj);
-        $arr = array_keys($a);
-        return $arr;
+        $aux = get_class_methods($obj);
+        return $aux;
     }
+
 }

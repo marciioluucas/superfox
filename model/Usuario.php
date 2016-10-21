@@ -67,4 +67,5 @@ class Usuario
         $this->senha = $senha;
     }
 
+
 }

@@ -1,6 +1,9 @@
 <?php
 require_once 'DAO.php';
 require_once '../model/Usuario.php';
+require_once '../util/FuncoesReflections.php';
+require_once '../util/FuncoesString.php';
+
 /**
  * Created by PhpStorm.
  * User: marci
@@ -34,6 +37,7 @@ class UsuarioDAO extends DAO
     }
 }
 
+
 $usuario = new Usuario("asdasd", "jhon@doe.com", "123");
 $usuarioDAO = new UsuarioDAO();
-$usuarioDAO->create($usuario);
+print_r(FuncoesReflections::pegaAtributosDoObjeto($usuario));
