@@ -5,5 +5,11 @@
   "author": "Joao Victor Firmino, Juanes Adriano, Marcio Lucas, Oto Gloria e Sadrak",
   "repository": "https://github.com/marciioluucas/superfox",
   "license": "MIT",
-  "homepage": "https://marciioluucas.github.io/superfox-site/"
+  "homepage": "https://marciioluucas.github.io/superfox-site/",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "~0.5.0"
+  }
 }
