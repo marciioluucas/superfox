@@ -33,6 +33,7 @@ abstract class DAO
         $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::nomeClasseObjeto($obj));
         $camposNome = FuncoesReflections::getNomesCamposClasse($obj);
         $sqlInsert = "INSERT INTO $tabela (";
+
         for ($i = 0; $i < count($camposNome); $i++) {
             if ($i != count($camposNome)) {
                 $sqlInsert .= $camposNome[$i] . ", ";

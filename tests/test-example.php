@@ -25,7 +25,5 @@ $pessoa->setName("Marcio");
 $a = get_object_vars($pessoa);
 $arr = array_keys($a);
 
-
-for ($i = 0; $i < count($arr); $i++) {
-    echo $arr[$i] . " = ".$a[$arr[$i]]."\n";
-}
+print_r($a);
+print_r($arr);
