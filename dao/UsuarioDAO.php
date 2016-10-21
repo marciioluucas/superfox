@@ -1,5 +1,6 @@
 <?php
 require_once 'DAO.php';
+require_once '../model/Usuario.php';
 /**
  * Created by PhpStorm.
  * User: marci
@@ -8,12 +9,14 @@ require_once 'DAO.php';
  */
 class UsuarioDAO extends DAO
 {
+//
+//    public function create($obj)
+//    {
+//      $this->abrirConexao();
+//        // TODO: Implement create() method.
+//    }
+//
 
-    public function create($obj)
-    {
-        $this->abrirConexao();
-        // TODO: Implement create() method.
-    }
 
     public function porId($id)
     {
@@ -30,3 +33,7 @@ class UsuarioDAO extends DAO
         // TODO: Implement delete() method.
     }
 }
+
+$usuario = new Usuario("asdasd", "jhon@doe.com", "123");
+$usuarioDAO = new UsuarioDAO();
+$usuarioDAO->create($usuario);

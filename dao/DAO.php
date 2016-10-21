@@ -21,7 +21,7 @@ abstract class DAO
      */
     protected function abrirConexao()
     {
-        $this->conn = Banco::getConnection();
+//        $this->conn = Banco::getConnection();
     }
 
     /**
@@ -31,17 +31,18 @@ abstract class DAO
     public function create($obj)
     {
         $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::nomeClasseObjeto($obj));
-        $campos = FuncoesReflections::atributosDoObjeto($obj);
+        $camposNome = FuncoesReflections::getNomesCamposClasse($obj);
         $sqlInsert = "INSERT INTO $tabela (";
-        for ($i = 0; $i < count($campos); $i++) {
-            if ($i != count($campos)) {
-                $sqlInsert .= $campos[$i] . ", ";
+        for ($i = 0; $i < count($camposNome); $i++) {
+            if ($i != count($camposNome)) {
+                $sqlInsert .= $camposNome[$i] . ", ";
             } else {
-                $sqlInsert .= $campos[$i] . ") VALUES (";
+                $sqlInsert .= $camposNome[$i] . ") VALUES (";
             }
         }
-        return 0;
+        print_r($sqlInsert);
     }
+
 
     /**
      * @param $id

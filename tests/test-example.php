@@ -20,6 +20,12 @@ class Pessoa
         $this->name = $name;
     }
 }
-$pessoa = new Pessoa();
+$pessoa = new Pessoa(1);
+$pessoa->setName("Marcio");
 $a = get_object_vars($pessoa);
-print_r(array_keys($a));
+$arr = array_keys($a);
+
+
+for ($i = 0; $i < count($arr); $i++) {
+    echo $arr[$i] . " = ".$a[$arr[$i]]."\n";
+}

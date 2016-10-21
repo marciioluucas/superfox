@@ -9,15 +9,20 @@
  */
 class FuncoesReflections
 {
-    public static function nomeClasseObjeto($obj) {
+    public static function nomeClasseObjeto($obj)
+    {
         return get_class($obj);
     }
 
-    public static function atributosDoObjeto($obj) {
-        return get_object_vars($obj);
+    public static function atributosDoObjeto($obj)
+    {
+        return get_object_vars($obj); // [nome_campo] => valor_campo
     }
 
-    public static function getNomesCamposClasse($obj) {
-
+    public static function getNomesCamposClasse($obj)
+    {
+        $a = self::atributosDoObjeto($obj);
+        $arr = array_keys($a);
+        return $arr;
     }
 }
