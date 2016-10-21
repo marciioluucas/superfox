@@ -10,11 +10,11 @@
 class ConfBD
 {
 
-    public static $USER = "admin";
+    public static $USER = "root";
     /**
      * @var string
      */
-    public static $PWD = "%superfox%";
+    public static $PWD = "";
     /**
      * @var string
      */
