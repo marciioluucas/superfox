@@ -8,5 +8,14 @@
  */
 class Usuario
 {
+    private $login;
+    private $email;
+    private $senha;
 
+    function __construct($login, $email, $senha)
+    {
+        $this->login = $login;
+        $this->email = $email;
+        $this->senha = $senha;
+    }
 }

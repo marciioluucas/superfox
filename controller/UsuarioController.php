@@ -8,5 +8,27 @@
  */
 class UsuarioController
 {
+    private $usuarioDAO;
+    private $usuario;
+    /**
+     * UsuarioController constructor.
+     * @param $usuario
+     */
+    public function __construct()
+    {
+        $this->usuarioDAO = new UsuarioDAO();
+
+        if($_POST['action'] == "salvar") {
+
+            $this->salvar();
+        }
+    }
+
+
+    public function salvar()
+    {
+        $this->usuarioDAO->create($this->usuario);
+    }
+
 
 }

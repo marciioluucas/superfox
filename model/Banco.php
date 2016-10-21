@@ -29,6 +29,17 @@ class Banco
         }
     }
 
+
+    public static function getConnection()
+    {
+        try {
+            return new mysqli(new mysqli(ConfBD::$HOST, ConfBD::$USER, ConfBD::$PWD, ConfBD::$BASE));
+        } catch (Exception $e) {
+            throw new Exception("Erro ao conectar no banco", 0, $e);
+        }
+    }
+
+
     /**
      * @param $query
      * @param $valores

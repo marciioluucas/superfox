@@ -9,5 +9,6 @@
  */
 class Pessoa
 {
+    private $nome;
 
 }
