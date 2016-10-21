@@ -21,7 +21,12 @@ abstract class DAO
      */
     protected function abrirConexao()
     {
-//        $this->conn = Banco::getConnection();
+        $this->conn = Banco::getConnection();
+    }
+
+    protected function fecharConexao()
+    {
+
     }
 
     /**
@@ -30,18 +35,36 @@ abstract class DAO
      */
     public function create($obj)
     {
-        $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::nomeClasseObjeto($obj));
-        $camposNome = FuncoesReflections::getNomesCamposClasse($obj);
-        $sqlInsert = "INSERT INTO $tabela (";
+        try {
+            $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
+            $camposNome = FuncoesReflections::pegaAtributosDoObjeto($obj);
+            $camposValores = FuncoesReflections::pegaValoresAtributoDoObjeto($obj);
+            $sqlInsert = "INSERT INTO $tabela (";
 
-        for ($i = 0; $i < count($camposNome); $i++) {
-            if ($i != count($camposNome)) {
-                $sqlInsert .= $camposNome[$i] . ", ";
-            } else {
-                $sqlInsert .= $camposNome[$i] . ") VALUES (";
+            for ($i = 0; $i < count($camposNome); $i++) {
+                if ($i != count($camposNome) - 1) {
+                    $sqlInsert .= $camposNome[$i] . ", ";
+                } else {
+                    $sqlInsert .= $camposNome[$i] . ") VALUES (";
+                }
             }
+
+            for ($j = 0; $j < count($camposNome); $j++) {
+                if ($j != count($camposNome) - 1) {
+                    $sqlInsert .= ":" . $camposNome[$j] . ", ";
+                } else {
+                    $sqlInsert .= ":" . $camposNome[$j] . ")";
+                }
+            }
+            $pdo = Banco::getConnection()->prepare($sqlInsert);
+            for ($i = 0; $i < count($camposNome); $i++) {
+                $pdo->bind_param($camposNome[$i], $camposValores[$i]);
+            }
+
+            return $pdo->execute();
+        } catch (Exception $e) {
+            throw new Exception("Erro ao processar query", 2, $e);
         }
-        print_r($sqlInsert);
     }
 
 

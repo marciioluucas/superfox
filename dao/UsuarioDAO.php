@@ -12,13 +12,13 @@ require_once '../util/FuncoesString.php';
  */
 class UsuarioDAO extends DAO
 {
-//
-//    public function create($obj)
-//    {
-//      $this->abrirConexao();
-//        // TODO: Implement create() method.
-//    }
-//
+
+    public function create($obj)
+    {
+        $this->abrirConexao();
+        $this->create($obj);
+
+    }
 
 
     public function porId($id)
@@ -40,4 +40,4 @@ class UsuarioDAO extends DAO
 
 $usuario = new Usuario("asdasd", "jhon@doe.com", "123");
 $usuarioDAO = new UsuarioDAO();
-print_r(FuncoesReflections::pegaAtributosDoObjeto($usuario));
+print_r($usuarioDAO->create($usuario));
