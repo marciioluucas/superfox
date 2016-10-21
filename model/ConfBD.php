@@ -9,13 +9,7 @@
  */
 class ConfBD
 {
-    /**
-     * @var string
-     */
-    public static $HOST = "localhost";
-    /**
-     * @var string
-     */
+
     public static $USER = "admin";
     /**
      * @var string
@@ -24,5 +18,6 @@ class ConfBD
     /**
      * @var string
      */
-    public static $BASE = "org.postgresql.Driver";
+
+    public static $LINK = "mysql:host=localhost;dbname=superfox";
 }

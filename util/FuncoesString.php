@@ -14,6 +14,11 @@ class FuncoesString
         return strtoupper($string);
     }
 
+    public static final function paraCaixaBaixa($string)
+    {
+        return strtolower($string);
+    }
+
     public static final function verificaStringExistente($string, $stringBuscada)
     {
         if (strpos($string, $stringBuscada) !== false) {

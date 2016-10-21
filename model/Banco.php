@@ -14,7 +14,7 @@ class Banco
     /**
      * @var mysqli
      */
-    private $mysqli;
+    public static $instancia;
 
 
     /**
@@ -22,18 +22,16 @@ class Banco
      */
     function __construct()
     {
-
-        $this->mysqli = new mysqli(ConfBD::$HOST, ConfBD::$USER, ConfBD::$PWD, ConfBD::$BASE);
-        if ($this->mysqli->connect_errno) {
-            echo "Erro na conexão com o banco de dados: " . $this->mysqli->connect_error;
-        }
     }
 
 
     public static function getConnection()
     {
         try {
-            return new mysqli(new mysqli(ConfBD::$HOST, ConfBD::$USER, ConfBD::$PWD, ConfBD::$BASE));
+            if(!isset(self::$instancia)){
+                self::$instancia = new PDO(ConfBD::$LINK, ConfBD::$USER, ConfBD::$PWD,
+                    array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+            }
         } catch (Exception $e) {
             throw new Exception("Erro ao conectar no banco", 0, $e);
         }

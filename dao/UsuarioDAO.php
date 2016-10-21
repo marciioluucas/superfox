@@ -1,5 +1,5 @@
 <?php
-
+require_once 'DAO.php';
 /**
  * Created by PhpStorm.
  * User: marci
