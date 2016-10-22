@@ -74,7 +74,7 @@ class Usuario
     /**
      * @return mixed
      */
-    public function getDataCadastro()
+    public function getData_Cadastro()
     {
         return $this->data_cadastro;
     }
@@ -82,7 +82,7 @@ class Usuario
     /**
      * @param mixed $data_cadastro
      */
-    public function setDataCadastro($data_cadastro)
+    public function setData_Cadastro($data_cadastro)
     {
         $this->data_cadastro = $data_cadastro;
     }
@@ -90,7 +90,7 @@ class Usuario
     /**
      * @return mixed
      */
-    public function getFkFuncionario()
+    public function getFk_Funcionario()
     {
         return $this->fk_funcionario;
     }
@@ -98,12 +98,10 @@ class Usuario
     /**
      * @param mixed $fk_funcionario
      */
-    public function setFkFuncionario($fk_funcionario)
+    public function setFk_Funcionario($fk_funcionario)
     {
         $this->fk_funcionario = $fk_funcionario;
     }
-
-
 
 
 }

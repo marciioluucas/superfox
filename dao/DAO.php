@@ -16,6 +16,7 @@ abstract class DAO
      */
     protected $conn;
 
+
     /**
      *
      */
@@ -60,7 +61,6 @@ abstract class DAO
             for ($i = 0; $i < count($camposNome); $i++) {
                 $pdo->bindValue($camposNome[$i], $camposValores[$i]);
             }
-            print_r($sqlInsert);
 
             return $pdo->execute();
         } catch (Exception $e) {

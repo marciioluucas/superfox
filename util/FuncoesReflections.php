@@ -31,20 +31,24 @@ class FuncoesReflections
         });
 
         $nomeAtributos = array_map(function ($aux) {
-            return strtolower(substr($aux, 3));
+            return substr(strtolower($aux), 3);
         }, $metodosGet);
+
 
         $nomeAtributos = array_values($nomeAtributos);
         $nomesFinal = [];
 
+
+        $reflectionClass = new ReflectionClass(self::pegaNomeClasseObjeto($obj));
         for ($i = 0; $i < count($nomeAtributos); $i++) {
-            if (property_exists(FuncoesReflections::pegaNomeClasseObjeto($obj), $nomeAtributos[$i])) {
-                $nomesFinal[$i] = $nomeAtributos[$i];
+            $reflectionProperty = $reflectionClass->getProperty($nomeAtributos[$i]);
+            $reflectionProperty->setAccessible(true);
+            if ($reflectionClass->hasProperty($nomeAtributos[$i])) {
+                $nomesFinal[$i] = $reflectionProperty->getName();
             }
         }
 
         $nomesFinal = array_values($nomesFinal);
-
         return $nomesFinal;
     }
 
@@ -52,8 +56,8 @@ class FuncoesReflections
     {
         $nomeAtributos = self::pegaAtributosDoObjeto($obj);
         $valoresAtributosFinal = [];
+        $reflectionClass = new ReflectionClass(self::pegaNomeClasseObjeto($obj));
         for ($i = 0; $i < count($nomeAtributos); $i++) {
-            $reflectionClass = new ReflectionClass(self::pegaNomeClasseObjeto($obj));
             $reflectionProperty = $reflectionClass->getProperty($nomeAtributos[$i]);
             $reflectionProperty->setAccessible(true);
             $valoresAtributosFinal[$i] = $reflectionProperty->getValue($obj);

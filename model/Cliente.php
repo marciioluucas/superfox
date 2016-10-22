@@ -8,5 +8,6 @@
  */
 class Cliente extends Pessoa
 {
-
+    private $nome;
+    private $cpf;
 }

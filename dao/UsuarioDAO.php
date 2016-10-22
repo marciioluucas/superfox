@@ -38,6 +38,6 @@ class UsuarioDAO extends DAO
 }
 
 
-$usuario = new Usuario("asdasd", "jhon@doe.com", "123", "11-01-2016", 1);
+$usuario = new Usuario("Marcio Lucas", "marciioluucas@gmail.com", "123456", date("Y-m-d"), 1);
 $usuarioDAO = new UsuarioDAO();
 print_r($usuarioDAO->criarUsuario($usuario));
