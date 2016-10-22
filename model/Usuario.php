@@ -14,13 +14,9 @@ class Usuario
     private $data_cadastro;
     private $fk_funcionario;
 
-    function __construct($login, $email, $senha, $data_cadastro, $fk_funcionario)
+
+    function __construct()
     {
-        $this->login = $login;
-        $this->email = $email;
-        $this->senha = $senha;
-        $this->data_cadastro = $data_cadastro;
-        $this->fk_funcionario = $fk_funcionario;
     }
 
     /**

@@ -17,13 +17,19 @@ class UsuarioController
      */
     public function __construct()
     {
+
         $this->usuarioDAO = new UsuarioDAO();
+        $this->usuario = new Usuario();
+        $this->usuario->setLogin(isset($_POST['login']) ? $_POST['login'] : null);
+        $this->usuario->setEmail(isset($_POST['email']) ? $_POST['email'] : null);
+        $this->usuario->setSenha(isset($_POST['senha']) ? $_POST['senha'] : null);
+        $this->usuario->setFk_Funcionario(isset($_POST['funcionario']) ? $_POST['funcionario'] : null);
         if ($_POST['action'] == "salvar") {
-            $login = isset($_POST['login']) ? $_POST['login'] : null;
-            $email = isset($_POST['email']) ? $_POST['email'] : null;
-            $senha = isset($_POST['senha']) ? $_POST['senha'] : null;
-            $this->usuario = new Usuario($login, $email, $senha);
-            $this->salvar();
+            try {
+                $this->salvar();
+            } catch (Exception $e) {
+                throw new Exception("Nao foi possível atribuir os valores no controller: ");
+            }
         }
     }
 
