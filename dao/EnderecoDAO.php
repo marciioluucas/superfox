@@ -11,5 +11,19 @@ require_once '../util/FuncoesString.php';
  */
 class EnderecoDAO extends DAO
 {
+    public function porId($id)
+    {
+        // TODO: Implement porId() method.
+    }
+
+    public function update($obj)
+    {
+        // TODO: Implement update() method.
+    }
+
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
+    }
 
 }
