@@ -13,7 +13,7 @@ require_once '../util/FuncoesString.php';
 class UsuarioDAO extends DAO
 {
 
-    public function create($obj)
+    public function criarUsuario($obj)
     {
         $this->abrirConexao();
         $this->create($obj);
@@ -38,6 +38,6 @@ class UsuarioDAO extends DAO
 }
 
 
-$usuario = new Usuario("asdasd", "jhon@doe.com", "123");
+$usuario = new Usuario("asdasd", "jhon@doe.com", "123", "11-01-2016", 1);
 $usuarioDAO = new UsuarioDAO();
-print_r($usuarioDAO->create($usuario));
+print_r($usuarioDAO->criarUsuario($usuario));

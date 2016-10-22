@@ -58,8 +58,9 @@ abstract class DAO
             }
             $pdo = Banco::getConnection()->prepare($sqlInsert);
             for ($i = 0; $i < count($camposNome); $i++) {
-                $pdo->bind_param($camposNome[$i], $camposValores[$i]);
+                $pdo->bindValue($camposNome[$i], $camposValores[$i]);
             }
+            print_r($sqlInsert);
 
             return $pdo->execute();
         } catch (Exception $e) {

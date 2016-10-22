@@ -51,7 +51,6 @@ class FuncoesReflections
     public static function pegaValoresAtributoDoObjeto($obj)
     {
         $nomeAtributos = self::pegaAtributosDoObjeto($obj);
-        $valoresAtributos = get_object_vars($obj);
         $valoresAtributosFinal = [];
         for ($i = 0; $i < count($nomeAtributos); $i++) {
             $reflectionClass = new ReflectionClass(self::pegaNomeClasseObjeto($obj));
