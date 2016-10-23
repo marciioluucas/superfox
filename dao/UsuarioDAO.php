@@ -20,10 +20,10 @@ class UsuarioDAO extends DAO
 
     public function porIdUsuario($obj, $id)
     {
-     return $this->porId($obj,$id);
+        return $this->porId($obj, $id);
     }
 
-    public function updateUsuario($obj,$id)
+    public function updateUsuario($obj, $id)
     {
         $this->abrirConexao();
         $this->update($obj, $id);
@@ -38,6 +38,4 @@ class UsuarioDAO extends DAO
 
 $usuario = new Usuario();
 $usuarioDAO = new UsuarioDAO();
-while($linha = $usuarioDAO->porIdUsuario($usuario,20)){
-    print_r($linha['email']. "\n");
-};
+$linha = $usuarioDAO->porIdUsuario($usuario, 20);

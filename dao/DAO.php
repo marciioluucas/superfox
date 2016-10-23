@@ -78,10 +78,10 @@ abstract class DAO
     {
         try {
             $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
-            $sqlSelect = "SELECT * $tabela WHERE pk_" . $tabela . " = " . $id;
-            print_r($sqlSelect);
-            $pdo = Banco::getConnection()->query($sqlSelect);
-            return $pdo->fetch(PDO::FETCH_ASSOC);
+            $sqlSelect = "SELECT * from $tabela WHERE pk_" . $tabela . " = " . $id;
+            $pdo = Banco::getConnection()->prepare($sqlSelect);
+            $linha = $pdo->fetch(PDO::FETCH_ASSOC);
+            return $linha;
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query: ", $e);
         }
