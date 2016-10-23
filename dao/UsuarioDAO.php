@@ -1,8 +1,6 @@
 <?php
 require_once 'DAO.php';
 require_once '../model/Usuario.php';
-require_once '../util/FuncoesReflections.php';
-require_once '../util/FuncoesString.php';
 
 /**
  * Created by PhpStorm.
@@ -20,15 +18,15 @@ class UsuarioDAO extends DAO
     }
 
 
-    public function porId($id)
+    public function porIdUsuario($obj, $id)
     {
-        // TODO: Implement porId() method.
+     return $this->porId($obj,$id);
     }
 
-    public function updateUsuario($obj)
+    public function updateUsuario($obj,$id)
     {
         $this->abrirConexao();
-        $this->update($obj);
+        $this->update($obj, $id);
     }
 
     public function delete($id)
@@ -40,4 +38,6 @@ class UsuarioDAO extends DAO
 
 $usuario = new Usuario();
 $usuarioDAO = new UsuarioDAO();
-print_r($usuarioDAO->updateUsuario($usuario));
+while($linha = $usuarioDAO->porIdUsuario($usuario,20)){
+    print_r($linha['email']. "\n");
+};

@@ -77,16 +77,17 @@ abstract class DAO
     public function porId($obj, $id)
     {
         try {
-
+            $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
+            $sqlSelect = "SELECT * $tabela WHERE pk_" . $tabela . " = " . $id;
+            print_r($sqlSelect);
+            $pdo = Banco::getConnection()->query($sqlSelect);
+            return $pdo->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query: ", $e);
         }
-        $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
-        $camposNome = FuncoesReflections::pegaAtributosDoObjeto($obj);
-        $sqlSelect = "SELECT * $tabela WHERE pk_" . $tabela . " = " . $id;
 
-        $pdo = Banco::getConnection()->prepare($sqlSelect);
-        return $pdo->execute();
+//        $pdo->execute();
+
     }
 
     /**
