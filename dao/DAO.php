@@ -73,13 +73,40 @@ abstract class DAO
      * @param $id
      * @return mixed
      */
-    abstract public function porId($id);
+    public function porId($obj, $id)
+    {
+
+    }
 
     /**
      * @param $obj
      * @return mixed
      */
-    abstract public function update($obj);
+    public function update($obj) {
+        try {
+            $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
+            $camposNome = FuncoesReflections::pegaAtributosDoObjeto($obj);
+            $camposValores = FuncoesReflections::pegaValoresAtributoDoObjeto($obj);
+            $sqlUpdate = "UPDATE $tabela SET ";
+
+            for ($i = 0; $i < count($camposNome); $i++) {
+                if ($i != count($camposNome) - 1) {
+                    $sqlUpdate .= $camposNome[$i] . " = :" . $camposNome[$i] . ", ";
+                } else {
+                    $sqlUpdate .= $camposNome[$i] . " WHERE pk_" . $tabela . " = " . $id;
+                }
+            }
+            $pdo = Banco::getConnection()->prepare($sqlUpdate);
+            for ($i = 0; $i < count($camposNome); $i++) {
+                $pdo->bindValue($camposNome[$i], $camposValores[$i]);
+            }
+
+            print_r($sqlUpdate);
+            return $pdo->execute();
+        } catch (Exception $e) {
+            throw new Exception("Erro ao processar query", 2, $e);
+        }
+    }
 
     /**
      * @param $id

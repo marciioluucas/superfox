@@ -26,9 +26,10 @@ class UsuarioDAO extends DAO
         // TODO: Implement porId() method.
     }
 
-    public function update($obj)
+    public function updateUsuario($obj)
     {
-        // TODO: Implement update() method.
+        $this->abrirConexao();
+        $this->update($obj);
     }
 
     public function delete($id)
@@ -40,4 +41,4 @@ class UsuarioDAO extends DAO
 
 $usuario = new Usuario("Marcio Lucas", "marciioluucas@gmail.com", "123456", date("Y-m-d"), 1);
 $usuarioDAO = new UsuarioDAO();
-print_r($usuarioDAO->criarUsuario($usuario));
+print_r($usuarioDAO->updateUsuario($usuario));
