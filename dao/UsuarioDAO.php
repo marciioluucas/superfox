@@ -17,7 +17,6 @@ class UsuarioDAO extends DAO
     {
         $this->abrirConexao();
         $this->create($obj);
-
     }
 
 
@@ -39,6 +38,6 @@ class UsuarioDAO extends DAO
 }
 
 
-$usuario = new Usuario("Marcio Lucas", "marciioluucas@gmail.com", "123456", date("Y-m-d"), 1);
+$usuario = new Usuario();
 $usuarioDAO = new UsuarioDAO();
 print_r($usuarioDAO->updateUsuario($usuario));

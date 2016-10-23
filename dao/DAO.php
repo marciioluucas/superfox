@@ -33,6 +33,7 @@ abstract class DAO
     /**
      * @param $obj
      * @return mixed
+     * @throws Exception
      */
     public function create($obj)
     {
@@ -64,7 +65,7 @@ abstract class DAO
 
             return $pdo->execute();
         } catch (Exception $e) {
-            throw new Exception("Erro ao processar query", 2, $e);
+            throw new Exception("Erro ao processar query", $e);
         }
     }
 
@@ -75,14 +76,26 @@ abstract class DAO
      */
     public function porId($obj, $id)
     {
+        try {
 
+        } catch (Exception $e) {
+            throw new Exception("Erro ao processar query: ", $e);
+        }
+        $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
+        $camposNome = FuncoesReflections::pegaAtributosDoObjeto($obj);
+        $sqlSelect = "SELECT * $tabela WHERE pk_" . $tabela . " = " . $id;
+
+        $pdo = Banco::getConnection()->prepare($sqlSelect);
+        return $pdo->execute();
     }
 
     /**
      * @param $obj
      * @return mixed
+     * @throws Exception
      */
-    public function update($obj) {
+    public function update($obj, $id)
+    {
         try {
             $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
             $camposNome = FuncoesReflections::pegaAtributosDoObjeto($obj);
@@ -104,7 +117,7 @@ abstract class DAO
             print_r($sqlUpdate);
             return $pdo->execute();
         } catch (Exception $e) {
-            throw new Exception("Erro ao processar query", 2, $e);
+            throw new Exception("Erro ao processar query", $e);
         }
     }
 
