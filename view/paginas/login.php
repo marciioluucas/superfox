@@ -8,9 +8,70 @@
 <html lang="pt_br">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Superfox - Login</title>
 </head>
-<body>
+<body class="white-text">
+
+<?php include_once '../layout/libs-layout.php' ?>
+<script>
+
+    var pattern = Trianglify({
+        width: window.innerWidth,
+        height: window.innerHeight
+    });
+    document.body.appendChild(pattern.canvas());
+    $('canvas').css({"width": window.innerWidth, "height": window.innerHeight, "position": "absolute", "z-index": -1})
+
+</script>
+<div class="row">
+    <div class="col offset-l4 offset-m3"></div>
+
+    <div class="col l4 m10 s12">
+        <div class="row center-align" style="margin-top: 55px">
+            <img src="../dist/imgs/logo-superfox-login.png" alt="logo superfox">
+        </div>
+        <div class="card white darken-1">
+            <form>
+                <div class="card-content grey-text">
+                    <div class="col-lg-10">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="login" type="text" class="validate">
+                                <label for="login">Login</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="senha" type="password" class="validate">
+                                <label for="senha">Senha</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="checkbox" class="filled-in" id="lembrar-de-mim"/>
+                                <label for="lembrar-de-mim">Lembrar de mim</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-action">
+                    <input type="submit" class="waves-effect waves-light btn orange darken-4">
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col offset-l4 offset-m3"></div>
+</div>
+<footer class="page-footer orange darken-4" style="bottom: 0; position: fixed; width: 100%">
+    <div class="footer-copyright">
+        <div class="container">
+            © 2016 - Superfox - Todos os direitos reservados.
+            <a class="grey-text text-lighten-4 right" href="http://github.com/marciioluucas/superfox">Project on
+                github</a>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>

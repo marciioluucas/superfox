@@ -13,7 +13,8 @@ class UsuarioController
 
     /**
      * UsuarioController constructor.
-     * @param $usuario
+     * @throws Exception
+     * @internal param $usuario
      */
     public function __construct()
     {
@@ -37,6 +38,26 @@ class UsuarioController
     public function salvar()
     {
         $this->usuarioDAO->create($this->usuario);
+    }
+
+    public function alterar() {
+
+    }
+
+    public function excluir() {
+
+    }
+
+    public function porId() {
+
+    }
+
+    public function listarAll() {
+
+    }
+
+    public function logar() {
+
     }
 
 
