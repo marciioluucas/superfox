@@ -107,7 +107,7 @@ abstract class DAO
                 if ($i != count($camposNome) - 1) {
                     $sqlUpdate .= $camposNome[$i] . " = :" . $camposNome[$i] . ", ";
                 } else {
-                    $sqlUpdate .= $camposNome[$i] . " WHERE pk_" . $tabela . " = " . $id;
+                    $sqlUpdate .= $camposNome[$i] . " = :".$camposNome[$i]." WHERE pk_" . $tabela . " = " . $id;
                 }
             }
             $pdo = Banco::getConnection()->prepare($sqlUpdate);

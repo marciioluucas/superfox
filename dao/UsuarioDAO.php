@@ -38,4 +38,4 @@ class UsuarioDAO extends DAO
 
 $usuario = new Usuario();
 $usuarioDAO = new UsuarioDAO();
-$linha = $usuarioDAO->porIdUsuario($usuario, 20);
+$linha = $usuarioDAO->updateUsuario($usuario, 20);
