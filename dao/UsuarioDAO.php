@@ -20,7 +20,7 @@ class UsuarioDAO extends DAO
 
     public function porIdUsuario($obj, $id)
     {
-        return $this->porId($obj, $id);
+        $this->porId($obj, $id);
     }
 
     public function updateUsuario($obj, $id)
@@ -29,9 +29,10 @@ class UsuarioDAO extends DAO
         $this->update($obj, $id);
     }
 
-    public function delete($id)
+    public function deleteUsuario($obj, $id)
     {
-        // TODO: Implement delete() method.
+        $this->abrirConexao();
+        $this->update($obj, $id);
     }
 }
 

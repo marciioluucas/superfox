@@ -107,7 +107,7 @@ abstract class DAO
                 if ($i != count($camposNome) - 1) {
                     $sqlUpdate .= $camposNome[$i] . " = :" . $camposNome[$i] . ", ";
                 } else {
-                    $sqlUpdate .= $camposNome[$i] . " = :".$camposNome[$i]." WHERE pk_" . $tabela . " = " . $id;
+                    $sqlUpdate .= $camposNome[$i] . " = :" . $camposNome[$i] . " WHERE pk_" . $tabela . " = " . $id;
                 }
             }
             $pdo = Banco::getConnection()->prepare($sqlUpdate);
@@ -126,7 +126,19 @@ abstract class DAO
      * @param $id
      * @return mixed
      */
-    abstract public function delete($id);
+    public function delete($obj, $id)
+    {
+        try {
+            $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
+            $sqlUpdate = "DELETE FROM $tabela WHERE pk_" . $tabela . " = :pk_" . $tabela;
+            $pdo = Banco::getConnection()->prepare($sqlUpdate);
+            $pdo->bindValue(":pk_" . $tabela, $id);
+            print_r($sqlUpdate);
+            return $pdo->execute();
+        } catch (Exception $e) {
+            throw new Exception("Erro ao processar query", $e);
+        }
+    }
 
 
 }
