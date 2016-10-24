@@ -14,7 +14,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
     <title>Título da Página (Estrutura básica de uma página com HTML 5)</title>
 </head>
-<body class="grey darken-3">
+<body class="grey accent-4">
 <ul id="slide-out" class="side-nav fixed">
     <li>
         <div class="userView">
@@ -35,7 +35,16 @@
     <li><a class="waves-effect" href="#"><i class="material-icons">settings</i>Configurações</a></li>
     <li><a class="waves-effect" href="#!"><i class="material-icons">exit_to_app</i>Sair</a></li>
 </ul>
-<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+<nav>
+    <div class="nav-wrapper orange darken-4">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#"><i class="material-icons">exit_to_app</i></a></li>
+        </ul>
+    </div>
+</nav>
+
 <?php
 include_once 'libs-layout.php';
 ?>
