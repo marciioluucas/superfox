@@ -36,7 +36,7 @@
     <li><a class="waves-effect" href="#!"><i class="material-icons">exit_to_app</i>Sair</a></li>
 </ul>
 <nav>
-    <div class="nav-wrapper orange darken-4">
+    <div class="nav-wrapper grey darken-3">
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
         <a href="#" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
