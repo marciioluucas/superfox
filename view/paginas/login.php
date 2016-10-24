@@ -11,15 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <title>Superfox - Login</title>
 </head>
-<body class="white-text grey darken-1">
-
-
-<div class="row">
+<body class="white-text grey darken-3">
+<div class="row" style="margin: 0">
     <div class="col offset-l4 offset-m3"></div>
-
-    <div class="col l4 m10 s12">
-        <div class="row center-align" style="margin-top: 15px">
-            <img src="../dist/imgs/logo-superfox-login.png" alt="logo superfox" class="responsive-img">
+    <div class="col l4 m10 s12" style="margin-bottom: 50px">
+        <div class="row center-align" style="margin: 0 !important;">
+            <img src="../dist/imgs/logo-superfox-login.png" alt="logo superfox" class="responsive-img" style="">
         </div>
         <div class="card white darken-1" style="margin-bottom: 0">
             <form>
@@ -54,7 +51,7 @@
     </div>
     <div class="col offset-l4 offset-m3"></div>
 </div>
-<footer class="page-footer orange darken-4" style="bottom: 0; position: fixed; width: 100%; z-index: 9999;">
+<footer class="page-footer orange darken-4" style="bottom: 0; position: fixed; width: 100%; z-index: 9999; margin-top: 15px">
     <div class="footer-copyright">
         <div class="container">
             © 2016 - Superfox - Todos os direitos reservados.
