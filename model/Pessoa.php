@@ -10,7 +10,6 @@
 class Pessoa
 {
     private $nome;
-    private $cpf_cnpj;
 
     /**
      * @return mixed
@@ -28,21 +27,6 @@ class Pessoa
         $this->nome = $nome;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCpfCnpj()
-    {
-        return $this->cpf_cnpj;
-    }
-
-    /**
-     * @param mixed $cpf_cnpj
-     */
-    public function setCpfCnpj($cpf_cnpj)
-    {
-        $this->cpf_cnpj = $cpf_cnpj;
-    }
 
 
 
