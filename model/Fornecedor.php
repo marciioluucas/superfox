@@ -6,11 +6,8 @@
  * Date: 19/10/2016
  * Time: 18:54
  */
-class Fornecedor
+class Fornecedor extends Juridica
 {
-    private $nome_empresarial;
-    private $nome_fantasia;
-    private $cpf_cnpj;
     private $ramo;
     private $representante;
     private $mei;
@@ -46,23 +43,6 @@ class Fornecedor
     {
         $this->nome_fantasia = $nome_fantasia;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getCpf_Cnpj()
-    {
-        return $this->cpf_cnpj;
-    }
-
-    /**
-     * @param mixed $cpf_cnpj
-     */
-    public function setCpf_Cnpj($cpf_cnpj)
-    {
-        $this->cpf_cnpj = $cpf_cnpj;
-    }
-
     /**
      * @return mixed
      */
