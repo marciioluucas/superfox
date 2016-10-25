@@ -8,8 +8,8 @@
  */
 class UsuarioController
 {
-    private $usuarioDAO;
-    private $usuario;
+    public $usuarioDAO;
+    public $usuario;
 
     /**
      * UsuarioController constructor.
@@ -57,8 +57,9 @@ class UsuarioController
     }
 
     public function logar() {
-
+        $this->usuarioDAO->logarUsuario($this->usuario, $_POST['email'],$_POST['senha']);
     }
 
 
 }
+new UsuarioController();

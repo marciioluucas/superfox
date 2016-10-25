@@ -45,7 +45,7 @@ class UsuarioDAO extends DAO
                 $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
                 return true;
             } else {
-                return false;
+                return "Usuario não encontrado";
             }
         } catch (Exception $e) {
             throw new Exception("Erro ao logar", 0, $e);

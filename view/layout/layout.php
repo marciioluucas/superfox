@@ -6,6 +6,12 @@
  * Date: 24/10/2016
  * Time: 16:41
  */
+require_once '../../controller/UsuarioController.php';
+$usuarioController = new UsuarioController();
+if (!$usuarioController->usuarioDAO->isLogado()) {
+    $usuarioController->usuarioDAO->redirecionar("../paginas/login.php");
+}
+$usuario = $usuarioController->usuarioDAO->porIdUsuario($usuarioController->usuario, $_SESSION['session_usuario']);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

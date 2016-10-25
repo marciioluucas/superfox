@@ -205,4 +205,14 @@ abstract class DAO
         }
         return $pdo->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function innerJoin($obj1, $obj2)
+    {
+        $tabela1 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj1));
+        $tabela2 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj2));
+
+        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on :pk_$tabela1 = :fk_$tabela2";
+        $pdo = Banco::getConnection()->prepare($sql);
+
+    }
 }
