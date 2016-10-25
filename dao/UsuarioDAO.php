@@ -34,9 +34,14 @@ class UsuarioDAO extends DAO
         $this->abrirConexao();
         $this->update($obj, $id);
     }
+
+    public function logarUsuario()
+    {
+        $this->abrirConexao();
+    }
 }
 
 
 $usuario = new Usuario();
 $usuarioDAO = new UsuarioDAO();
-$linha = $usuarioDAO->updateUsuario($usuario, 20);
+$usuarioDAO->porId($usuario, 20);

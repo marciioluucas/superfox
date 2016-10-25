@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
-    <title>Título da Página (Estrutura básica de uma página com HTML 5)</title>
+    <title>Dashboard - Superfox</title>
 </head>
 <body class="grey accent-4">
 <ul id="slide-out" class="side-nav fixed">
@@ -50,7 +50,6 @@ include_once 'libs-layout.php';
 ?>
 
 <script>
-
     $(".button-collapse").sideNav();
 </script>
 </body>

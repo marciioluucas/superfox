@@ -83,10 +83,8 @@ abstract class DAO
             $linha = $pdo->fetch(PDO::FETCH_ASSOC);
             return $linha;
         } catch (Exception $e) {
-            throw new Exception("Erro ao processar query: ", $e);
+            throw new Exception("Erro ao processar query: ",2, $e);
         }
-
-//        $pdo->execute();
 
     }
 
@@ -138,6 +136,14 @@ abstract class DAO
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query", $e);
         }
+    }
+
+    public function quantidadeRegistros($obj, $condicao)
+    {
+        $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
+        $sql = "SELECT * FROM $tabela WHERE ".$condicao;
+        $pdo = Banco::getConnection()->prepare($sql);
+        return $pdo->fetchColumn();
     }
 
 
