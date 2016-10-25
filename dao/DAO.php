@@ -25,6 +25,9 @@ abstract class DAO
         $this->conn = Banco::getConnection();
     }
 
+    /**
+     *
+     */
     protected function fecharConexao()
     {
 
@@ -71,8 +74,10 @@ abstract class DAO
 
 
     /**
+     * @param $obj
      * @param $id
      * @return mixed
+     * @throws Exception
      */
     public function porId($obj, $id)
     {
@@ -121,8 +126,10 @@ abstract class DAO
     }
 
     /**
+     * @param $obj
      * @param $id
      * @return mixed
+     * @throws Exception
      */
     public function delete($obj, $id)
     {
@@ -138,6 +145,11 @@ abstract class DAO
         }
     }
 
+    /**
+     * @param $obj
+     * @param $condicoes
+     * @return string
+     */
     public function quantidadeRegistros($obj, $condicoes)
     {
         $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
@@ -165,7 +177,4 @@ abstract class DAO
         }
         return $pdo->fetchColumn();
     }
-
-
-
 }
