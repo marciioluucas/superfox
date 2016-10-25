@@ -177,4 +177,32 @@ abstract class DAO
         }
         return $pdo->fetchColumn();
     }
+
+    public function buscaPorCondicoes($obj, $condicoes)
+    {
+        $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
+        $nomeCampos = [];
+        $condicoesComIndexInt = array_keys($condicoes);
+        for ($i = 0; $i < count($condicoes); $i++) {
+            $nomeCampos .= $condicoesComIndexInt[$i];
+        }
+        $valoresCampos = [];
+        for ($j = 0; $j < count($condicoes); $j++) {
+            $valoresCampos .= $condicoes[$nomeCampos[$j]];
+        }
+        $sql = "SELECT * FROM $tabela WHERE ";
+
+        for ($x = 0; $x < count($nomeCampos); $x++) {
+            if ($x != count($nomeCampos) - 1) {
+                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . ", ";
+            } else {
+                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x];
+            }
+        }
+        $pdo = Banco::getConnection()->prepare($sql);
+        for ($i = 0; $i < count($nomeCampos); $i++) {
+            $pdo->bindValue($nomeCampos[$i], $valoresCampos[$i]);
+        }
+        return $pdo->fetch(PDO::FETCH_ASSOC);
+    }
 }

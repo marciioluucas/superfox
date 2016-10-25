@@ -37,8 +37,40 @@ class UsuarioDAO extends DAO
 
     public function logarUsuario($obj, $email, $senha)
     {
-        $this->abrirConexao();
-        $qntRegistros = $this->quantidadeRegistros($obj, ["email" => $email, "senha" => $senha]);
+        try {
+            $this->abrirConexao();
+            $qntRegistros = $this->quantidadeRegistros($obj, ["email" => $email, "senha" => $senha]);
+            $linhaUsuario = $this->buscaPorCondicoes($obj, ["email" => $email, "senha" => $senha]);
+            if ($qntRegistros > 0) {
+                $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            throw new Exception("Erro ao logar", 0, $e);
+        }
+    }
+
+    public function isLogado()
+    {
+        if (isset($_SESSION['session_usuario'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function sair()
+    {
+        session_destroy();
+        unset($_SESSION['session_usuario']);
+        return true;
+    }
+
+    public function redirecionar($url)
+    {
+        header("Location: $url");
     }
 }
 
@@ -52,6 +84,6 @@ $a = array_keys($nice);
 for ($i = 0; $i < count($nice); $i++) {
 //    print_r($a[$i]);
 }
-for($j = 0; $j < count($nice); $j++){
+for ($j = 0; $j < count($nice); $j++) {
     print_r($nice[$a[$j]]);
 }

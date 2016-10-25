@@ -13,6 +13,18 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
     <title>Dashboard - Superfox</title>
+    <style>
+        header, main, footer {
+            padding-left: 300px;
+        }
+
+        @media only screen and (max-width: 992px) {
+            header, main, footer {
+                padding-left: 0;
+            }
+        }
+
+    </style>
 </head>
 <body class="grey accent-4">
 <ul id="slide-out" class="side-nav fixed">
@@ -44,6 +56,18 @@
         </ul>
     </div>
 </nav>
+<main>
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card white darken-1">
+                <div class="card-content grey-text darken-3">
+                    <span class="card-title">Dashboard</span>
+                    <p>Aqui ficará o dashboard</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
 <?php
 include_once 'libs-layout.php';
