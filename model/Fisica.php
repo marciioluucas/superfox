@@ -9,5 +9,23 @@
  */
 class Fisica extends Pessoa
 {
+    private $cpf;
+
+    /**
+     * @return mixed
+     */
+    public function getCpf()
+    {
+        return $this->cpf;
+    }
+
+    /**
+     * @param mixed $cpf
+     */
+    public function setCpf($cpf)
+    {
+        $this->cpf = $cpf;
+    }
+
 
 }

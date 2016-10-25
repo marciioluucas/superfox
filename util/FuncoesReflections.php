@@ -89,4 +89,17 @@ class FuncoesReflections
         return false;
     }
 
+    public static function pegaValorAtributoEspecifico($obj, $nomeAtributo)
+    {
+        $nomeAtributos = $nomeAtributo;
+        $valoresAtributosFinal = "";
+        $reflectionClass = new ReflectionClass(self::pegaNomeClasseObjeto($obj));
+        for ($i = 0; $i < count($nomeAtributos); $i++) {
+            $reflectionProperty = $reflectionClass->getProperty($nomeAtributos[$i]);
+            $reflectionProperty->setAccessible(true);
+            $valoresAtributosFinal[$i] = $reflectionProperty->getValue($obj);
+        }
+        return $valoresAtributosFinal;
+    }
+
 }

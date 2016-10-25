@@ -213,6 +213,8 @@ abstract class DAO
 
         $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on :pk_$tabela1 = :fk_$tabela2";
         $pdo = Banco::getConnection()->prepare($sql);
+        $pdo->bindValue("pk_$tabela1", "");
+
 
     }
 }
