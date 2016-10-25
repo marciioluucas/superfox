@@ -213,8 +213,9 @@ abstract class DAO
 
         $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on :pk_$tabela1 = :fk_$tabela2";
         $pdo = Banco::getConnection()->prepare($sql);
-        $pdo->bindValue("pk_$tabela1", "");
-
-
+        $pdo->bindValue("pk_$tabela1", FuncoesReflections::pegaValorAtributoEspecifico($obj1, "pk_$tabela1"));
+        $pdo->bindValue("pk_$tabela2", FuncoesReflections::pegaValorAtributoEspecifico($obj2, "pk_$tabela2"));
+        $pdo->execute();
+        return $pdo->fetch(PDO::FETCH_ASSOC);
     }
 }

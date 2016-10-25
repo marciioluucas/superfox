@@ -6,25 +6,25 @@
  * Date: 22/10/2016
  * Time: 14:33
  */
-class Cargo extends Funcionario
+class Cargo
 {
-    private $nomeCargo;
+    private $nome;
     private $descricao;
 
     /**
      * @return mixed
      */
-    public function getNomeCargo()
+    public function getNome()
     {
-        return $this->nomeCargo;
+        return $this->nome;
     }
 
     /**
-     * @param mixed $nomeCargo
+     * @param mixed $nome
      */
-    public function setNomeCargo($nomeCargo)
+    public function setNome($nome)
     {
-        $this->nomeCargo = $nomeCargo;
+        $this->nome = $nome;
     }
 
     /**
@@ -42,4 +42,6 @@ class Cargo extends Funcionario
     {
         $this->descricao = $descricao;
     }
+
+
 }

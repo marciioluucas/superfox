@@ -9,5 +9,6 @@ require_once 'Fisica.php';
  */
 class Funcionario extends Fisica
 {
+    private $cargo;
 
 }
