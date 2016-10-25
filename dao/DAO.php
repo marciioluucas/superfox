@@ -83,7 +83,7 @@ abstract class DAO
             $linha = $pdo->fetch(PDO::FETCH_ASSOC);
             return $linha;
         } catch (Exception $e) {
-            throw new Exception("Erro ao processar query: ",2, $e);
+            throw new Exception("Erro ao processar query: ", 2, $e);
         }
 
     }
@@ -130,7 +130,7 @@ abstract class DAO
             $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
             $sqlUpdate = "DELETE FROM $tabela WHERE pk_" . $tabela . " = :pk_" . $tabela;
             $pdo = Banco::getConnection()->prepare($sqlUpdate);
-            $pdo->bindValue(":pk_" . $tabela, $id);
+            $pdo->bindValue("pk_" . $tabela, $id);
             print_r($sqlUpdate);
             return $pdo->execute();
         } catch (Exception $e) {
@@ -138,13 +138,34 @@ abstract class DAO
         }
     }
 
-    public function quantidadeRegistros($obj, $condicao)
+    public function quantidadeRegistros($obj, $condicoes)
     {
         $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
-        $sql = "SELECT * FROM $tabela WHERE ".$condicao;
+        $nomeCampos = [];
+        $condicoesComIndexInt = array_keys($condicoes);
+        for ($i = 0; $i < count($condicoes); $i++) {
+            $nomeCampos .= $condicoesComIndexInt[$i];
+        }
+        $valoresCampos = [];
+        for ($j = 0; $j < count($condicoes); $j++) {
+            $valoresCampos .= $condicoes[$nomeCampos[$j]];
+        }
+        $sql = "SELECT * FROM $tabela WHERE ";
+
+        for ($x = 0; $x < count($nomeCampos); $x++) {
+            if ($x != count($nomeCampos) - 1) {
+                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . ", ";
+            } else {
+                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x];
+            }
+        }
         $pdo = Banco::getConnection()->prepare($sql);
+        for ($i = 0; $i < count($nomeCampos); $i++) {
+            $pdo->bindValue($nomeCampos[$i], $valoresCampos[$i]);
+        }
         return $pdo->fetchColumn();
     }
+
 
 
 }

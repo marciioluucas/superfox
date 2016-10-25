@@ -35,13 +35,23 @@ class UsuarioDAO extends DAO
         $this->update($obj, $id);
     }
 
-    public function logarUsuario()
+    public function logarUsuario($obj, $email, $senha)
     {
         $this->abrirConexao();
+        $qntRegistros = $this->quantidadeRegistros($obj, ["email" => $email, "senha" => $senha]);
     }
 }
 
-
-$usuario = new Usuario();
-$usuarioDAO = new UsuarioDAO();
-$usuarioDAO->porId($usuario, 20);
+//
+//
+//$usuario = new Usuario();
+//$usuarioDAO = new UsuarioDAO();
+//$usuarioDAO->porId($usuario, 20);
+$nice = ["email" => "marciioluucas@gmail.com", "senha" => "123456789"];
+$a = array_keys($nice);
+for ($i = 0; $i < count($nice); $i++) {
+//    print_r($a[$i]);
+}
+for($j = 0; $j < count($nice); $j++){
+    print_r($nice[$a[$j]]);
+}

@@ -75,4 +75,18 @@ class FuncoesReflections
         return $aux;
     }
 
+    public static function pegaNomeAtributoEspecifico($obj, $nomeAtributo)
+    {
+        try {
+            $arrayAtributosObjeto = self::pegaAtributosDoObjeto($obj);
+            for ($i = 0; $i < count($arrayAtributosObjeto); $i++) {
+                $atributoEspecifico = strstr($arrayAtributosObjeto[$i], $nomeAtributo);
+                return $atributoEspecifico;
+            }
+        } catch (Exception $e) {
+            throw new Exception("Falha ao pegar nome do atributo específico", 3, $e);
+        }
+        return false;
+    }
+
 }
