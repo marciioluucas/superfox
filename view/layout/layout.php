@@ -7,11 +7,9 @@
  * Time: 16:41
  */
 require_once '../../controller/UsuarioController.php';
+require_once '../../model/Funcionario.php';
 $usuarioController = new UsuarioController();
-if (!$usuarioController->usuarioDAO->isLogado()) {
-    $usuarioController->usuarioDAO->redirecionar("../paginas/login.php");
-}
-$usuario = $usuarioController->usuarioDAO->porIdUsuario($usuarioController->usuario, $_SESSION['session_usuario']);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -38,8 +36,8 @@ $usuario = $usuarioController->usuarioDAO->porIdUsuario($usuarioController->usua
         <div class="userView">
             <img class="background" src="../dist/imgs/default-user-background.jpg">
             <a href="#!user"><img class="circle" src="../dist/imgs/default-user-img-fox.jpg"></a>
-            <a href="#!name"><span class="white-text name">Márcio Lucas</span></a>
-            <a href="#!email"><span class="white-text email">marciioluucas@gmail.com</span></a>
+            <a href="#!name"><span class="white-text name"><?php $usuarioController->infoUsuarioLogado('nome') ?></span></a>
+            <a href="#!email"><span class="white-text email"><?php $usuarioController->infoUsuarioLogado('email') ?></span></a>
         </div>
     </li>
     <li><a href="#!" class="waves-effect"><i class="material-icons">dashboard</i>Dashboard</a></li>

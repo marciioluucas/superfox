@@ -1,4 +1,5 @@
 <?php
+require_once '../model/Funcionario.php';
 
 /**
  * Created by PhpStorm.
@@ -40,26 +41,52 @@ class UsuarioController
         $this->usuarioDAO->create($this->usuario);
     }
 
-    public function alterar() {
+    public function alterar()
+    {
 
     }
 
-    public function excluir() {
+    public function excluir()
+    {
 
     }
 
-    public function porId() {
+    public function porId()
+    {
 
     }
 
-    public function listarAll() {
+    public function listarAll()
+    {
 
     }
 
-    public function logar() {
-        $this->usuarioDAO->logarUsuario($this->usuario, $_POST['email'],$_POST['senha']);
+    public function logar()
+    {
+        $this->usuarioDAO->logarUsuario($this->usuario, $_POST['email'], $_POST['senha']);
+    }
+
+    public function innerJoin($obj2)
+    {
+        $this->usuarioDAO->innerJoin($this->usuario, $obj2, true);
+    }
+
+    public function protecaoLoggin()
+    {
+        if (!$this->usuarioDAO->isLogado()) {
+            $this->usuarioDAO->redirecionar("../paginas/login.php");
+        }
+    }
+
+    public function infoUsuarioLogado($coluna)
+    {
+        $funcionario = new Funcionario();
+        $funcionario->setPk_Funcionario($_SESSION['session_usuario']);
+        $usuario = $this->innerJoin($funcionario);
+        echo $usuario[$coluna];
     }
 
 
 }
+
 new UsuarioController();

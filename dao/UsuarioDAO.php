@@ -36,7 +36,6 @@ class UsuarioDAO extends DAO
     public function logarUsuario($obj, $email, $senha)
     {
         try {
-            $this->abrirConexao();
             $qntRegistros = $this->quantidadeRegistros($obj, ["email" => $email, "senha" => $senha]);
             $linhaUsuario = $this->buscaPorCondicoes($obj, ["email" => $email, "senha" => $senha]);
             if ($qntRegistros > 0) {

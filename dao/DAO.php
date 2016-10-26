@@ -11,18 +11,6 @@ require_once '../util/FuncoesString.php';
  */
 abstract class DAO
 {
-    /**
-     *
-     */
-
-
-    /**
-     *
-     */
-    protected function fecharConexao()
-    {
-
-    }
 
     /**
      * @param $obj
