@@ -79,14 +79,14 @@ abstract class DAO
      * @return mixed
      * @throws Exception
      */
-    public function porId($obj, $id)
+    public function porId($obj)
     {
         try {
             $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
-            $sqlSelect = "SELECT * from $tabela WHERE pk_" . $tabela . " = " . $id;
+            $sqlSelect = "SELECT * from $tabela WHERE pk_" . $tabela . " = " . FuncoesReflections::pegaValorAtributoEspecifico($obj, "pk_$tabela");
             $pdo = Banco::getConnection()->prepare($sqlSelect);
-            $linha = $pdo->fetch(PDO::FETCH_ASSOC);
-            return $linha;
+            $pdo->execute();
+            return $pdo->fetch(PDO::FETCH_ASSOC);
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query: ", 2, $e);
         }
@@ -211,11 +211,11 @@ abstract class DAO
         $tabela1 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj1));
         $tabela2 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj2));
 
-        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on :pk_$tabela1 = :fk_$tabela2";
+        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on :pk_$tabela2 = :fk_$tabela2";
         $pdo = Banco::getConnection()->prepare($sql);
-        $pdo->bindValue("pk_$tabela1", FuncoesReflections::pegaValorAtributoEspecifico($obj1, "pk_$tabela1"));
+        $pdo->bindValue("fk_$tabela2", FuncoesReflections::pegaValorAtributoEspecifico($obj1, "fk_$tabela2"));
         $pdo->bindValue("pk_$tabela2", FuncoesReflections::pegaValorAtributoEspecifico($obj2, "pk_$tabela2"));
         $pdo->execute();
-        return $pdo->fetch(PDO::FETCH_ASSOC);
+        return $pdo->fetchAll(PDO::FETCH_ASSOC);
     }
 }

@@ -19,5 +19,5 @@ class ConfBD
      * @var string
      */
 
-    public static $LINK = "mysql:host=200.163.102.36;dbname=superfox";
+    public static $LINK = "mysql:host=191.223.196.211;dbname=superfox";
 }

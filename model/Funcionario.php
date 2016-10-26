@@ -10,6 +10,7 @@ require_once 'Cargo.php';
  */
 class Funcionario extends Fisica
 {
+    private $pk_funcionario;
     private $cargo;
     private $data_cadastro;
 
@@ -49,5 +50,25 @@ class Funcionario extends Fisica
     {
         $this->data_cadastro = $data_cadastro;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPk_Funcionario()
+    {
+        return $this->pk_funcionario;
+    }
+
+    /**
+     * @param mixed $pk_funcionario
+     */
+    public function setPk_Funcionario($pk_funcionario)
+    {
+        $this->pk_funcionario = $pk_funcionario;
+    }
+
+
+
+
 
 }

@@ -1,6 +1,7 @@
 <?php
 require_once 'DAO.php';
 require_once '../model/Usuario.php';
+require_once '../model/Funcionario.php';
 
 /**
  * Created by PhpStorm.
@@ -18,9 +19,9 @@ class UsuarioDAO extends DAO
     }
 
 
-    public function porIdUsuario($obj, $id)
+    public function porIdUsuario($obj)
     {
-        $this->porId($obj, $id);
+        return $this->porId($obj);
     }
 
     public function updateUsuario($obj, $id)
@@ -74,16 +75,17 @@ class UsuarioDAO extends DAO
     }
 }
 
-//
-//
-//$usuario = new Usuario();
-//$usuarioDAO = new UsuarioDAO();
-//$usuarioDAO->porId($usuario, 20);
-$nice = ["email" => "marciioluucas@gmail.com", "senha" => "123456789"];
-$a = array_keys($nice);
-for ($i = 0; $i < count($nice); $i++) {
-//    print_r($a[$i]);
+
+$usuario = new Usuario();
+$usuarioDAO = new UsuarioDAO();
+$usuario->setPk_usuario(23);
+$funcionario = new Funcionario();
+$funcionario->setPk_Funcionario(1);
+$usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
+$linha = $usuarioDAO->innerJoin($usuario, $funcionario);
+for ($i = 0; $i < count($linha); $i++) {
+    print_r($linha[$i]['email'] . "\n");
 }
-for ($j = 0; $j < count($nice); $j++) {
-    print_r($nice[$a[$j]]);
-}
+
+
+

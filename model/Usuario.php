@@ -1,5 +1,5 @@
 <?php
-
+require_once 'Funcionario.php';
 /**
  * Created by PhpStorm.
  * User: Marcio
@@ -8,6 +8,23 @@
  */
 class Usuario extends Funcionario
 {
+    private $pk_usuario;
+
+    /**
+     * @return mixed
+     */
+    public function getPk_usuario()
+    {
+        return $this->pk_usuario;
+    }
+
+    /**
+     * @param mixed $pk_usuario
+     */
+    public function setPk_usuario($pk_usuario)
+    {
+        $this->pk_usuario = $pk_usuario;
+    }
     private $login;
     private $email;
     private $senha;

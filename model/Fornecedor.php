@@ -12,37 +12,7 @@ class Fornecedor extends Juridica
     private $representante;
     private $mei;
 
-    /**
-     * @return mixed
-     */
-    public function getNome_Empresarial()
-    {
-        return $this->nome_empresarial;
-    }
 
-    /**
-     * @param mixed $nome_empresarial
-     */
-    public function setNome_Empresarial($nome_empresarial)
-    {
-        $this->nome_empresarial = $nome_empresarial;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNome_Fantasia()
-    {
-        return $this->nome_fantasia;
-    }
-
-    /**
-     * @param mixed $nome_fantasia
-     */
-    public function setNome_Fantasia($nome_fantasia)
-    {
-        $this->nome_fantasia = $nome_fantasia;
-    }
     /**
      * @return mixed
      */
