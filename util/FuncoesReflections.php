@@ -98,13 +98,22 @@ class FuncoesReflections
         $valoresAtributosFinal = $reflectionProperty->getValue($obj);
         return $valoresAtributosFinal;
     }
-    public static function injetaValorAtributo($obj,$valor){
-        $nomeAtributos = self::pegaAtributosDoObjeto($obj);
 
-        for($i = 0; $i < count($nomeAtributos); $i++){
-            $reflectionMethod = new ReflectionMethod($obj, "set");
-            echo $reflectionMethod->invoke($obj, $valor);
+    public static function injetaValorAtributo($obj, $atributos = [], $valor = [])
+    {
+        $nomeAtributos = self::pegaAtributosDoObjeto($obj);
+        if (count($atributos) >= 0) {
+            for ($i = 0; $i < count($atributos); $i++) {
+                $reflectionMethod = new ReflectionMethod($obj, "set" . ucfirst($atributos[$i]));
+                $reflectionMethod->invoke($obj, $valor);
+            }
+        }else{
+            for ($i = 0; $i < count($nomeAtributos); $i++) {
+                $reflectionMethod = new ReflectionMethod($obj, "set" . ucfirst($nomeAtributos[$i]));
+                $reflectionMethod->invoke($obj, self::pegaValoresAtributoDoObjeto($obj));
+            }
         }
+
     }
 
 }
