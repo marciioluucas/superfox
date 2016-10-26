@@ -31,11 +31,6 @@ class Usuario extends Funcionario
     private $data_cadastro;
     private $fk_funcionario;
 
-
-    function __construct()
-    {
-    }
-
     /**
      * @return mixed
      */

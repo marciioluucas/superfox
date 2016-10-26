@@ -12,18 +12,9 @@ require_once '../util/FuncoesString.php';
 abstract class DAO
 {
     /**
-     * @var
-     */
-    protected $conn;
-
-
-    /**
      *
      */
-    protected function abrirConexao()
-    {
-        $this->conn = Banco::getConnection();
-    }
+
 
     /**
      *
@@ -210,11 +201,10 @@ abstract class DAO
     {
         $tabela1 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj1));
         $tabela2 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj2));
-
-        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on :pk_$tabela2 = :fk_$tabela2";
+        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela2`.`pk_$tabela2` = :fk_$tabela2";
+        print_r($sql . FuncoesReflections::pegaValorAtributoEspecifico($obj2, "pk_$tabela2"));
         $pdo = Banco::getConnection()->prepare($sql);
         $pdo->bindValue("fk_$tabela2", FuncoesReflections::pegaValorAtributoEspecifico($obj1, "fk_$tabela2"));
-        $pdo->bindValue("pk_$tabela2", FuncoesReflections::pegaValorAtributoEspecifico($obj2, "pk_$tabela2"));
         $pdo->execute();
         return $pdo->fetchAll(PDO::FETCH_ASSOC);
     }

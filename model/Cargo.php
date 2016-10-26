@@ -8,6 +8,7 @@
  */
 class Cargo
 {
+    private $pk_cargo;
     private $nome;
     private $descricao;
 
@@ -42,6 +43,24 @@ class Cargo
     {
         $this->descricao = $descricao;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPkCargo()
+    {
+        return $this->pk_cargo;
+    }
+
+    /**
+     * @param mixed $pk_cargo
+     */
+    public function setPkCargo($pk_cargo)
+    {
+        $this->pk_cargo = $pk_cargo;
+    }
+
+
 
 
 }

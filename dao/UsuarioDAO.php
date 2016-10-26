@@ -14,7 +14,6 @@ class UsuarioDAO extends DAO
 
     public function criarUsuario($obj)
     {
-        $this->abrirConexao();
         $this->create($obj);
     }
 
@@ -26,13 +25,11 @@ class UsuarioDAO extends DAO
 
     public function updateUsuario($obj, $id)
     {
-        $this->abrirConexao();
         $this->update($obj, $id);
     }
 
     public function deleteUsuario($obj, $id)
     {
-        $this->abrirConexao();
         $this->update($obj, $id);
     }
 
@@ -73,6 +70,8 @@ class UsuarioDAO extends DAO
     {
         header("Location: $url");
     }
+
+
 }
 
 
@@ -84,8 +83,8 @@ $funcionario->setPk_Funcionario(1);
 $usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
 $linha = $usuarioDAO->innerJoin($usuario, $funcionario);
 for ($i = 0; $i < count($linha); $i++) {
-    print_r($linha[$i]['email'] . "\n");
 }
+print_r($linha);
 
 
 
