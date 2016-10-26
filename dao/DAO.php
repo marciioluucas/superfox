@@ -1,7 +1,7 @@
 <?php
-require_once '../model/Banco.php';
-require_once '../util/FuncoesReflections.php';
-require_once '../util/FuncoesString.php';
+require_once'D:/xampp/htdocs/superfox/model/Banco.php';
+require_once 'D:/xampp/htdocs/superfox/util/FuncoesReflections.php';
+require_once 'D:/xampp/htdocs/superfox/util/FuncoesString.php';
 
 /**
  * Created by PhpStorm.
@@ -135,11 +135,11 @@ abstract class DAO
         $nomeCampos = [];
         $condicoesComIndexInt = array_keys($condicoes);
         for ($i = 0; $i < count($condicoes); $i++) {
-            $nomeCampos .= $condicoesComIndexInt[$i];
+            $nomeCampos[$i] = $condicoesComIndexInt[$i];
         }
         $valoresCampos = [];
         for ($j = 0; $j < count($condicoes); $j++) {
-            $valoresCampos .= $condicoes[$nomeCampos[$j]];
+            $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
         }
         $sql = "SELECT * FROM $tabela WHERE ";
 
@@ -163,11 +163,11 @@ abstract class DAO
         $nomeCampos = [];
         $condicoesComIndexInt = array_keys($condicoes);
         for ($i = 0; $i < count($condicoes); $i++) {
-            $nomeCampos .= $condicoesComIndexInt[$i];
+            $nomeCampos[$i] = $condicoesComIndexInt[$i];
         }
         $valoresCampos = [];
         for ($j = 0; $j < count($condicoes); $j++) {
-            $valoresCampos .= $condicoes[$nomeCampos[$j]];
+            $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
         }
         $sql = "SELECT * FROM $tabela WHERE ";
 

@@ -1,7 +1,7 @@
 <?php
 require_once 'DAO.php';
-require_once '../model/Usuario.php';
-require_once '../model/Funcionario.php';
+require_once 'D:/xampp/htdocs/superfox/model/Usuario.php';
+require_once 'D:/xampp/htdocs/superfox/model/Funcionario.php';
 
 /**
  * Created by PhpStorm.
@@ -40,6 +40,7 @@ class UsuarioDAO extends DAO
             $linhaUsuario = $this->buscaPorCondicoes($obj, ["email" => $email, "senha" => $senha]);
             if ($qntRegistros > 0) {
                 $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
+                $this->redirecionar('../paginas/layout.php');
                 return true;
             } else {
                 return "Usuario não encontrado";
@@ -82,8 +83,9 @@ $funcionario->setPk_Funcionario(1);
 $usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
 $linha = $usuarioDAO->innerJoin($usuario, $funcionario, true);
 for ($i = 0; $i < count($linha); $i++) {
+
 }
-print_r($linha);
+//print_r($linha);
 
 
 

@@ -19,18 +19,19 @@
             <img src="../dist/imgs/logo-superfox-login.png" alt="logo superfox" class="responsive-img" style="">
         </div>
         <div class="card white darken-1" style="margin-bottom: 0">
-            <form>
+            <form action="../../controller/UsuarioController.php" method="post">
+                <input type="text" hidden="hidden" value="logar" name="action">
                 <div class="card-content grey-text">
                     <div class="col-lg-10">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="login" type="text" class="validate">
-                                <label for="login">Login</label>
+                                <input id="email" name="email" type="email" class="validate">
+                                <label for="email">Email</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="senha" type="password" class="validate">
+                                <input id="senha" type="password" name="senha" class="validate">
                                 <label for="senha">Senha</label>
                             </div>
                         </div>

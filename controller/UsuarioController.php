@@ -1,5 +1,7 @@
 <?php
-require_once '../model/Funcionario.php';
+require_once 'D:/xampp/htdocs/superfox/model/Usuario.php';
+require_once 'D:/xampp/htdocs/superfox/dao/UsuarioDAO.php';
+require_once 'D:/xampp/htdocs/superfox/model/Funcionario.php';
 
 /**
  * Created by PhpStorm.
@@ -26,13 +28,19 @@ class UsuarioController
         $this->usuario->setEmail(isset($_POST['email']) ? $_POST['email'] : null);
         $this->usuario->setSenha(isset($_POST['senha']) ? $_POST['senha'] : null);
         $this->usuario->setFk_Funcionario(isset($_POST['funcionario']) ? $_POST['funcionario'] : null);
-        if ($_POST['action'] == "salvar") {
-            try {
-                $this->salvar();
-            } catch (Exception $e) {
-                throw new Exception("Nao foi possível atribuir os valores no controller: ");
+        if (isset($_POST['action'])) {
+            if ($_POST['action'] == "logar") {
+                $this->logar();
+            }
+            if ($_POST['action'] == "salvar") {
+                try {
+                    $this->salvar();
+                } catch (Exception $e) {
+                    throw new Exception("Nao foi possível atribuir os valores no controller: ");
+                }
             }
         }
+
     }
 
 
@@ -63,7 +71,8 @@ class UsuarioController
 
     public function logar()
     {
-        $this->usuarioDAO->logarUsuario($this->usuario, $_POST['email'], $_POST['senha']);
+        $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
+
     }
 
     public function innerJoin($obj2)
