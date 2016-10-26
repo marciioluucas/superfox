@@ -206,6 +206,6 @@ abstract class DAO
         $pdo = Banco::getConnection()->prepare($sql);
         $pdo->bindValue("fk_$tabela2", FuncoesReflections::pegaValorAtributoEspecifico($obj1, "fk_$tabela2"));
         $pdo->execute();
-        return $pdo->fetchAll(PDO::FETCH_ASSOC);
+        return $pdo->fetchAll();
     }
 }

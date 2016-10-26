@@ -10,6 +10,7 @@
 class FuncoesReflections
 {
     /**
+     * Passa o objeto e a função irá retornar o nome da classe do respectivo objeto.
      * @param $obj
      * @return string
      */
@@ -19,6 +20,8 @@ class FuncoesReflections
     }
 
     /**
+     * Passa o objeto e a função vai retornar todos os atributos do objeto baseado
+     * nos métodos get.
      * @param $obj
      * @return array
      */
@@ -52,6 +55,11 @@ class FuncoesReflections
         return $nomesFinal;
     }
 
+    /**
+     * Passe só o objeto e a função retorna um array de todos os valores dos atributos de um objeto
+     * @param $obj
+     * @return array
+     */
     public static function pegaValoresAtributoDoObjeto($obj)
     {
         $nomeAtributos = self::pegaAtributosDoObjeto($obj);
@@ -75,6 +83,13 @@ class FuncoesReflections
         return $aux;
     }
 
+    /**
+     * Passa o objeto e o nome do atributo que voce quer pegar. Se o mesmo não existir, a função retornará falso.
+     * @param $obj
+     * @param $nomeAtributo
+     * @return bool|string
+     * @throws Exception
+     */
     public static function pegaNomeAtributoEspecifico($obj, $nomeAtributo)
     {
         try {
@@ -89,6 +104,12 @@ class FuncoesReflections
         return false;
     }
 
+    /**
+     * Passa o objeto e tambem o nome do atributo que voce quer pegar o valor.
+     * @param $obj
+     * @param $nomeAtributo
+     * @return mixed
+     */
     public static function pegaValorAtributoEspecifico($obj, $nomeAtributo)
     {
         $nomeAtributos = $nomeAtributo;
@@ -99,6 +120,13 @@ class FuncoesReflections
         return $valoresAtributosFinal;
     }
 
+    /**
+     * Passa o objeto, os atributos e os valores que você quer injetar, se caso queira injetar valores
+     * em todos atributos do objeto, você deixa o 2nd parametro vazio.
+     * @param $obj
+     * @param array $atributos
+     * @param array $valor
+     */
     public static function injetaValorAtributo($obj, $atributos = [], $valor = [])
     {
         $nomeAtributos = self::pegaAtributosDoObjeto($obj);
