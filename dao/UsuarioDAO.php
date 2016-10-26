@@ -40,7 +40,7 @@ class UsuarioDAO extends DAO
             $linhaUsuario = $this->buscaPorCondicoes($obj, ["email" => $email, "senha" => $senha]);
             if ($qntRegistros > 0) {
                 $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
-                $this->redirecionar('../paginas/layout.php');
+
                 return true;
             } else {
                 return "Usuario não encontrado";

@@ -30,7 +30,9 @@ class UsuarioController
         $this->usuario->setFk_Funcionario(isset($_POST['funcionario']) ? $_POST['funcionario'] : null);
         if (isset($_POST['action'])) {
             if ($_POST['action'] == "logar") {
-                $this->logar();
+                if($this->logar()){
+                    $this->usuarioDAO->redirecionar('../view/layout/layout.php');
+                }
             }
             if ($_POST['action'] == "salvar") {
                 try {
@@ -71,7 +73,7 @@ class UsuarioController
 
     public function logar()
     {
-        $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
+      return  $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
 
     }
 
@@ -82,6 +84,7 @@ class UsuarioController
 
     public function protecaoLoggin()
     {
+        session_start();
         if (!$this->usuarioDAO->isLogado()) {
             $this->usuarioDAO->redirecionar("../paginas/login.php");
         }

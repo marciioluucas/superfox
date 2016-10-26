@@ -10,6 +10,7 @@ require_once '../../controller/UsuarioController.php';
 require_once '../../model/Funcionario.php';
 $usuarioController = new UsuarioController();
 
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
