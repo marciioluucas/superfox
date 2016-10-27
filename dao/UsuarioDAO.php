@@ -35,15 +35,18 @@ class UsuarioDAO extends DAO
 
     public function logarUsuario($obj, $email, $senha)
     {
+
         try {
             $qntRegistros = $this->quantidadeRegistros($obj, ["email" => $email, "senha" => $senha]);
             $linhaUsuario = $this->buscaPorCondicoes($obj, ["email" => $email, "senha" => $senha]);
-            if ($qntRegistros > 0) {
-                $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
+//            print_r($qntRegistros);
 
+            if ($qntRegistros > 0) {
+                if (!isset($_SESSION)) session_start();
+                $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
                 return true;
             } else {
-                return "Usuario não encontrado";
+                return false;
             }
         } catch (Exception $e) {
             throw new Exception("Erro ao logar", 0, $e);
@@ -85,7 +88,7 @@ $linha = $usuarioDAO->innerJoin($usuario, $funcionario, true);
 for ($i = 0; $i < count($linha); $i++) {
 
 }
-//print_r($linha);
+print_r($linha);
 
 
 

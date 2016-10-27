@@ -30,7 +30,7 @@ class UsuarioController
         $this->usuario->setFk_Funcionario(isset($_POST['funcionario']) ? $_POST['funcionario'] : null);
         if (isset($_POST['action'])) {
             if ($_POST['action'] == "logar") {
-                if($this->logar()){
+                if ($this->logar()) {
                     $this->usuarioDAO->redirecionar('../view/layout/layout.php');
                 }
             }
@@ -73,18 +73,18 @@ class UsuarioController
 
     public function logar()
     {
-      return  $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
-
+        $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
+        $this->usuarioDAO->redirecionar('../view/layout/layout.php');
     }
 
     public function innerJoin($obj2)
     {
-        $this->usuarioDAO->innerJoin($this->usuario, $obj2, true);
+        return $this->usuarioDAO->innerJoin($this->usuario, $obj2, true);
     }
 
     public function protecaoLoggin()
     {
-        session_start();
+        if (!isset($_SESSION)) session_start();
         if (!$this->usuarioDAO->isLogado()) {
             $this->usuarioDAO->redirecionar("../paginas/login.php");
         }
@@ -92,10 +92,17 @@ class UsuarioController
 
     public function infoUsuarioLogado($coluna)
     {
+        if (!isset($_SESSION)) session_start();
+        $usuario = new Usuario();
+        $usuarioDAO = new UsuarioDAO();
+        $usuario->setPk_usuario($_SESSION['session_usuario']);
+        $linhaUsuario = $usuarioDAO->porId($usuario);
         $funcionario = new Funcionario();
-        $funcionario->setPk_Funcionario($_SESSION['session_usuario']);
-        $usuario = $this->innerJoin($funcionario);
-        echo $usuario[$coluna];
+        $funcionario->setPk_Funcionario($linhaUsuario['fk_funcionario']);
+        $usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
+        $linha = $usuarioDAO->innerJoin($usuario, $funcionario, true);
+
+        return $linha[$coluna];
     }
 
 

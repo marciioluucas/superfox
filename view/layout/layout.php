@@ -9,6 +9,7 @@
 require_once '../../controller/UsuarioController.php';
 require_once '../../model/Funcionario.php';
 $usuarioController = new UsuarioController();
+//$usuarioController->protecaoLoggin();
 
 
 ?>
@@ -67,7 +68,7 @@ $usuarioController = new UsuarioController();
             <div class="card white darken-1">
                 <div class="card-content grey-text darken-3">
                     <span class="card-title">Dashboard</span>
-                    <p>Aqui ficará o dashboard</p>
+                    <p><?php echo $usuarioController->infoUsuarioLogado('nome') ?></p>
                 </div>
             </div>
         </div>

@@ -145,7 +145,7 @@ abstract class DAO
 
         for ($x = 0; $x < count($nomeCampos); $x++) {
             if ($x != count($nomeCampos) - 1) {
-                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . ", ";
+                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . " and ";
             } else {
                 $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x];
             }
@@ -154,7 +154,8 @@ abstract class DAO
         for ($i = 0; $i < count($nomeCampos); $i++) {
             $pdo->bindValue($nomeCampos[$i], $valoresCampos[$i]);
         }
-        return $pdo->fetchColumn();
+        $pdo->execute();
+        return $pdo->rowCount();
     }
 
     public function buscaPorCondicoes($obj, $condicoes)
@@ -173,15 +174,17 @@ abstract class DAO
 
         for ($x = 0; $x < count($nomeCampos); $x++) {
             if ($x != count($nomeCampos) - 1) {
-                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . ", ";
+                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . " and ";
             } else {
-                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x];
+                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x]."";
             }
         }
         $pdo = Banco::getConnection()->prepare($sql);
         for ($i = 0; $i < count($nomeCampos); $i++) {
+//            echo $nomeCampos[$i] . " | " . $valoresCampos[$i];
             $pdo->bindValue($nomeCampos[$i], $valoresCampos[$i]);
         }
+        $pdo->execute();
         return $pdo->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -190,7 +193,7 @@ abstract class DAO
         $tabela1 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj1));
         $tabela2 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj2));
         $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela2`.`pk_$tabela2` = :fk_$tabela2";
-//        print_r($sql . FuncoesReflections::pegaValorAtributoEspecifico($obj2, "pk_$tabela2"));
+
         $pdo = Banco::getConnection()->prepare($sql);
         $pdo->bindValue("fk_$tabela2", FuncoesReflections::pegaValorAtributoEspecifico($obj1, "fk_$tabela2"));
         $pdo->execute();
