@@ -46,7 +46,7 @@ class UsuarioDAO extends DAO
             $linhaUsuario = $this->buscaPorCondicoes($obj, ["email" => $email, "senha" => $senha]);
 
             if ($qntRegistros > 0) {
-                if (!isset($_SESSION)) session_start();
+                if (!isset($_SESSION['session_usuario'])) session_start();
                 $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
                 return true;
             } else {
@@ -68,8 +68,9 @@ class UsuarioDAO extends DAO
 
     public function sair()
     {
+        echo "aqi";
         session_destroy();
-        unset($_SESSION['session_usuario']);
+        unset($_SESSION);
         return true;
     }
 

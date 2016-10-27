@@ -9,7 +9,10 @@
 require_once '../../controller/UsuarioController.php';
 require_once '../../model/Funcionario.php';
 $usuarioController = new UsuarioController();
-$usuarioController->protecaoLoggin();
+session_start();
+if(!isset($_SESSION['session_usuario'])){
+    $usuarioController->usuarioDAO->redirecionar("../paginas/login.php");
+}
 
 
 ?>

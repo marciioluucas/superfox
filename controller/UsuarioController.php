@@ -42,9 +42,14 @@ class UsuarioController
                 }
             }
 
+
+        }
+        if (isset($_GET['action'])) {
             if ($_GET['action'] == "sair") {
                 try {
-                    $this->usuarioDAO->sair();
+                    session_start();
+                    session_destroy();
+//                    $this->usuarioDAO->redirecionar('../view/paginas/login.php');
                 } catch (Exception $e) {
 
                 }
@@ -99,7 +104,6 @@ class UsuarioController
 
     public function infoUsuarioLogado($coluna)
     {
-        if (!isset($_SESSION)) session_start();
         $usuario = new Usuario();
         $usuarioDAO = new UsuarioDAO();
         $usuario->setPk_usuario($_SESSION['session_usuario']);
