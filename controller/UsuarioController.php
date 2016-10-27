@@ -102,7 +102,7 @@ class UsuarioController
         $usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
         $linha = $usuarioDAO->innerJoin($usuario, $funcionario, true);
 
-        return $linha[$coluna];
+        echo $linha[$coluna];
     }
 
 

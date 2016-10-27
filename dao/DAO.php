@@ -97,7 +97,7 @@ abstract class DAO
                 $pdo->bindValue($camposNome[$i], $camposValores[$i]);
             }
 
-            print_r($sqlUpdate);
+//            print_r($sqlUpdate);
             return $pdo->execute();
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query", $e);
@@ -117,7 +117,7 @@ abstract class DAO
             $sqlUpdate = "DELETE FROM $tabela WHERE pk_" . $tabela . " = :pk_" . $tabela;
             $pdo = Banco::getConnection()->prepare($sqlUpdate);
             $pdo->bindValue("pk_" . $tabela, $id);
-            print_r($sqlUpdate);
+//            print_r($sqlUpdate);
             return $pdo->execute();
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query", $e);
@@ -193,7 +193,6 @@ abstract class DAO
         $tabela1 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj1));
         $tabela2 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj2));
         $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela2`.`pk_$tabela2` = :fk_$tabela2";
-
         $pdo = Banco::getConnection()->prepare($sql);
         $pdo->bindValue("fk_$tabela2", FuncoesReflections::pegaValorAtributoEspecifico($obj1, "fk_$tabela2"));
         $pdo->execute();

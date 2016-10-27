@@ -76,19 +76,19 @@ class UsuarioDAO extends DAO
 
 
 }
-
-
-$usuario = new Usuario();
-$usuarioDAO = new UsuarioDAO();
-$usuario->setPk_usuario(23);
-$funcionario = new Funcionario();
-$funcionario->setPk_Funcionario(1);
-$usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
-$linha = $usuarioDAO->innerJoin($usuario, $funcionario, true);
-for ($i = 0; $i < count($linha); $i++) {
-
-}
-print_r($linha);
-
+//
+//
+//$usuario = new Usuario();
+//$usuarioDAO = new UsuarioDAO();
+//$usuario->setPk_usuario(23);
+//$funcionario = new Funcionario();
+//$funcionario->setPk_Funcionario(1);
+//$usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
+//$linha = $usuarioDAO->innerJoin($usuario, $funcionario, true);
+//for ($i = 0; $i < count($linha); $i++) {
+//
+//}
+////print_r($linha);
+//
 
 

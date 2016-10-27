@@ -68,7 +68,7 @@ $usuarioController = new UsuarioController();
             <div class="card white darken-1">
                 <div class="card-content grey-text darken-3">
                     <span class="card-title">Dashboard</span>
-                    <p><?php echo $usuarioController->infoUsuarioLogado('nome') ?></p>
+                    <p><?php $usuarioController->infoUsuarioLogado('nome') ?></p>
                 </div>
             </div>
         </div>
