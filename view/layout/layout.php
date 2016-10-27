@@ -10,7 +10,7 @@ require_once '../../controller/UsuarioController.php';
 require_once '../../model/Funcionario.php';
 $usuarioController = new UsuarioController();
 session_start();
-if(!isset($_SESSION['session_usuario'])){
+if (!isset($_SESSION['session_usuario'])) {
     $usuarioController->usuarioDAO->redirecionar("../paginas/login.php");
 }
 
@@ -57,15 +57,19 @@ if(!isset($_SESSION['session_usuario'])){
 
     <li>
         <a href="#!produtos" class="waves-effect"
-           onclick="ajaxConteudo('../cadastros/cadastro-produto.php')"><i
+           onclick="ajaxConteudo('../paginas/produto/produto.php')"><i
                 class="material-icons">shopping cart</i>Produtos</a>
     </li>
 
-    <li><a href="#!usuarios" class="waves-effect"><i class="material-icons">people</i>Usuários</a></li>
+    <li><a href="#!usuarios" class="waves-effect" onclick="ajaxConteudo('../paginas/usuario/usuario.php')"><i
+                class="material-icons">people</i>Usuários</a></li>
 
-    <li><a href="#!financeiro" class="waves-effect"><i class="material-icons">credit_card</i> Financeiro</a></li>
+    <li><a href="#!financeiro" class="waves-effect"><i class="material-icons"
+                                                       onclick="ajaxConteudo('../paginas/produto/produto.php')">credit_card</i>
+            Financeiro</a></li>
 
-    <li><a href="#!funcionarios" class="waves-effect"><i class="material-icons">person outline</i>Funcionários</a></li>
+    <li><a href="#!funcionarios" class="waves-effect"><i class="material-icons"
+                                                         onclick="ajaxConteudo('../paginas/funcionario/funcionario.php')">person outline</i>Funcionários</a></li>
 
     <li>
         <div class="divider"></div>
