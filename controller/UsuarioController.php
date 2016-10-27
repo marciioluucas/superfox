@@ -48,7 +48,7 @@ class UsuarioController
 
     public function salvar()
     {
-        $this->usuarioDAO->create($this->usuario);
+        if($this->usuarioDAO->criarUsuario($this->usuario)){}
     }
 
     public function alterar()

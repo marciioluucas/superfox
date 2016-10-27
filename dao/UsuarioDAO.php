@@ -14,7 +14,12 @@ class UsuarioDAO extends DAO
 
     public function criarUsuario($obj)
     {
-        $this->create($obj);
+        $fk_funcionario = FuncoesReflections::pegaValorAtributoEspecifico($obj, "fk_funcionario");
+        if($this->quantidadeRegistros($obj,["fk_funcionario"=>$fk_funcionario] == 0)){
+            $this->create($obj);
+            return "Usuario cadastrado com sucesso!";
+        }
+        return "Funcionário já relacionado com um usuário!";
     }
 
 
@@ -39,7 +44,6 @@ class UsuarioDAO extends DAO
         try {
             $qntRegistros = $this->quantidadeRegistros($obj, ["email" => $email, "senha" => $senha]);
             $linhaUsuario = $this->buscaPorCondicoes($obj, ["email" => $email, "senha" => $senha]);
-//            print_r($qntRegistros);
 
             if ($qntRegistros > 0) {
                 if (!isset($_SESSION)) session_start();
