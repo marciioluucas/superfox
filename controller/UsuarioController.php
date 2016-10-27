@@ -41,6 +41,14 @@ class UsuarioController
                     throw new Exception("Nao foi possível atribuir os valores no controller: ");
                 }
             }
+
+            if ($_GET['action'] == "sair") {
+                try {
+                    $this->usuarioDAO->sair();
+                } catch (Exception $e) {
+
+                }
+            }
         }
 
     }
@@ -48,7 +56,7 @@ class UsuarioController
 
     public function salvar()
     {
-        if($this->usuarioDAO->criarUsuario($this->usuario)){}
+        $this->usuarioDAO->criarUsuario($this->usuario);
     }
 
     public function alterar()
@@ -73,8 +81,7 @@ class UsuarioController
 
     public function logar()
     {
-        $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
-        $this->usuarioDAO->redirecionar('../view/layout/layout.php');
+        return $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
     }
 
     public function innerJoin($obj2)
