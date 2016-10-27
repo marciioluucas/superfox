@@ -6,4 +6,3 @@
  * Time: 19:50
  */
 ?>
-<span class="card-title">Cadastro de produto</span>
