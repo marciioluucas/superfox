@@ -8,5 +8,11 @@
  */
 ?>
 
+<header>
+    <span class="card-title">Cargo</span>
+</header>
+<article>
+    <section>
 
-<span class="card-title">Cargo</span>
+    </section>
+</article>

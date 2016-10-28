@@ -41,69 +41,75 @@ if (!isset($_SESSION['session_usuario'])) {
     </style>
 </head>
 <body class="grey accent-4">
-<ul id="slide-out" class="side-nav fixed">
-    <li>
-        <div class="userView">
-            <img class="background" src="dist/imgs/default-user-background.jpg">
-            <a href="#!user"><img class="circle" src="dist/imgs/default-user-img-fox.jpg"></a>
-            <a href="#!name"><span class="white-text name"><?php $usuarioController->infoUsuarioLogado('nome') ?></span></a>
-            <a href="#!email"><span
-                    class="white-text email"><?php $usuarioController->infoUsuarioLogado('email') ?></span></a>
-        </div>
-    </li>
-    <li><a href="#!dashboard" class="waves-effect" onclick="ajaxConteudo('paginas/dashboard.php')"><i
-                class="material-icons">dashboard</i>Dashboard</a></li>
+<aside>
+    <nav>
 
-    <li>
-        <a href="#!produtos" class="waves-effect"
-           onclick="ajaxConteudo('paginas/produto/index.php')"><i
-                class="material-icons">shopping cart</i>Produtos</a>
-    </li>
+        <ul id="slide-out" class="side-nav fixed">
+            <li>
+                <div class="userView">
+                    <img class="background" src="dist/imgs/default-user-background.jpg">
+                    <a href="#user"><img class="circle" src="dist/imgs/default-user-img-fox.jpg"></a>
+                    <a href="#name"><span
+                            class="white-text name"><?php $usuarioController->infoUsuarioLogado('nome') ?></span></a>
+                    <a href="#email"><span
+                            class="white-text email"><?php $usuarioController->infoUsuarioLogado('email') ?></span></a>
+                </div>
+            </li>
+            <li><a href="#dashboard" class="waves-effect" onclick="ajaxConteudo('paginas/dashboard.php')"><i
+                        class="material-icons">dashboard</i>Dashboard</a></li>
 
-    <li><a href="#!usuarios" class="waves-effect" onclick="ajaxConteudo('paginas/usuario/index.php')"><i
-                class="material-icons">people</i>Usuários</a></li>
+            <li>
+                <a href="#produtos" class="waves-effect"
+                   onclick="ajaxConteudo('paginas/produto/index.php')"><i
+                        class="material-icons">shopping cart</i>Produtos</a>
+            </li>
 
-    <li><a href="#!financeiro" class="waves-effect" onclick="ajaxConteudo('paginas/financeiro/index.php')"><i
-                class="material-icons">credit_card</i>
-            Financeiro</a></li>
+            <li><a href="#usuarios" class="waves-effect" onclick="ajaxConteudo('paginas/usuario/index.php')"><i
+                        class="material-icons">people</i>Usuários</a></li>
 
-    <li><a href="#!funcionarios" class="waves-effect" onclick="ajaxConteudo('paginas/funcionario/index.php')"><i
-                class="material-icons">person outline</i>Funcionários</a></li>
+            <li><a href="#financeiro" class="waves-effect" onclick="ajaxConteudo('paginas/financeiro/index.php')"><i
+                        class="material-icons">credit_card</i>
+                    Financeiro</a></li>
 
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li><a class="waves-effect modal-configuracoes" href="#configuracoes"
-           onclick="ajaxGenerico('#configuracoes', 'configuracoes.php')"><i
-                class="material-icons">settings</i>Configurações</a></li>
+            <li><a href="#funcionarios" class="waves-effect" onclick="ajaxConteudo('paginas/funcionario/index.php')"><i
+                        class="material-icons">person</i>Funcionários</a></li>
 
-    <li><a class="waves-effect" href="#!"><i class="material-icons">exit_to_app</i>Sair</a></li>
-</ul>
-<nav>
-    <div class="nav-wrapper grey darken-3">
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-        <a href="#" class="brand-logo">Logo</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="../controller/UsuarioController.php?action=sair"><i
-                        class="material-icons">exit_to_app</i></a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a class="waves-effect modal-configuracoes" href="#configuracoes"
+                   onclick="ajaxGenerico('#configuracoes', 'configuracoes.php')"><i
+                        class="material-icons">settings</i>Configurações</a></li>
+
+            <li><a class="waves-effect" href="#!"><i class="material-icons">exit_to_app</i>Sair</a></li>
         </ul>
-    </div>
-</nav>
+
+        <div class="nav-wrapper grey darken-3">
+            <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" class="brand-logo">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="../controller/UsuarioController.php?action=sair"><i
+                            class="material-icons">exit_to_app</i></a></li>
+            </ul>
+        </div>
+    </nav>
+</aside>
+
 <main>
-    <div class="row">
-        <div class="col s12 m12 l12">
+    <article class="row">
+        <section class="col s12 m12 l12">
             <div class="card white darken-1">
                 <div class="card-content grey-text darken-3">
                     <div class="conteudo" style="height: 100%"></div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+    </article>
 </main>
 
-<div id="configuracoes" class="modal bottom-sheet">
+<aside id="configuracoes" class="modal bottom-sheet">
 
-</div>
+</aside>
 <link rel='stylesheet' href='libs/materializecss/css/materialize.min.css'/>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src='libs/jquery/jquery-3.1.1.min.js'></script>
@@ -112,7 +118,7 @@ if (!isset($_SESSION['session_usuario'])) {
 <script src='libs/script.js'></script>
 <?php
 //include_once 'libs-layout.php';
-//?>
+?>
 
 <script>
     $(".button-collapse").sideNav();

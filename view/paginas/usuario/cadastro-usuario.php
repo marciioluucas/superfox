@@ -4,6 +4,13 @@
  * User: Marcio
  * Date: 19/10/2016
  * Time: 19:48
- */?>
+ */
+?>
+<header>
+    <small>Titulo</small>
+</header>
+<article>
+    <section>
 
-<form action="../../controller/UsuarioController.php?action=salvar"></form>
+    </section>
+</article>

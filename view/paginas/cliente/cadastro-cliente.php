@@ -6,3 +6,12 @@
  * Date: 27/10/2016
  * Time: 17:08
  */
+?>
+<header>
+    <small>Titulo</small>
+</header>
+<article>
+    <section>
+
+    </section>
+</article>
