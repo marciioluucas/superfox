@@ -45,8 +45,8 @@ if (!isset($_SESSION['session_usuario'])) {
 <ul id="slide-out" class="side-nav fixed">
     <li>
         <div class="userView">
-            <img class="background" src="../dist/imgs/default-user-background.jpg">
-            <a href="#!user"><img class="circle" src="../dist/imgs/default-user-img-fox.jpg"></a>
+            <img class="background" src="dist/imgs/default-user-background.jpg">
+            <a href="#!user"><img class="circle" src="dist/imgs/default-user-img-fox.jpg"></a>
             <a href="#!name"><span class="white-text name"><?php $usuarioController->infoUsuarioLogado('nome') ?></span></a>
             <a href="#!email"><span
                     class="white-text email"><?php $usuarioController->infoUsuarioLogado('email') ?></span></a>
@@ -83,7 +83,7 @@ if (!isset($_SESSION['session_usuario'])) {
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
         <a href="#" class="brand-logo">Logo</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="../../controller/UsuarioController.php?action=sair"><i
+            <li><a href="../controller/UsuarioController.php?action=sair"><i
                         class="material-icons">exit_to_app</i></a></li>
         </ul>
     </div>
@@ -99,12 +99,12 @@ if (!isset($_SESSION['session_usuario'])) {
         </div>
     </div>
 </main>
-<link rel='stylesheet' href='../libs/materializecss/css/materialize.min.css'/>
+<link rel='stylesheet' href='libs/materializecss/css/materialize.min.css'/>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<script src='../libs/jquery/jquery-3.1.1.min.js'></script>
-<script src='../libs/materializecss/js/materialize.min.js'></script>
-<script src='../libs/trianglify/trianglify.min.js'></script>
-<script src='../libs/script.js'></script>
+<script src='libs/jquery/jquery-3.1.1.min.js'></script>
+<script src='libs/materializecss/js/materialize.min.js'></script>
+<script src='libs/trianglify/trianglify.min.js'></script>
+<script src='libs/script.js'></script>
 <?php
 //include_once 'libs-layout.php';
 //?>

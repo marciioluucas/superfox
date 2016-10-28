@@ -31,7 +31,7 @@ class UsuarioController
         if (isset($_POST['action'])) {
             if ($_POST['action'] == "logar") {
                 if ($this->logar()) {
-                    $this->usuarioDAO->redirecionar('../view/layout/layout.php');
+                    $this->usuarioDAO->redirecionar('../view/index.php');
                 }
             }
             if ($_POST['action'] == "salvar") {
@@ -86,7 +86,12 @@ class UsuarioController
 
     public function logar()
     {
-        return $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
+        try{
+            return $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        return false;
     }
 
     public function innerJoin($obj2)
