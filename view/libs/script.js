@@ -9,5 +9,5 @@ function ajaxConteudo(url) {
 }
 
 $(document).ready(function () {
-    ajaxConteudo('../paginas/dashboard.php');
+    ajaxConteudo('paginas/dashboard.php');
 });

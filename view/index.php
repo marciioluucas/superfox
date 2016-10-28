@@ -6,8 +6,8 @@
  * Date: 24/10/2016
  * Time: 16:41
  */
-require_once '../../controller/UsuarioController.php';
-require_once '../../model/Funcionario.php';
+require_once '../controller/UsuarioController.php';
+require_once '../model/Funcionario.php';
 $usuarioController = new UsuarioController();
 session_start();
 if (!isset($_SESSION['session_usuario'])) {
@@ -52,24 +52,24 @@ if (!isset($_SESSION['session_usuario'])) {
                     class="white-text email"><?php $usuarioController->infoUsuarioLogado('email') ?></span></a>
         </div>
     </li>
-    <li><a href="#!dashboard" class="waves-effect" onclick="ajaxConteudo('../paginas/dashboard.php')"><i
+    <li><a href="#!dashboard" class="waves-effect" onclick="ajaxConteudo('paginas/dashboard.php')"><i
                 class="material-icons">dashboard</i>Dashboard</a></li>
 
     <li>
         <a href="#!produtos" class="waves-effect"
-           onclick="ajaxConteudo('../paginas/produto/produto.php')"><i
+           onclick="ajaxConteudo('paginas/produto/index.php')"><i
                 class="material-icons">shopping cart</i>Produtos</a>
     </li>
 
-    <li><a href="#!usuarios" class="waves-effect" onclick="ajaxConteudo('../paginas/usuario/usuario.php')"><i
+    <li><a href="#!usuarios" class="waves-effect" onclick="ajaxConteudo('paginas/usuario/index.php')"><i
                 class="material-icons">people</i>Usuários</a></li>
 
     <li><a href="#!financeiro" class="waves-effect"><i class="material-icons"
-                                                       onclick="ajaxConteudo('../paginas/produto/produto.php')">credit_card</i>
+                                                       onclick="ajaxConteudo('paginas/financeiro/index.php')">credit_card</i>
             Financeiro</a></li>
 
     <li><a href="#!funcionarios" class="waves-effect"><i class="material-icons"
-                                                         onclick="ajaxConteudo('../paginas/funcionario/funcionario.php')">person outline</i>Funcionários</a></li>
+                                                         onclick="ajaxConteudo('paginas/funcionario/index.php')">person outline</i>Funcionários</a></li>
 
     <li>
         <div class="divider"></div>
