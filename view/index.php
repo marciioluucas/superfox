@@ -9,10 +9,6 @@
 require_once '../controller/UsuarioController.php';
 require_once '../model/Funcionario.php';
 $usuarioController = new UsuarioController();
-session_start();
-if (!isset($_SESSION['session_usuario'])) {
-    $usuarioController->usuarioDAO->redirecionar("../paginas/login.php");
-}
 
 
 ?>
@@ -27,9 +23,9 @@ if (!isset($_SESSION['session_usuario'])) {
             padding-left: 300px;
         }
 
-        html, body {
-            height: 100%;
-            min-height: 100%;
+
+        .principal {
+
         }
 
         @media only screen and (max-width: 992px) {
@@ -40,7 +36,7 @@ if (!isset($_SESSION['session_usuario'])) {
 
     </style>
 </head>
-<body class="grey accent-4">
+<body class="grey lighten-1">
 <aside>
     <nav>
 
@@ -96,11 +92,12 @@ if (!isset($_SESSION['session_usuario'])) {
 </aside>
 
 <main>
-    <article class="row">
+    <article class="row ">
         <section class="col s12 m12 l12">
             <div class="card white darken-1">
-                <div class="card-content grey-text darken-3">
-                    <div class="conteudo" style="height: 100%"></div>
+                <div class="card-content grey-text darken-3 principal">
+                    <div class="conteudo" style="height: 100%">
+                    </div>
                 </div>
             </div>
         </section>
@@ -116,6 +113,9 @@ if (!isset($_SESSION['session_usuario'])) {
 <script src='libs/materializecss/js/materialize.min.js'></script>
 <script src='libs/trianglify/trianglify.min.js'></script>
 <script src='libs/script.js'></script>
+<script src="libs/morris-charts/morris.min.css"></script>
+<script src="libs/morris-charts/morris.min.js"></script>
+<script src="libs/morris-charts/raphael.min.js"></script>
 <?php
 //include_once 'libs-layout.php';
 ?>

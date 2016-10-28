@@ -30,15 +30,20 @@ class UsuarioController
         $this->usuario->setFk_Funcionario(isset($_POST['funcionario']) ? $_POST['funcionario'] : null);
         if (isset($_POST['action'])) {
             if ($_POST['action'] == "logar") {
-                if ($this->logar()) {
+                try{
+
+                    $this->logar();
                     $this->usuarioDAO->redirecionar('../view/index.php');
+                } catch (Exception $e){
+                    echo $e->getMessage();
                 }
-            }
+
+        }
             if ($_POST['action'] == "salvar") {
                 try {
                     $this->salvar();
                 } catch (Exception $e) {
-                    throw new Exception("Nao foi possível atribuir os valores no controller: ");
+                    echo $e->getMessage();
                 }
             }
 
@@ -125,3 +130,7 @@ class UsuarioController
 }
 
 new UsuarioController();
+session_start();
+if (!isset($_SESSION['session_usuario'])) {
+    $this->usuarioDAO->redirecionar("../paginas/login.php");
+}

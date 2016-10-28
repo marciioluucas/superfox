@@ -25,7 +25,7 @@
                     <div class="col-lg-10">
                         <div class="row">
                             <div class="input-field col s12">
-                                <input id="email" name="email" type="email" class="validate">
+                                <input id="email" name="email" type="email" class="validate" autocomplete="no">
                                 <label for="email">Email</label>
                             </div>
                         </div>
