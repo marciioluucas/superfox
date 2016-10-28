@@ -8,6 +8,8 @@
  * Time: 10:41
  */
 
+
+
 class FuncoesString
 {
     public static final function paraCaixaAlta($string)
