@@ -7,6 +7,7 @@
  * Date: 20/10/2016
  * Time: 10:41
  */
+
 class FuncoesString
 {
     public static final function paraCaixaAlta($string)
