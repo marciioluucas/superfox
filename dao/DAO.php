@@ -1,5 +1,5 @@
 <?php
-require_once'D:/xampp/htdocs/superfox/model/Banco.php';
+require_once 'D:/xampp/htdocs/superfox/model/Banco.php';
 require_once 'D:/xampp/htdocs/superfox/util/FuncoesReflections.php';
 require_once 'D:/xampp/htdocs/superfox/util/FuncoesString.php';
 
@@ -176,7 +176,7 @@ abstract class DAO
             if ($x != count($nomeCampos) - 1) {
                 $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . " and ";
             } else {
-                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x]."";
+                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . "";
             }
         }
         $pdo = Banco::getConnection()->prepare($sql);
@@ -192,13 +192,14 @@ abstract class DAO
     {
         $tabela1 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj1));
         $tabela2 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj2));
-        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela2`.`pk_$tabela2` = :fk_$tabela2";
+        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where `$tabela1`.`pk_$tabela1` = :pk_$tabela1;";
+//              SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where `$tabela1`.`pk_$tabela1` = :pk_$tabela1;
         $pdo = Banco::getConnection()->prepare($sql);
-        $pdo->bindValue("fk_$tabela2", FuncoesReflections::pegaValorAtributoEspecifico($obj1, "fk_$tabela2"));
+        $pdo->bindValue("pk_$tabela1", FuncoesReflections::pegaValorAtributoEspecifico($obj1, "pk_$tabela1"));
         $pdo->execute();
-        if(!$retornaSoPrimeiro){
+        if (!$retornaSoPrimeiro) {
             return $pdo->fetchAll(PDO::FETCH_ASSOC);
-        }else {
+        } else {
             return $pdo->fetch(PDO::FETCH_ASSOC);
         }
     }
