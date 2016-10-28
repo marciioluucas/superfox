@@ -30,7 +30,6 @@ if (!isset($_SESSION['session_usuario'])) {
         html, body {
             height: 100%;
             min-height: 100%;
-
         }
 
         @media only screen and (max-width: 992px) {
@@ -64,17 +63,19 @@ if (!isset($_SESSION['session_usuario'])) {
     <li><a href="#!usuarios" class="waves-effect" onclick="ajaxConteudo('paginas/usuario/index.php')"><i
                 class="material-icons">people</i>Usuários</a></li>
 
-    <li><a href="#!financeiro" class="waves-effect"><i class="material-icons"
-                                                       onclick="ajaxConteudo('paginas/financeiro/index.php')">credit_card</i>
+    <li><a href="#!financeiro" class="waves-effect" onclick="ajaxConteudo('paginas/financeiro/index.php')"><i
+                class="material-icons">credit_card</i>
             Financeiro</a></li>
 
-    <li><a href="#!funcionarios" class="waves-effect"><i class="material-icons"
-                                                         onclick="ajaxConteudo('paginas/funcionario/index.php')">person outline</i>Funcionários</a></li>
+    <li><a href="#!funcionarios" class="waves-effect" onclick="ajaxConteudo('paginas/funcionario/index.php')"><i
+                class="material-icons">person outline</i>Funcionários</a></li>
 
     <li>
         <div class="divider"></div>
     </li>
-    <li><a class="waves-effect" href="#"><i class="material-icons">settings</i>Configurações</a></li>
+    <li><a class="waves-effect modal-configuracoes" href="#configuracoes"
+           onclick="ajaxGenerico('#configuracoes', 'configuracoes.php')"><i
+                class="material-icons">settings</i>Configurações</a></li>
 
     <li><a class="waves-effect" href="#!"><i class="material-icons">exit_to_app</i>Sair</a></li>
 </ul>
@@ -93,12 +94,16 @@ if (!isset($_SESSION['session_usuario'])) {
         <div class="col s12 m12 l12">
             <div class="card white darken-1">
                 <div class="card-content grey-text darken-3">
-                    <div class="conteudo"><?php $usuarioController->infoUsuarioLogado('nome') ?></div>
+                    <div class="conteudo" style="height: 100%"></div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<div id="configuracoes" class="modal bottom-sheet">
+
+</div>
 <link rel='stylesheet' href='libs/materializecss/css/materialize.min.css'/>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src='libs/jquery/jquery-3.1.1.min.js'></script>
