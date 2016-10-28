@@ -129,8 +129,8 @@ class UsuarioController
 
 }
 
-new UsuarioController();
+$uController = new UsuarioController();
 session_start();
 if (!isset($_SESSION['session_usuario'])) {
-    $this->usuarioDAO->redirecionar("../paginas/login.php");
+    $uController->usuarioDAO->redirecionar("../view/paginas/login.php");
 }

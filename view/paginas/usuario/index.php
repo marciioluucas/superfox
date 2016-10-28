@@ -9,7 +9,7 @@
 ?>
 
 <header>
-    <span class="card-title">Produtos</span>
+    <span class="card-title">Usuários</span>
 </header>
 <article>
     <section>

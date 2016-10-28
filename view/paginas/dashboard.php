@@ -16,14 +16,13 @@ $usuarioController = new UsuarioController();
     <section>
         <!--        --><?php //$usuarioController->infoUsuarioLogado('nome'); ?>
 
-
         <script>
             $(document).ready(function () {
 
 
                 new Morris.Line({
                     // ID of the element in which to draw the chart.
-                    element: 'myfirstchart',
+                    element: 'grafico1',
                     // Chart data records -- each entry in this array corresponds to a point on
                     // the chart.
 
@@ -41,11 +40,32 @@ $usuarioController = new UsuarioController();
                     ykeys: ['value'],
                     // Labels for the ykeys -- will be displayed when you hover over the
                     // chart.
-                    labels: ['Value']
+                    labels: ['Valor'],
+                    lineColors: ['#e55d2d']
                 });
+
+                new Morris.Donut({
+                    element: 'grafico2',
+                    resize: true,
+                    colors: ['#e28666','#e4764f', '#e55d2d'],
+                    data: [
+                        {label: "Teste 1", value: 12},
+                        {label: "Teste 2", value: 30},
+                        {label: "Teste 3", value: 20}
+                    ]
+                })
+                ;
             });
 
         </script>
-        <div id="myfirstchart" style="height: 250px;"></div>
+        <div class="row" style="">
+            <div class="col s12 m6 l6">
+                <div id="grafico1" class="col-lg-6" style="height: auto"></div>
+
+            </div>
+            <div class="col s12 m6 l6">
+                <div id="grafico2" class="col-lg-6" style="height: auto;"></div>
+            </div>
+        </div>
     </section>
 </article>

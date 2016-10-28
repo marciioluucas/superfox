@@ -77,7 +77,7 @@ $usuarioController = new UsuarioController();
                    onclick="ajaxGenerico('#configuracoes', 'configuracoes.php')"><i
                         class="material-icons">settings</i>Configurações</a></li>
 
-            <li><a class="waves-effect" href="#!"><i class="material-icons">exit_to_app</i>Sair</a></li>
+            <li><a class="waves-effect" href="../controller/UsuarioController.php?action=sair"><i class="material-icons">exit_to_app</i>Sair</a></li>
         </ul>
 
         <div class="nav-wrapper grey darken-3">
@@ -108,12 +108,12 @@ $usuarioController = new UsuarioController();
 
 </aside>
 <link rel='stylesheet' href='libs/materializecss/css/materialize.min.css'/>
+<link rel='stylesheet' href='libs/morris-charts/morris.min.css'/>
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src='libs/jquery/jquery-3.1.1.min.js'></script>
 <script src='libs/materializecss/js/materialize.min.js'></script>
 <script src='libs/trianglify/trianglify.min.js'></script>
 <script src='libs/script.js'></script>
-<script src="libs/morris-charts/morris.min.css"></script>
 <script src="libs/morris-charts/morris.min.js"></script>
 <script src="libs/morris-charts/raphael.min.js"></script>
 <?php
