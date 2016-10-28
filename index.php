@@ -8,6 +8,8 @@
 //TODO: LOG DE QUEM ESTÁ ENTRENDO NO SITE E DE ONDE.
 ?>
 
+
+
 <!DOCTYPE HTML>
 <html lang="pt-br">
 <head>
