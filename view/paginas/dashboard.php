@@ -7,5 +7,11 @@
  */
 ?>
 
-
-<span class="card-title">Dashboard</span>
+<header>
+    <span class="card-title">Dashboard</span>
+</header>
+<article>
+    <section>
+        <?php $usuarioController->infoUsuarioLogado('nome') ?>
+    </section>
+</article>
