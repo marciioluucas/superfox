@@ -8,4 +8,12 @@
  */
 ?>
 
-<span class="card-title">Produto</span>
+<header>
+    <span class="card-title">Produtos</span>
+</header>
+<article>
+    <section>
+
+    </section>
+</article>
+

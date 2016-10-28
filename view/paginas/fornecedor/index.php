@@ -8,4 +8,12 @@
  */
 ?>
 
-<span class="card-title">Fornecedor</span>
+<header>
+    <span class="card-title">Fornecedores</span>
+</header>
+<article>
+    <section>
+
+    </section>
+</article>
+

@@ -8,4 +8,11 @@
  */
 ?>
 
-<span class="card-title">Financeiro</span>
+<header>
+    <span class="card-title">Financeiro</span>
+</header>
+<article>
+    <section>
+
+    </section>
+</article>

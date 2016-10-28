@@ -8,4 +8,11 @@
  */
 ?>
 
-<span class="card-title">Cliente</span>
+<header>
+    <span class="card-title">Clientes</span>
+</header>
+<article>
+    <section>
+
+    </section>
+</article>
