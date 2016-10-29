@@ -15,7 +15,7 @@ class UsuarioDAO extends DAO
     public function criarUsuario($obj)
     {
         $fk_funcionario = FuncoesReflections::pegaValorAtributoEspecifico($obj, "fk_funcionario");
-        if($this->quantidadeRegistros($obj,["fk_funcionario"=>$fk_funcionario] == 0)){
+        if($this->quantidadeRegistros($obj,["fk_funcionario"=>$fk_funcionario]) == 0){
             $this->create($obj);
             return "Usuario cadastrado com sucesso!";
         }

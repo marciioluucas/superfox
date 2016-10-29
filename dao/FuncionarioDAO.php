@@ -1,5 +1,5 @@
 <?php
-
+require_once 'DAO.php';
 /**
  * Created by PhpStorm.
  * User: Márcio Lucas
@@ -7,7 +7,7 @@
  * Date: 25/10/2016
  * Time: 14:39
  */
-class FuncionarioDAO
+class FuncionarioDAO extends DAO
 {
 
 }
