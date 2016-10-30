@@ -7,10 +7,7 @@
  * Time: 07:47
  */
 ?>
-
-<header>
     <span class="card-title">Financeiro</span>
-</header>
 <article>
     <section>
 
