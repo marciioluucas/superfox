@@ -5,8 +5,6 @@
  * Date: 19/10/2016
  * Time: 19:55
  * // */
-require_once("../../controller/usuarioController.php");
-$usuarioController = new UsuarioController();
 ?>
 
 
@@ -14,7 +12,6 @@ $usuarioController = new UsuarioController();
 
 <article>
     <section>
-        <!--        --><?php //$usuarioController->infoUsuarioLogado('nome'); ?>
 
         <script>
             $(document).ready(function () {
