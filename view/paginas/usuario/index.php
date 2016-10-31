@@ -27,7 +27,7 @@
 <script>
     $(document).ready(function(){
         $('ul.tabs').tabs();
-        $("a[href='#listagem]'").on("click", function() {
+        $("a[href='#listagem']").on("click", function() {
             ajaxGenerico('#listagem', 'paginas/usuario/listagem.php')
         })
         $("a[href='#cadastros']").on("click", function() {

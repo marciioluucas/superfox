@@ -1,7 +1,7 @@
 <?php
-require_once 'D:/xampp/htdocs/superfox/model/Usuario.php';
-require_once 'D:/xampp/htdocs/superfox/dao/UsuarioDAO.php';
-require_once 'D:/xampp/htdocs/superfox/model/Funcionario.php';
+require_once("D:/xampp/htdocs/superfox/model/Usuario.php");
+require_once("D:/xampp/htdocs/superfox/dao/UsuarioDAO.php");
+require_once("D:/xampp/htdocs/superfox/model/Funcionario.php");
 
 /**
  * Created by PhpStorm.
