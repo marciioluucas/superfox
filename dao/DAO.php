@@ -203,4 +203,15 @@ abstract class DAO
             return $pdo->fetch(PDO::FETCH_ASSOC);
         }
     }
+    public function pesquisaPorId($obj){
+        try {
+            $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
+            $sqlSelect = "SELECT * from $tabela WHERE pk_" . $tabela . " = %" . FuncoesReflections::pegaValorAtributoEspecifico($obj, "pk_$tabela");
+            $pdo = Banco::getConnection()->prepare($sqlSelect);
+            $pdo->execute();
+            return $pdo->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            throw new Exception("Erro ao processar query: ", 2, $e);
+        }
+    }
 }

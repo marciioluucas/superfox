@@ -38,6 +38,10 @@ class UsuarioDAO extends DAO
         $this->update($obj, $id);
     }
 
+    public function pesquisaPorIdUsuario($obj){
+
+    }
+
     public function logarUsuario($obj, $email, $senha)
     {
 
@@ -68,7 +72,6 @@ class UsuarioDAO extends DAO
 
     public function sair()
     {
-        echo "aqi";
         session_destroy();
         unset($_SESSION);
         return true;
