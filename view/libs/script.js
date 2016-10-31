@@ -3,7 +3,7 @@
  */
 
 function ajaxConteudo(url) {
-    $( ".conteudo" ).load( url, function() {
+    $(".conteudo").load(url, function () {
         console.log('Sucesso!');
     });
 }
@@ -14,7 +14,7 @@ $(document).ready(function () {
 });
 
 function ajaxGenerico(seletor, url) {
-    $(seletor).load(url, function() {
+    $(seletor).load(url, function () {
         console.log('Sucesso!');
     })
 }

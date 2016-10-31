@@ -13,9 +13,12 @@
         <div class="row">
             <form class="col s12">
                 <div class="row">
-                    <div class="input-field col s12 m6 l6">
-                        <input type="text" id="autocomplete-input" class="autocomplete">
-                        <label for="autocomplete-input">Funcionário</label>
+                    <div class="input-field col s10 m4 l4">
+                        <input type="text" id="funcionario">
+                        <label for="funcionario">Funcionário</label>
+                    </div>
+                    <div class="col s2 m2 l2 valign-wrapper" style="padding-top: 22px;">
+                        <a class="waves-effect orange darken-3 waves-light btn">Checar!</a>
                     </div>
                 </div>
                 <div class="row">

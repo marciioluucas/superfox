@@ -1,7 +1,7 @@
 <?php
-require_once("D:/xampp/htdocs/superfox/model/Banco.php");
-require_once("D:/xampp/htdocs/superfox/util/FuncoesReflections.php");
-require_once("D:/xampp/htdocs/superfox/util/FuncoesString.php");
+require_once("../model/Banco.php");
+require_once("../util/FuncoesReflections.php");
+require_once("../util/FuncoesString.php");
 
 /**
  * Created by PhpStorm.

@@ -15,7 +15,7 @@ class UsuarioDAO extends DAO
     public function criarUsuario($obj)
     {
         $fk_funcionario = FuncoesReflections::pegaValorAtributoEspecifico($obj, "fk_funcionario");
-        if($this->quantidadeRegistros($obj,["fk_funcionario"=>$fk_funcionario]) == 0){
+        if ($this->quantidadeRegistros($obj, ["fk_funcionario" => $fk_funcionario]) == 0) {
             $this->create($obj);
             return "Usuario cadastrado com sucesso!";
         }
@@ -51,7 +51,7 @@ class UsuarioDAO extends DAO
                 $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
                 return true;
             } else {
-                return false;
+                return "Usuário e/ou senha não ou não conhecidem existem.";
             }
         } catch (Exception $e) {
             throw new Exception("Erro ao logar", 0, $e);

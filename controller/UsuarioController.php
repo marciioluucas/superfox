@@ -1,7 +1,7 @@
 <?php
-require_once("D:/xampp/htdocs/superfox/model/Usuario.php");
-require_once("D:/xampp/htdocs/superfox/dao/UsuarioDAO.php");
-require_once("D:/xampp/htdocs/superfox/model/Funcionario.php");
+require_once("../model/Usuario.php");
+require_once("../dao/UsuarioDAO.php");
+require_once("../model/Funcionario.php");
 
 /**
  * Created by PhpStorm.
@@ -32,15 +32,15 @@ class UsuarioController
         $this->usuario->setFk_Funcionario(isset($_POST['funcionario']) ? $_POST['funcionario'] : null);
         if (isset($_POST['action'])) {
             if ($_POST['action'] == "logar") {
-                try{
+                try {
 
                     $this->logar();
                     $this->usuarioDAO->redirecionar('../view/index.php');
-                } catch (Exception $e){
+                } catch (Exception $e) {
                     echo $e->getMessage();
                 }
 
-        }
+            }
             if ($_POST['action'] == "salvar") {
                 try {
                     $this->salvar();
@@ -62,11 +62,10 @@ class UsuarioController
                 }
             }
 
-            if($_GET['action'] == "pesquisarPorId") {
+            if ($_GET['action'] == "pesquisarPorId") {
 
                 try {
                     header('Content-Type: application/json');
-                    $this->pesquisaFuncionarioPorIdParaAutoComplete($_GET['idFuncionario']);
                 } catch (Exception $e) {
                     echo $e->getMessage();
                 }
@@ -103,7 +102,7 @@ class UsuarioController
 
     public function logar()
     {
-        try{
+        try {
             return $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
         } catch (Exception $e) {
             echo $e->getMessage();
