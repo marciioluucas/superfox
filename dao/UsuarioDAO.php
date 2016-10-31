@@ -1,7 +1,7 @@
 <?php
 require_once 'DAO.php';
-require_once 'D:/xampp/htdocs/superfox/model/Usuario.php';
-require_once 'D:/xampp/htdocs/superfox/model/Funcionario.php';
+require_once '../model/Usuario.php';
+require_once '../model/Funcionario.php';
 
 /**
  * Created by PhpStorm.
@@ -38,9 +38,6 @@ class UsuarioDAO extends DAO
         $this->update($obj, $id);
     }
 
-    public function pesquisaPorIdUsuario($obj){
-
-    }
 
     public function logarUsuario($obj, $email, $senha)
     {

@@ -1,7 +1,7 @@
 <?php
 require_once "ConfBD.php";
-require_once "D:/xampp/htdocs/superfox/util/FuncoesString.php";
-require_once "D:/xampp/htdocs/superfox/util/FuncoesVariaveis.php";
+require_once "../util/FuncoesString.php";
+require_once "../util/FuncoesVariaveis.php";
 
 /**
  * Created by PhpStorm.

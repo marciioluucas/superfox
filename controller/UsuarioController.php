@@ -1,7 +1,7 @@
 <?php
-require_once 'D:/xampp/htdocs/superfox/model/Usuario.php';
-require_once 'D:/xampp/htdocs/superfox/dao/UsuarioDAO.php';
-require_once 'D:/xampp/htdocs/superfox/model/Funcionario.php';
+require_once '../model/Usuario.php';
+require_once '../dao/UsuarioDAO.php';
+require_once '../model/Funcionario.php';
 
 /**
  * Created by PhpStorm.
@@ -13,6 +13,7 @@ class UsuarioController
 {
     public $usuarioDAO;
     public $usuario;
+    public $funcionario;
 
     /**
      * UsuarioController constructor.
@@ -24,6 +25,7 @@ class UsuarioController
 
         $this->usuarioDAO = new UsuarioDAO();
         $this->usuario = new Usuario();
+        $this->funcionario = new Funcionario();
         $this->usuario->setLogin(isset($_POST['login']) ? $_POST['login'] : null);
         $this->usuario->setEmail(isset($_POST['email']) ? $_POST['email'] : null);
         $this->usuario->setSenha(isset($_POST['senha']) ? $_POST['senha'] : null);
@@ -57,6 +59,16 @@ class UsuarioController
 //                    $this->usuarioDAO->redirecionar('../view/paginas/login.php');
                 } catch (Exception $e) {
 
+                }
+            }
+
+            if($_GET['action'] == "pesquisarPorId") {
+
+                try {
+                    header('Content-Type: application/json');
+                    $this->pesquisaFuncionarioPorIdParaAutoComplete($_GET['idFuncionario']);
+                } catch (Exception $e) {
+                    echo $e->getMessage();
                 }
             }
         }
