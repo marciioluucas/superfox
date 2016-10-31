@@ -1,7 +1,7 @@
 <?php
-require_once 'DAO.php';
-require_once '../model/Usuario.php';
-require_once '../model/Funcionario.php';
+require_once("DAO.php");
+require_once("../model/Usuario.php");
+require_once("../model/Funcionario.php");
 
 /**
  * Created by PhpStorm.

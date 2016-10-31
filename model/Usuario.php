@@ -1,5 +1,5 @@
 <?php
-require_once 'Funcionario.php';
+require_once("Funcionario.php");
 /**
  * Created by PhpStorm.
  * User: Marcio

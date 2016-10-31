@@ -1,8 +1,8 @@
 <?php
-require_once 'DAO.php';
-require_once '../model/Produto.php';
-require_once '../util/FuncoesReflections.php';
-require_once '../util/FuncoesString.php';
+require_once("DAO.php");
+require_once("../model/Produto.php");
+require_once("../util/FuncoesReflections.php");
+require_once("../util/FuncoesString.php");
 /**
  * Created by PhpStorm.
  * User: Marcio

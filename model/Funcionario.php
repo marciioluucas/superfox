@@ -1,6 +1,6 @@
 <?php
-require_once 'Fisica.php';
-require_once 'Cargo.php';
+require_once("Fisica.php");
+require_once("Cargo.php");
 /**
  * Created by PhpStorm.
  * User: Márcio Lucas

@@ -1,7 +1,7 @@
 <?php
-require_once '../model/Banco.php';
-require_once '../util/FuncoesReflections.php';
-require_once '../util/FuncoesString.php';
+require_once("D:/xampp/htdocs/superfox/model/Banco.php");
+require_once("D:/xampp/htdocs/superfox/util/FuncoesReflections.php");
+require_once("D:/xampp/htdocs/superfox/util/FuncoesString.php");
 
 /**
  * Created by PhpStorm.
@@ -201,18 +201,6 @@ abstract class DAO
             return $pdo->fetchAll(PDO::FETCH_ASSOC);
         } else {
             return $pdo->fetch(PDO::FETCH_ASSOC);
-        }
-    }
-    public function pesquisaPorId($obj){
-        try {
-            $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
-            $sqlSelect = "SELECT * from $tabela WHERE pk_" . $tabela . " = " . FuncoesReflections::pegaValorAtributoEspecifico($obj, "pk_$tabela");
-            $pdo = Banco::getConnection()->prepare($sqlSelect);
-            $pdo->execute();
-            print_r($sqlSelect);
-            return $pdo->fetchAll(PDO::FETCH_ASSOC);
-        } catch (Exception $e) {
-            throw new Exception("Erro ao processar query: ", 2, $e);
         }
     }
 }

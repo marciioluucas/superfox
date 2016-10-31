@@ -6,8 +6,8 @@
  * Date: 24/10/2016
  * Time: 16:41
  */
-require_once '../controller/UsuarioController.php';
-require_once '../model/Funcionario.php';
+require_once("../controller/UsuarioController.php");
+require_once ("../model/Funcionario.php");
 $usuarioController = new UsuarioController();
 
 
