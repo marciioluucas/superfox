@@ -200,21 +200,34 @@ abstract class DAO
         }
         $valoresCampos = [];
         for ($j = 0; $j < count($condicoes); $j++) {
-            $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
-        }
-        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where ";
-        for ($x = 0; $x < count($nomeCampos); $x++) {
-            if ($x != count($nomeCampos) - 1) {
-                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . " and ";
-            } else {
-                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . "";
+            if ($condicoes[$nomeCampos[$j]] != "") {
+//                echo $condicoes[$nomeCampos[$j]];
+                $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
             }
         }
+        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where ";
+        $nomeCamposNovo = [];
+        for ($x = 0; $x < count($nomeCampos); $x++) {
+            if ($x != count($nomeCampos) - 1) {
+                if ($condicoes[$nomeCampos[$x]] != "") {
+                    $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . " and ";
+                    $nomeCamposNovo[$x] = $nomeCampos[$x];
+                }
+            } else {
+                if ($condicoes[$nomeCampos[$x]] != "") {
+                    $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . "";
+                    $nomeCamposNovo[$x] = $nomeCampos[$x];
+                }
+            }
+        }
+        $nomeCamposNovo = array_values($nomeCamposNovo);
+//        echo $sql;
         $pdo = Banco::getConnection()->prepare($sql);
-
-        for ($i = 0; $i < count($nomeCampos); $i++) {
-//            echo $nomeCampos[$i] . " | " . $valoresCampos[$i];
-            $pdo->bindValue($nomeCampos[$i], $valoresCampos[$i]);
+        $valoresCampos = array_values($valoresCampos);
+//        print_r($valoresCampos);
+//        print_r($nomeCamposNovo);
+        for ($i = 0; $i < count($nomeCamposNovo); $i++) {
+            $pdo->bindValue($nomeCamposNovo[$i], $valoresCampos[$i]);
         }
         $pdo->execute();
 //        print_r($pdo->fetchAll(PDO::FETCH_ASSOC));

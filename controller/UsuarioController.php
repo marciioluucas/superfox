@@ -62,10 +62,10 @@ class UsuarioController
                 }
             }
 
-            if ($_GET['action'] == "pesquisarPorId") {
-
+            if ($_GET['action'] == "pesquisar") {
                 try {
                     header('Content-Type: application/json');
+                    echo json_encode($this->pesquisarUsuario());
                 } catch (Exception $e) {
                     echo $e->getMessage();
                 }
@@ -139,7 +139,8 @@ class UsuarioController
 
     public function pesquisarUsuario()
     {
-
+       return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario, ["pk_usuario" => $_GET['id'],
+            "nome" => $_GET['nome'], "login" =>$_GET['login']]);
     }
 
 

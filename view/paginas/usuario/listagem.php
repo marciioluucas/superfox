@@ -6,6 +6,8 @@
  * Date: 27/10/2016
  * Time: 17:09
  */
+
+
 ?>
 <h5>Listar por:</h5>
 <article>
@@ -32,7 +34,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <a class="waves-effect orange darken-3 waves-light btn">Pesquisar</a>
+                                <a class="waves-effect orange darken-3 waves-light btn btn-pesquisar"
+                                >Pesquisar</a>
                             </div>
                         </form>
                     </div>
@@ -53,7 +56,12 @@
                 </tr>
                 </thead>
 
-                <tbody>
+                <tbody class="tabela-pesquisa">
+               <?php
+               include '../../../controller/UsuarioController.php';
+
+
+               ?>
                 <tr>
                     <td>Alvin</td>
                     <td>Eclair</td>
@@ -94,3 +102,42 @@
         </div>
     </section>
 </article>
+
+<script>
+    var nome = '';
+    var login = '';
+    var id = '';
+
+    $('input').on("keyup", function () {
+        nome = $('#nome').val();
+        login = $('#login').val();
+        id = $('#id').val();
+    });
+
+    var objetoPesquisa;
+    $('.btn-pesquisar').on("click", function () {
+//        ajaxComCallback();
+        var url = encodeURI("../controller/UsuarioController.php?action=pesquisar&id=" + id + "&nome=" + nome + "&login=" + login);
+//        alert(url);
+//        ajaxGenerico('.tabela-pesquisa', url);
+        ajaxComCallback(url);
+        alert(objetoPesquisa);
+    });
+
+
+    function ajaxComCallback(url) {
+        $.ajax({
+            url: url,
+            type: "post",
+            datatype: 'json',
+            success: function(data){
+                objetoPesquisa = data;
+            },
+            error:function(){
+                console.log("Erro na requisição AJAX");
+            }
+        });
+    }
+
+
+</script>

@@ -62,9 +62,10 @@ class UsuarioDAO extends DAO
      * @param $obj1
      * @param $obj2
      * @param $condicoes
+     *
      */
     public function pesquisarUsuario($obj1, $obj2, $condicoes) {
-        $this->innerJoin($obj1, $obj2, $condicoes, false);
+        return $this->innerJoin($obj1, $obj2, $condicoes, false);
     }
 
 
@@ -133,17 +134,11 @@ class UsuarioDAO extends DAO
 
 }
 
-//
-//$usuario = new Usuario();
-//$usuarioDAO = new UsuarioDAO();
-//$usuario->setPk_usuario(23);
-//$funcionario = new Funcionario();
-//$funcionario->setPk_Funcionario(3);
-//$usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
-//$linha = $usuarioDAO->innerJoin($usuario, $funcionario, ["pk_usuario" => $usuario->getPk_usuario()]);
-//for ($i = 0; $i < count($linha); $i++) {
-//
-//}
+
+$usuario = new Usuario();
+$usuarioDAO = new UsuarioDAO();
+
+print_r($usuarioDAO->quantidadeRegistros($usuario, ["email" => "marciioluucas@gmail.com", "senha" => "123456"]));
 
 
 
