@@ -11,21 +11,34 @@
 <article>
     <section>
         <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s8">
-                        <input id="login" type="text" class="validate">
-                        <label for="login">Login</label>
-                    </div>
-                    <div class="input-field col s4">
-                        <input id="id" type="text" class="validate">
-                        <label for="id">ID</label>
+            <div class="row">
+                <div class="col s12">
+                    <div class="card-panel grey lighten-2">
+                        <form class="">
+                            <div class="row">
+                                <div class="input-field col s8">
+                                    <input id="login" type="text" class="validate">
+                                    <label for="login">Login</label>
+                                </div>
+                                <div class="input-field col s4">
+                                    <input id="id" type="text" class="validate">
+                                    <label for="id">ID</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s8">
+                                    <input id="nome" type="text" class="validate">
+                                    <label for="nome">Nome</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <a class="waves-effect orange darken-3 waves-light btn">Pesquisar</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="row">
-                    <a class="waves-effect orange darken-3 waves-light btn">Pesquisar</a>
-                </div>
-            </form>
+            </div>
+
         </div>
         <div class="row">
             <table class="responsive-table">
@@ -45,25 +58,34 @@
                     <td>Alvin</td>
                     <td>Eclair</td>
                     <td>$0.87</td>
-                    <td><a class="waves-effect orange darken-3  waves-light btn"><i class="material-icons center">remove_red_eye</i></a></td>
-                    <td><a class="waves-effect blue darken-3  waves-light btn"><i class="material-icons center">create</i></a></td>
-                    <td><a class="waves-effect red darken-3  waves-light btn"><i class="material-icons center">delete</i></a></td>
+                    <td><a class="waves-effect orange darken-3  waves-light btn"><i class="material-icons center">remove_red_eye</i></a>
+                    </td>
+                    <td><a class="waves-effect blue darken-3  waves-light btn"><i
+                                class="material-icons center">create</i></a></td>
+                    <td><a class="waves-effect red darken-3  waves-light btn"><i
+                                class="material-icons center">delete</i></a></td>
                 </tr>
                 <tr>
                     <td>Alan</td>
                     <td>Jellybean</td>
                     <td>$3.76</td>
-                    <td><a class="waves-effect orange darken-3  waves-light btn"><i class="material-icons center">remove_red_eye</i></a></td>
-                    <td><a class="waves-effect blue darken-3  waves-light btn"><i class="material-icons center">create</i></a></td>
-                    <td><a class="waves-effect red darken-3  waves-light btn"><i class="material-icons center">delete</i></a></td>
+                    <td><a class="waves-effect orange darken-3  waves-light btn"><i class="material-icons center">remove_red_eye</i></a>
+                    </td>
+                    <td><a class="waves-effect blue darken-3  waves-light btn"><i
+                                class="material-icons center">create</i></a></td>
+                    <td><a class="waves-effect red darken-3  waves-light btn"><i
+                                class="material-icons center">delete</i></a></td>
                 </tr>
                 <tr>
                     <td>Jonathan</td>
                     <td>Lollipop</td>
                     <td>$7.00</td>
-                    <td><a class="waves-effect orange darken-3  waves-light btn"><i class="material-icons center">remove_red_eye</i></a></td>
-                    <td><a class="waves-effect blue darken-3  waves-light btn"><i class="material-icons center">create</i></a></td>
-                    <td><a class="waves-effect red darken-3  waves-light btn"><i class="material-icons center">delete</i></a></td>
+                    <td><a class="waves-effect orange darken-3  waves-light btn"><i class="material-icons center">remove_red_eye</i></a>
+                    </td>
+                    <td><a class="waves-effect blue darken-3  waves-light btn"><i
+                                class="material-icons center">create</i></a></td>
+                    <td><a class="waves-effect red darken-3  waves-light btn"><i
+                                class="material-icons center">delete</i></a></td>
                 </tr>
 
 

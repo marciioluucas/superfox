@@ -12,6 +12,10 @@ require_once("../model/Funcionario.php");
 class UsuarioDAO extends DAO
 {
 
+    /**
+     * @param $obj
+     * @return string
+     */
     public function criarUsuario($obj)
     {
         $fk_funcionario = FuncoesReflections::pegaValorAtributoEspecifico($obj, "fk_funcionario");
@@ -23,22 +27,55 @@ class UsuarioDAO extends DAO
     }
 
 
+    /**
+     * @param $obj
+     * @return mixed
+     */
     public function porIdUsuario($obj)
     {
         return $this->porId($obj);
     }
 
+    /**
+     * @param $obj
+     * @param $id
+     */
     public function updateUsuario($obj, $id)
     {
         $this->update($obj, $id);
     }
 
+    /**
+     * Apagar o usuário.
+     * @param $obj
+     * @param $id
+     */
     public function deleteUsuario($obj, $id)
     {
         $this->update($obj, $id);
     }
 
+    /**
+     * Aqui é o seguinte, voce pesquisa o usuário fazendo innerjoin com outra tabela. Este método foi feito para
+     * a pesquisa de usuario na listagem do mesmo, mas para que as informações venham completas, precisamos fazer
+     * a junção com a tabela de Funcionário.
+     * @param $obj1
+     * @param $obj2
+     * @param $condicoes
+     */
+    public function pesquisarUsuario($obj1, $obj2, $condicoes) {
+        $this->innerJoin($obj1, $obj2, $condicoes, false);
+    }
 
+
+    /**
+     * Este método faz o login de usuário.
+     * @param $obj
+     * @param $email
+     * @param $senha
+     * @return bool|string
+     * @throws Exception
+     */
     public function logarUsuario($obj, $email, $senha)
     {
 
@@ -58,6 +95,10 @@ class UsuarioDAO extends DAO
         }
     }
 
+    /**
+     * Vê se a sessão do usuário existe ou não.
+     * @return bool
+     */
     public function isLogado()
     {
         if (isset($_SESSION['session_usuario'])) {
@@ -67,6 +108,10 @@ class UsuarioDAO extends DAO
         }
     }
 
+    /**
+     * Função de logout do usuário
+     * @return bool
+     */
     public function sair()
     {
         session_destroy();
@@ -74,25 +119,31 @@ class UsuarioDAO extends DAO
         return true;
     }
 
+    /**
+     * Redirecionamento para uma página.
+     * @param $url
+     */
     public function redirecionar($url)
     {
         header("Location: $url");
     }
 
 
+
+
 }
 
-
-$usuario = new Usuario();
-$usuarioDAO = new UsuarioDAO();
-$usuario->setPk_usuario(26);
-$funcionario = new Funcionario();
-$funcionario->setPk_Funcionario(4);
-$usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
-$linha = $usuarioDAO->innerJoin($usuario, $funcionario, true);
-for ($i = 0; $i < count($linha); $i++) {
-
-}
+//
+//$usuario = new Usuario();
+//$usuarioDAO = new UsuarioDAO();
+//$usuario->setPk_usuario(23);
+//$funcionario = new Funcionario();
+//$funcionario->setPk_Funcionario(3);
+//$usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
+//$linha = $usuarioDAO->innerJoin($usuario, $funcionario, ["pk_usuario" => $usuario->getPk_usuario()]);
+//for ($i = 0; $i < count($linha); $i++) {
+//
+//}
 
 
 

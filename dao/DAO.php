@@ -188,19 +188,40 @@ abstract class DAO
         return $pdo->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function innerJoin($obj1, $obj2, $retornaSoPrimeiro = false)
+    public function innerJoin($obj1, $obj2, $condicoes, $retornaSoPrimeiro = false)
     {
         $tabela1 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj1));
         $tabela2 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj2));
-        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where `$tabela1`.`pk_$tabela1` = :pk_$tabela1;";
-//              SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where `$tabela1`.`pk_$tabela1` = :pk_$tabela1;
+
+        $nomeCampos = [];
+        $condicoesComIndexInt = array_keys($condicoes);
+        for ($i = 0; $i < count($condicoes); $i++) {
+            $nomeCampos[$i] = $condicoesComIndexInt[$i];
+        }
+        $valoresCampos = [];
+        for ($j = 0; $j < count($condicoes); $j++) {
+            $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
+        }
+        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where ";
+        for ($x = 0; $x < count($nomeCampos); $x++) {
+            if ($x != count($nomeCampos) - 1) {
+                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . " and ";
+            } else {
+                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . "";
+            }
+        }
         $pdo = Banco::getConnection()->prepare($sql);
-        $pdo->bindValue("pk_$tabela1", FuncoesReflections::pegaValorAtributoEspecifico($obj1, "pk_$tabela1"));
+
+        for ($i = 0; $i < count($nomeCampos); $i++) {
+//            echo $nomeCampos[$i] . " | " . $valoresCampos[$i];
+            $pdo->bindValue($nomeCampos[$i], $valoresCampos[$i]);
+        }
         $pdo->execute();
-        if (!$retornaSoPrimeiro) {
-            return $pdo->fetchAll(PDO::FETCH_ASSOC);
-        } else {
+//        print_r($pdo->fetchAll(PDO::FETCH_ASSOC));
+        if ($retornaSoPrimeiro) {
             return $pdo->fetch(PDO::FETCH_ASSOC);
+        } else {
+            return $pdo->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 }

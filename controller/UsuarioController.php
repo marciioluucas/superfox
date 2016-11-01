@@ -82,17 +82,17 @@ class UsuarioController
 
     public function alterar()
     {
-
+        $this->usuarioDAO->updateUsuario($this->usuario, $_POST['id']);
     }
 
     public function excluir()
     {
-
+        $this->usuarioDAO->deleteUsuario($this->usuario, $_GET['id']);
     }
 
     public function porId()
     {
-
+        $this->usuarioDAO->porIdUsuario($this->usuario);
     }
 
     public function listarAll()
@@ -110,9 +110,9 @@ class UsuarioController
         return false;
     }
 
-    public function innerJoin($obj2)
+    public function innerJoin($obj2, $condicoes)
     {
-        return $this->usuarioDAO->innerJoin($this->usuario, $obj2, true);
+        return $this->usuarioDAO->innerJoin($this->usuario, $obj2, $condicoes);
     }
 
     public function protecaoLoggin()
@@ -132,9 +132,14 @@ class UsuarioController
         $funcionario = new Funcionario();
         $funcionario->setPk_Funcionario($linhaUsuario['fk_funcionario']);
         $usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
-        $linha = $usuarioDAO->innerJoin($usuario, $funcionario, true);
-
+        $linha = $this->usuarioDAO->innerJoin($usuario, $funcionario, ["pk_usuario" => $usuario->getPk_usuario()], true);
+//        print_r($linha);
         echo $linha[$coluna];
+    }
+
+    public function pesquisarUsuario()
+    {
+
     }
 
 
