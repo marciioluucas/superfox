@@ -16,7 +16,6 @@
         <div class="row">
             <div class="row">
                 <div class="col s12">
-                    <div class="card-panel grey lighten-2">
                         <form class="">
                             <div class="row">
                                 <div class="input-field col s8">
@@ -42,8 +41,6 @@
                     </div>
                 </div>
             </div>
-
-        </div>
         <div class="row">
             <table class="responsive-table">
                 <thead>
