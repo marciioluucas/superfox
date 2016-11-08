@@ -66,11 +66,18 @@
                     <td>Alvin</td>
                     <td>Eclair</td>
                     <td>$0.87</td>
-                    <td><a class="waves-effect orange darken-3  waves-light btn" onclick="ajaxGenerico('#modal', '../usuario/ver.php?id='+<?php echo 1;?>)"><i
-                                class="material-icons center" data-target="modal1">remove_red_eye</i></a>
+                    <td>
+                        <button class="waves-effect orange darken-3  waves-light btn"
+                                onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/ver.php?<?php echo "id=1&nome=Marcio Lucas&cargo=Gerente&login=marciioluucas&email=marciioluucas@gmail.com"; ?>'))">
+                            <i
+                                class="material-icons center" data-target="modal1">remove_red_eye</i></button>
                     </td>
-                    <td><a class="waves-effect blue darken-3  waves-light btn"><i
-                                class="material-icons center">create</i></a></td>
+                    <td>
+                        <button class="waves-effect blue darken-3  waves-light btn"
+                                onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/alteracao.php?<?php echo "id=1&nome=Marcio Lucas&cargo=Gerente&login=marciioluucas&email=marciioluucas@gmail.com"; ?>'))">
+                            <i
+                                class="material-icons center">create</i></button>
+                    </td>
                     <td><a class="waves-effect red darken-3  waves-light btn"><i
                                 class="material-icons center">delete</i></a></td>
                 </tr>
@@ -105,8 +112,8 @@
         </div>
     </section>
 </article>
-<div class="modal  modal-fixed-footer" id="modal1">
-    <div id="modal">
+<div class="modal modal-fixed-footer" id="modal1">
+    <div class="dialogModal">
     </div>
 </div>
 <script>
