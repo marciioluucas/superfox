@@ -9,7 +9,7 @@ function ajaxConteudo(url) {
 }
 
 $(document).ready(function () {
-    ajaxConteudo('paginas/dashboard.php');
+    ajaxConteudo('../dashboard.php');
     $('.modal-configuracoes').leanModal();
 });
 

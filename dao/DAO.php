@@ -1,7 +1,7 @@
 <?php
-require_once("../model/Banco.php");
-require_once("../util/FuncoesReflections.php");
-require_once("../util/FuncoesString.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/superfox/model/Banco.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/superfox/util/FuncoesReflections.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/superfox/util/FuncoesString.php");
 
 /**
  * Created by PhpStorm.

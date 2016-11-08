@@ -1,8 +1,7 @@
 <?php
-require_once("../model/Usuario.php");
-require_once("../dao/UsuarioDAO.php");
-require_once("../model/Funcionario.php");
-
+require_once($_SERVER['DOCUMENT_ROOT']."/superfox/model/Usuario.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/superfox/dao/UsuarioDAO.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/superfox/model/Funcionario.php");
 /**
  * Created by PhpStorm.
  * User: Marcio
@@ -56,7 +55,7 @@ class UsuarioController
                 try {
                     session_start();
                     session_destroy();
-//                    $this->usuarioDAO->redirecionar('../view/paginas/login.php');
+                    $this->usuarioDAO->redirecionar('../login.php');
                 } catch (Exception $e) {
 
                 }
@@ -119,7 +118,7 @@ class UsuarioController
     {
         if (!isset($_SESSION)) session_start();
         if (!$this->usuarioDAO->isLogado()) {
-            $this->usuarioDAO->redirecionar("../paginas/login.php");
+            $this->usuarioDAO->redirecionar("../login.php");
         }
     }
 
@@ -147,7 +146,7 @@ class UsuarioController
 }
 
 $uController = new UsuarioController();
-session_start();
-if (!isset($_SESSION['session_usuario'])) {
-    $uController->usuarioDAO->redirecionar("../view/paginas/login.php");
-}
+//session_start();
+//if (!isset($_SESSION['session_usuario'])) {
+//    $uController->usuarioDAO->redirecionar("../login.php");
+//}

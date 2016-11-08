@@ -57,43 +57,45 @@
                 </thead>
 
                 <tbody class="tabela-pesquisa">
-               <?php
-               include '../../../controller/UsuarioController.php';
+                <?php
+                require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/UsuarioController.php";
 
-
-               ?>
+                ?>
                 <tr>
                     <td>Alvin</td>
                     <td>Eclair</td>
                     <td>$0.87</td>
-                    <td><a class="waves-effect orange darken-3  waves-light btn"><i class="material-icons center">remove_red_eye</i></a>
+                    <td><a class="waves - effect orange darken - 3  waves - light btn"><i
+                                class="material - icons center">remove_red_eye</i></a>
                     </td>
-                    <td><a class="waves-effect blue darken-3  waves-light btn"><i
-                                class="material-icons center">create</i></a></td>
-                    <td><a class="waves-effect red darken-3  waves-light btn"><i
-                                class="material-icons center">delete</i></a></td>
+                    <td><a class="waves - effect blue darken - 3  waves - light btn"><i
+                                class="material - icons center">create</i></a></td>
+                    <td><a class="waves - effect red darken - 3  waves - light btn"><i
+                                class="material - icons center">delete</i></a></td>
                 </tr>
                 <tr>
                     <td>Alan</td>
                     <td>Jellybean</td>
                     <td>$3.76</td>
-                    <td><a class="waves-effect orange darken-3  waves-light btn"><i class="material-icons center">remove_red_eye</i></a>
+                    <td><a class="waves - effect orange darken - 3  waves - light btn"><i
+                                class="material - icons center">remove_red_eye</i></a>
                     </td>
-                    <td><a class="waves-effect blue darken-3  waves-light btn"><i
-                                class="material-icons center">create</i></a></td>
-                    <td><a class="waves-effect red darken-3  waves-light btn"><i
-                                class="material-icons center">delete</i></a></td>
+                    <td><a class="waves - effect blue darken - 3  waves - light btn"><i
+                                class="material - icons center">create</i></a></td>
+                    <td><a class="waves - effect red darken - 3  waves - light btn"><i
+                                class="material - icons center">delete</i></a></td>
                 </tr>
                 <tr>
                     <td>Jonathan</td>
                     <td>Lollipop</td>
                     <td>$7.00</td>
-                    <td><a class="waves-effect orange darken-3  waves-light btn"><i class="material-icons center">remove_red_eye</i></a>
+                    <td><a class="waves - effect orange darken - 3  waves - light btn"><i
+                                class="material - icons center">remove_red_eye</i></a>
                     </td>
-                    <td><a class="waves-effect blue darken-3  waves-light btn"><i
-                                class="material-icons center">create</i></a></td>
-                    <td><a class="waves-effect red darken-3  waves-light btn"><i
-                                class="material-icons center">delete</i></a></td>
+                    <td><a class="waves - effect blue darken - 3  waves - light btn"><i
+                                class="material - icons center">create</i></a></td>
+                    <td><a class="waves - effect red darken - 3  waves - light btn"><i
+                                class="material - icons center">delete</i></a></td>
                 </tr>
 
 
@@ -130,10 +132,10 @@
             url: url,
             type: "post",
             datatype: 'json',
-            success: function(data){
+            success: function (data) {
                 objetoPesquisa = data;
             },
-            error:function(){
+            error: function () {
                 console.log("Erro na requisição AJAX");
             }
         });
