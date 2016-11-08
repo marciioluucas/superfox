@@ -21,9 +21,9 @@ class UsuarioDAO extends DAO
         $fk_funcionario = FuncoesReflections::pegaValorAtributoEspecifico($obj, "fk_funcionario");
         if ($this->quantidadeRegistros($obj, ["fk_funcionario" => $fk_funcionario]) == 0) {
             $this->create($obj);
-            return "Usuario cadastrado com sucesso!";
+            return FuncoesMensagens::geraJSONMensagem("Usuario cadastrado com sucesso!", "sucesso");
         }
-        return "Funcionário já relacionado com um usuário!";
+        return FuncoesMensagens::geraJSONMensagem("Funcionário já relacionado com um usuário!", "erro");
     }
 
 
@@ -64,7 +64,8 @@ class UsuarioDAO extends DAO
      * @param $condicoes
      *
      */
-    public function pesquisarUsuario($obj1, $obj2, $condicoes) {
+    public function pesquisarUsuario($obj1, $obj2, $condicoes)
+    {
         return $this->innerJoin($obj1, $obj2, $condicoes, false);
     }
 
@@ -89,7 +90,7 @@ class UsuarioDAO extends DAO
                 $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
                 return true;
             } else {
-                return "Usuário e/ou senha não ou não conhecidem existem.";
+                return FuncoesMensagens::geraJSONMensagem("Usuário e/ou senha não ou não conhecidem existem.", "erro");
             }
         } catch (Exception $e) {
             throw new Exception("Erro ao logar", 0, $e);
@@ -130,15 +131,13 @@ class UsuarioDAO extends DAO
     }
 
 
-
-
 }
 
-
-$usuario = new Usuario();
-$usuarioDAO = new UsuarioDAO();
-
-print_r($usuarioDAO->quantidadeRegistros($usuario, ["email" => "marciioluucas@gmail.com", "senha" => "123456"]));
+//
+//$usuario = new Usuario();
+//$usuarioDAO = new UsuarioDAO();
+//
+//print_r($usuarioDAO->quantidadeRegistros($usuario, ["email" => "marciioluucas@gmail.com", "senha" => "123456"]));
 
 
 

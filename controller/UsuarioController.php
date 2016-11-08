@@ -14,6 +14,7 @@ class UsuarioController
     public $usuarioDAO;
     public $usuario;
     public $funcionario;
+    public $callback;
 
     /**
      * UsuarioController constructor.
@@ -33,7 +34,6 @@ class UsuarioController
         if (isset($_POST['action'])) {
             if ($_POST['action'] == "logar") {
                 try {
-
                     $this->logar();
                     $this->usuarioDAO->redirecionar('../view/index.php');
                 } catch (Exception $e) {
