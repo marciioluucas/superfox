@@ -22,7 +22,7 @@ $email = $_GET['email'];
             <div class="row">
 
                 <div class="input-field inline col s12">
-                    <input  value="<?php echo $login; ?>" id="login" type="text" class="validate">
+                    <input  value="<?php echo $login; ?>" id="login" type="text" class="validate" autocomplete="false">
                                             <label for="login">Login</label>
                 </div>
             </div>
@@ -39,6 +39,6 @@ $email = $_GET['email'];
 </div>
 <div class="modal-footer">
     <a href="#!" class="modal-action modal-close waves-effect waves-orange btn-flat"
-       onclick="$('#modal1').modal('close');">Fechar</a>
+       onclick="$('#modalAcoes').modal('close');">Fechar</a>
 </div>
 

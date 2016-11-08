@@ -53,6 +53,6 @@ $email = $_GET['email'];
 </div>
 <div class="modal-footer">
     <a href="#!" class="modal-action modal-close waves-effect waves-orange btn-flat"
-       onclick="$('#modal1').modal('close');">Fechar</a>
+       onclick="$('#modalAcoes').modal('close');">Fechar</a>
 </div>
 

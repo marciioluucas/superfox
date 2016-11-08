@@ -20,17 +20,17 @@
                         <form class="">
                             <div class="row">
                                 <div class="input-field col s8">
-                                    <input id="login" type="text" class="validate">
+                                    <input id="login" type="text" class="validate" autocomplete="off">
                                     <label for="login">Login</label>
                                 </div>
                                 <div class="input-field col s4">
-                                    <input id="id" type="text" class="validate">
+                                    <input id="id" type="text" class="validate" autocomplete="off">
                                     <label for="id">ID</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s8">
-                                    <input id="nome" type="text" class="validate">
+                                    <input id="nome" type="text" class="validate" autocomplete="off">
                                     <label for="nome">Nome</label>
                                 </div>
                             </div>
@@ -67,13 +67,13 @@
                     <td>Eclair</td>
                     <td>$0.87</td>
                     <td>
-                        <button class="waves-effect orange darken-3  waves-light btn"
+                        <button class="waves-effect orange darken-3  waves-light btn" data-target="modalAcoes"
                                 onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/ver.php?<?php echo "id=1&nome=Marcio Lucas&cargo=Gerente&login=marciioluucas&email=marciioluucas@gmail.com"; ?>'))">
                             <i
-                                class="material-icons center" data-target="modal1">remove_red_eye</i></button>
+                                class="material-icons center" >remove_red_eye</i></button>
                     </td>
                     <td>
-                        <button class="waves-effect blue darken-3  waves-light btn"
+                        <button class="waves-effect blue darken-3  waves-light btn" data-target="modalAcoes"
                                 onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/alteracao.php?<?php echo "id=1&nome=Marcio Lucas&cargo=Gerente&login=marciioluucas&email=marciioluucas@gmail.com"; ?>'))">
                             <i
                                 class="material-icons center">create</i></button>
@@ -112,7 +112,7 @@
         </div>
     </section>
 </article>
-<div class="modal modal-fixed-footer" id="modal1">
+<div class="modal modal-fixed-footer" id="modalAcoes">
     <div class="dialogModal">
     </div>
 </div>
