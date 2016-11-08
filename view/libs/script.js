@@ -10,7 +10,7 @@ function ajaxConteudo(url) {
 
 $(document).ready(function () {
     ajaxConteudo('../dashboard.php');
-    $('.modal-configuracoes').leanModal();
+    $('.modal-configuracoes').modal();
 });
 
 function ajaxGenerico(seletor, url) {

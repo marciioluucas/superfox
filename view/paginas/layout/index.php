@@ -113,19 +113,21 @@
 </aside>
 <link rel='stylesheet' href='../../libs/materializecss/css/materialize.min.css'/>
 <link rel='stylesheet' href='../../libs/morris-charts/morris.min.css'/>
-<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="../../libs/materializecss/css/material-icons.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
 <script src='../../libs/jquery/jquery-3.1.1.min.js'></script>
 <script src='../../libs/materializecss/js/materialize.min.js'></script>
 <script src='../../libs/trianglify/trianglify.min.js'></script>
-<script src='../../libs/script.js'></script>
 <script src="../../libs/morris-charts/morris.min.js"></script>
 <script src="../../libs/morris-charts/raphael.min.js"></script>
+<script src='../../libs/script.js'></script>
 <?php
 //include_once 'libs-layout.php';
 ?>
 
 <script>
     $(".button-collapse").sideNav();
+    $('.modal').modal();
 </script>
 </body>
 </html>

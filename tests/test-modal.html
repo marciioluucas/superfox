@@ -1,0 +1,41 @@
+<!-- * Created by PhpStorm.-->
+<!-- * User: Márcio Lucas-->
+<!-- * E-mail: marciioluucas@gmail.com-->
+<!-- * Date: 08/11/2016-->
+<!-- * Time: 15:22-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script src="../view/libs/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        });
+    </script>
+</head>
+<body>
+<!-- Modal Trigger -->
+<a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>
+<div class="modal  modal-fixed-footer" id="modal1"><div class="la"></div></div>
+
+
+<script>
+    $(document).ready(function () {
+        ajaxGenerico(".la", "../view/paginas/usuario/ver.php");
+        $('.modal').modal();
+    });
+</script>
+</body>
+</html>
