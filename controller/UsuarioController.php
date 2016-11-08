@@ -146,7 +146,7 @@ class UsuarioController
 }
 
 $uController = new UsuarioController();
-//session_start();
-//if (!isset($_SESSION['session_usuario'])) {
-//    $uController->usuarioDAO->redirecionar("../login.php");
-//}
+session_start();
+if (!isset($_SESSION['session_usuario'])) {
+    $uController->usuarioDAO->redirecionar("../login.php");
+}

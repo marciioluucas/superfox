@@ -6,10 +6,10 @@
  * Date: 24/10/2016
  * Time: 16:41
  */
-//require_once("../controller/UsuarioController.php");
-//require_once ("../model/Funcionario.php");
-//$usuarioController = new UsuarioController();
-//
+require_once($_SERVER['DOCUMENT_ROOT']."/superfox/controller/UsuarioController.php");
+require_once ($_SERVER['DOCUMENT_ROOT']."/superfox/model/Funcionario.php");
+$usuarioController = new UsuarioController();
+
 
 ?>
 <!DOCTYPE html>
@@ -47,11 +47,11 @@
                     <a href="#user"><img class="circle" src="../../dist/imgs/default-user-img-fox.jpg"></a>
                     <a href="#name"><span
                             class="white-text name">
-<!--                            --><?php //$usuarioController->infoUsuarioLogado('nome') ?>
+                            <?php $usuarioController->infoUsuarioLogado('nome') ?>
                         </span></a>
                     <a href="#email"><span
                             class="white-text email">
-<!--                            --><?php //$usuarioController->infoUsuarioLogado('email') ?>
+                            <?php $usuarioController->infoUsuarioLogado('email') ?>
                         </span></a>
                 </div>
             </li>
