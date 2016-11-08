@@ -34,7 +34,7 @@ class UsuarioController
             if ($_POST['action'] == "logar") {
                 try {
                     $this->logar();
-                    $this->usuarioDAO->redirecionar('../view/index.php');
+                    $this->usuarioDAO->redirecionar('../view/paginas/layout/');
                 } catch (Exception $e) {
                     echo $e->getMessage();
                 }
