@@ -24,19 +24,26 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
                     </div>
 
                     <div class="col s12 m2 l2 valign-wrapper" style="padding-top: 22px;">
-                        <a class="waves-effect waves-light btn escolher-outro"><i class="material-icons left">repeat</i>escolher outro</a>
+                        <a class="waves-effect waves-light btn escolher-outro"><i class="material-icons left">repeat</i>escolher
+                            outro</a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6 l6">
-                        <input id="email" type="email" class="validate">
+                        <input id="email" type="email" class="validate input-normal">
                         <label for="email">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6 l6">
-                        <input id="senha" type="password" class="validate">
+                        <input id="senha" type="password" class="validate input-normal">
                         <label for="senha">Senha</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m6 l6">
+                        <input id="senha" type="text" class="validate input-normal">
+                        <label for="senha">Login</label>
                     </div>
                 </div>
             </form>
@@ -52,9 +59,16 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
 
     $('ul.autocomplete-content').on("click", function () {
         $('input.autocomplete').attr("disabled", "true");
-    })
+        $('.input-normal').removeAttr("disabled");
+    });
 
     $('.escolher-outro').on("click", function () {
-        $('input.autocomplete').removeAttr("disabled");
+        $('input.autocomplete').removeAttr("disabled").val("");
+        $('.input-normal').attr("disabled", "true");
+
+    });
+
+    $(document).ready(function () {
+        $('.input-normal').attr("disabled", "true");
     })
 </script>
