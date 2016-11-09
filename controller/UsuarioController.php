@@ -33,6 +33,7 @@ class UsuarioController
         $this->usuario->setFk_Funcionario(isset($_POST['funcionario']) ? $_POST['funcionario'] : null);
         if (isset($_POST['action'])) {
             if ($_POST['action'] == "logar") {
+                echo "aqui";
                 try {
                     if ($this->logar()) {
                         $this->usuarioDAO->redirecionar('../view/paginas/layout');
@@ -150,7 +151,7 @@ class UsuarioController
 
 
 }
-
+//
 $uController = new UsuarioController();
 session_start();
 if (!isset($_SESSION['session_usuario'])) {

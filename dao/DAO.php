@@ -158,7 +158,7 @@ abstract class DAO
         return $pdo->rowCount();
     }
 
-    public function buscaPorCondicoes($obj, $condicoes)
+    public function buscaPorCondicoes($obj, $condicoes, $retornaPrimeiroValor = false)
     {
         $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
         $nomeCampos = [];
@@ -185,7 +185,11 @@ abstract class DAO
             $pdo->bindValue($nomeCampos[$i], $valoresCampos[$i]);
         }
         $pdo->execute();
-        return $pdo->fetchAll(PDO::FETCH_ASSOC);
+        if($retornaPrimeiroValor){
+            return $pdo->fetch(PDO::FETCH_ASSOC);
+        }else{
+            return $pdo->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 
     public function innerJoin($obj1, $obj2, $condicoes = null, $retornaSoPrimeiro = false)
