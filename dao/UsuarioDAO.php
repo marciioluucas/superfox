@@ -89,12 +89,14 @@ class UsuarioDAO extends DAO
             if ($qntRegistros > 0) {
                 if (!isset($_SESSION['session_usuario'])) session_start();
                 $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
+                $this->redirecionar("../view/paginas/layout/");
                 return true;
             } else {
-                return FuncoesMensagens::geraJSONMensagem("Usuário e/ou senha não ou não conhecidem existem.", "erro");
+                echo FuncoesMensagens::geraJSONMensagem("Usuário e/ou senha não ou não conhecidem existem.", "erro");
+                return false;
             }
         } catch (Exception $e) {
-            throw new Exception("Erro ao logar", 0, $e);
+            throw new Exception("Excessao capturada", 0, $e);
         }
     }
 

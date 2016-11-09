@@ -1,7 +1,8 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/model/Usuario.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/dao/UsuarioDAO.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/model/Funcionario.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Usuario.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/dao/UsuarioDAO.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Funcionario.php");
+
 /**
  * Created by PhpStorm.
  * User: Marcio
@@ -33,8 +34,11 @@ class UsuarioController
         if (isset($_POST['action'])) {
             if ($_POST['action'] == "logar") {
                 try {
-                    $this->logar();
-                    $this->usuarioDAO->redirecionar('../view/paginas/layout/');
+                    if ($this->logar()) {
+                        $this->usuarioDAO->redirecionar('../view/paginas/layout');
+                    } else {
+                        $this->usuarioDAO->redirecionar('../view/paginas/login.php');
+                    }
                 } catch (Exception $e) {
                     echo $e->getMessage();
                 }
@@ -138,8 +142,8 @@ class UsuarioController
 
     public function pesquisarUsuario()
     {
-       return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario, ["pk_usuario" => $_GET['id'],
-            "nome" => $_GET['nome'], "login" =>$_GET['login']]);
+        return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario, ["pk_usuario" => $_GET['id'],
+            "nome" => $_GET['nome'], "login" => $_GET['login']]);
     }
 
 
