@@ -185,7 +185,7 @@ abstract class DAO
             $pdo->bindValue($nomeCampos[$i], $valoresCampos[$i]);
         }
         $pdo->execute();
-        return $pdo->fetch(PDO::FETCH_ASSOC);
+        return $pdo->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function innerJoin($obj1, $obj2, $condicoes = null, $retornaSoPrimeiro = false)

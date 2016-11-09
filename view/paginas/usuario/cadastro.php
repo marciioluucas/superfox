@@ -5,6 +5,11 @@
  * Date: 19/10/2016
  * Time: 19:48
  */
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/UsuarioController.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/FuncionarioController.php");
+$usuarioController = new UsuarioController();
+$funcionarioController = new FuncionarioController();
+$jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
 ?>
 
 <article>
@@ -13,12 +18,13 @@
         <div class="row">
             <form class="col s12">
                 <div class="row">
-                    <div class="input-field col s10 m4 l4">
-                        <input type="text" id="funcionario">
+                    <div class="input-field col s12 m4 l4">
+                        <input type="text" id="funcionario" class="autocomplete" autocomplete="off">
                         <label for="funcionario">Funcionário</label>
                     </div>
-                    <div class="col s2 m2 l2 valign-wrapper" style="padding-top: 22px;">
-                        <a class="waves-effect orange darken-3 waves-light btn">Checar!</a>
+
+                    <div class="col s12 m2 l2 valign-wrapper" style="padding-top: 22px;">
+                        <a class="waves-effect waves-light btn escolher-outro"><i class="material-icons left">repeat</i>escolher outro</a>
                     </div>
                 </div>
                 <div class="row">
@@ -40,9 +46,15 @@
 <script>
     $('input.autocomplete').autocomplete({
         data: {
-            "1": null,
-            "Microsoft": null,
-            "Google": null
+            <?php echo "" . $funcionarioController->montaJSONParaConsultaFuncionarioCPF() . ""; ?>
         }
     });
+
+    $('ul.autocomplete-content').on("click", function () {
+        $('input.autocomplete').attr("disabled", "true");
+    })
+
+    $('.escolher-outro').on("click", function () {
+        $('input.autocomplete').removeAttr("disabled");
+    })
 </script>
