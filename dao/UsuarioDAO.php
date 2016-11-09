@@ -85,7 +85,6 @@ class UsuarioDAO extends DAO
         try {
             $qntRegistros = $this->quantidadeRegistros($obj, ["email" => $email, "senha" => $senha]);
             $linhaUsuario = $this->buscaPorCondicoes($obj, ["email" => $email, "senha" => $senha], true);
-            print_r($linhaUsuario);
             if ($qntRegistros > 0) {
                 if (!isset($_SESSION['session_usuario'])) session_start();
                 $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];

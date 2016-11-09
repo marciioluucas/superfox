@@ -130,7 +130,6 @@ class UsuarioController
         $funcionario->setPk_Funcionario($linhaUsuario['fk_funcionario']);
         $usuario->setFk_Funcionario($funcionario->getPk_Funcionario());
         $linha = $this->usuarioDAO->innerJoin($usuario, $funcionario, ["pk_usuario" => $usuario->getPk_usuario()], true);
-//        print_r($linha);
         echo $linha[$coluna];
     }
 
@@ -151,7 +150,6 @@ class UsuarioController
 
 
 }
-//
 $uController = new UsuarioController();
 session_start();
 if (!isset($_SESSION['session_usuario'])) {
