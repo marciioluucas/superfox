@@ -55,7 +55,7 @@ class UsuarioController
                 try {
                     session_start();
                     session_destroy();
-                    $this->usuarioDAO->redirecionar('../login.php');
+                    $this->usuarioDAO->redirecionar('../view/paginas/login.php');
                 } catch (Exception $e) {
 
                 }
@@ -118,7 +118,7 @@ class UsuarioController
     {
         if (!isset($_SESSION)) session_start();
         if (!$this->usuarioDAO->isLogado()) {
-            $this->usuarioDAO->redirecionar("../login.php");
+            $this->usuarioDAO->redirecionar("../view/paginas/login.php");
         }
     }
 
@@ -148,5 +148,5 @@ class UsuarioController
 $uController = new UsuarioController();
 session_start();
 if (!isset($_SESSION['session_usuario'])) {
-    $uController->usuarioDAO->redirecionar("../login.php");
+    $uController->usuarioDAO->redirecionar("../view/paginas/login.php");
 }

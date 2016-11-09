@@ -10,14 +10,14 @@
 class ConfBD
 {
 
-    public static $USER = "admin";
+    public static $USER = "root";
     /**
      * @var string
      */
-    public static $PWD = "%superfox%";
+    public static $PWD = "";
     /**
      * @var string
      */
 
-    public static $LINK = "mysql:host=191.223.92.217;dbname=superfox";
+    public static $LINK = "mysql:host=localhost;dbname=superfox";
 }

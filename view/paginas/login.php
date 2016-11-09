@@ -62,6 +62,10 @@
     </div>
 </footer>
 <?php include_once '../layout/libs-layout.php' ?>
+<script>
+    function ajaxComCallBack() {
 
+    }
+</script>
 </body>
 </html>
