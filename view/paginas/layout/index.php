@@ -95,9 +95,9 @@ $usuarioController = new UsuarioController();
     </nav>
 </aside>
 
-<main>
+<main class="fixed">
     <article class="row ">
-        <section class="col s12 m12 l12">
+        <section class="col s12 m12 l12 ">
             <div class="card white darken-1">
                 <div class="card-content grey-text darken-3 principal">
                     <div class="conteudo" style="height: 100%">

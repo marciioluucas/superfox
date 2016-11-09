@@ -22,14 +22,14 @@ $usuarioController =  new UsuarioController();
 
                 <div class="input-field inline col s12">
                     <input  value="<?php echo $usuario['login']; ?>" id="login" type="text" class="validate" autocomplete="false">
-                                            <label for="login">Login</label>
+                                            <label class="active" for="login">Login</label>
                 </div>
             </div>
             <div class="row">
 
                 <div class="input-field inline col s12">
                     <input  value="<?php echo $usuario['email'] ?>" id="email" type="email" class="validate">
-                                            <label for="email">Email</label>
+                                            <label class="active" for="email">Email</label>
                 </div>
             </div>
         </form>
