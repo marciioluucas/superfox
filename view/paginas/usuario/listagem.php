@@ -50,14 +50,18 @@
     <div class="dialogModal">
     </div>
 </div>
+
+
+
 <script>
     var nome = '';
     var login = '';
     var id = '';
     var email = '';
 
-    $('input').on("keyup", function () {
+    $('input').on("blur", function () {
         nome = $('#nome').val();
+
         login = $('#login').val();
         id = $('#id').val();
         email = $('#email').val();
@@ -91,7 +95,6 @@
 //        ajaxComCallback();
         var url = encodeURI("../usuario/lista.php?id=" + id + "&nome=" + nome + "&login=" + login);
 //        alert(url);
-//        ajaxGenerico('.tabela-pesquisa', url);
 
         ajaxGenerico(".pesquisa",url);
 //        ajaxComCallback(url);
@@ -102,5 +105,7 @@
     $(document).ready(function () {
         $('.modal').modal();
     })
+
+
 
 </script>

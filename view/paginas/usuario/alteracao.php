@@ -7,10 +7,9 @@
  * Time: 14:42
  */
 $id = $_GET['id'];
-$nome = $_GET['nome'];
-$cargo = $_GET['cargo'];
-$login = $_GET['login'];
-$email = $_GET['email'];
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/UsuarioController.php");
+$usuarioController =  new UsuarioController();
+ $usuario = $usuarioController->porId($id);
 ?>
 
 <!-- Modal Structure -->
@@ -22,14 +21,14 @@ $email = $_GET['email'];
             <div class="row">
 
                 <div class="input-field inline col s12">
-                    <input  value="<?php echo $login; ?>" id="login" type="text" class="validate" autocomplete="false">
+                    <input  value="<?php echo $usuario['login']; ?>" id="login" type="text" class="validate" autocomplete="false">
                                             <label for="login">Login</label>
                 </div>
             </div>
             <div class="row">
 
                 <div class="input-field inline col s12">
-                    <input  value="<?php echo $email ?>" id="email" type="email" class="validate">
+                    <input  value="<?php echo $usuario['email'] ?>" id="email" type="email" class="validate">
                                             <label for="email">Email</label>
                 </div>
             </div>

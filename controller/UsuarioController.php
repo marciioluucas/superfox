@@ -85,9 +85,10 @@ class UsuarioController
         $this->usuarioDAO->deleteUsuario($this->usuario, $_GET['id']);
     }
 
-    public function porId()
+    public function porId($pk_usuario)
     {
-        $this->usuarioDAO->porIdUsuario($this->usuario);
+        $this->usuario->setPk_usuario($pk_usuario);
+       return $this->usuarioDAO->porIdUsuario($this->usuario);
     }
 
     public function listarAll()
@@ -138,12 +139,12 @@ class UsuarioController
         $nome = isset($_GET['nome']) ? $_GET['nome'] : "";
         $email = isset($_GET['email']) ? $_GET['email'] : "";
         $login = isset($_GET['login']) ? $_GET['login'] : "";
-        if($id != "" && $nome != "" && $email != "" && $login != ""){
-
+//        echo $_GET['nome'];
+        if($id == "" && $nome == "" && $email == "" && $login == ""){
+            return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario);
+        }else {
             return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario, ["pk_usuario" => $id,
                 "nome" => $nome, "email" => $email, "login" => $login]);
-        }else {
-            return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario);
         }
     }
 

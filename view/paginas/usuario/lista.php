@@ -8,10 +8,7 @@
  */
 
 require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/UsuarioController.php";
-$id = isset($_GET['id']) ? $_GET['id'] : "";
-$nome = isset($_GET['nome']) ? $_GET['id'] : "";
-$email = isset($_GET['email']) ? $_GET['id'] : "";
-$login = isset($_GET['login']) ? $_GET['id'] : "";
+
 ?>
 <table class="responsive-table">
     <thead>
@@ -34,8 +31,8 @@ $login = isset($_GET['login']) ? $_GET['id'] : "";
         ?>
         <tr>
             <td><?php echo $arrayDados[$i]['nome']; ?></td>
-            <td><?php echo $arrayDados[$i]['email']; ?></td>
             <td><?php echo $arrayDados[$i]['login']; ?></td>
+            <td><?php echo $arrayDados[$i]['email']; ?></td>
             <td>
                 <button class="waves-effect orange darken-3  waves-light btn" data-target="modalAcoes"
                         onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/ver.php?<?php echo "id=".$arrayDados[$i]['nome']."&nome=".$arrayDados[$i]['nome']."&cargo=Gerente&login=".$arrayDados[$i]['login']."&email=".$arrayDados[$i]['email']; ?>'))">
@@ -44,7 +41,7 @@ $login = isset($_GET['login']) ? $_GET['id'] : "";
             </td>
             <td>
                 <button class="waves-effect blue darken-3  waves-light btn" data-target="modalAcoes"
-                        onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/alteracao.php?<?php echo "id=1&nome=Marcio Lucas&cargo=Gerente&login=marciioluucas&email=marciioluucas@gmail.com"; ?>//'))">
+                        onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/alteracao.php?<?php echo "id=".$arrayDados[$i]['pk_usuario']; ?>'))">
                     <i
                         class="material-icons center">create</i></button>
             </td>
@@ -52,31 +49,13 @@ $login = isset($_GET['login']) ? $_GET['id'] : "";
                         class="material-icons center">delete</i></a></td>
         </tr>
     <?php } ?>
-<!--    <tr>-->
-<!--        <td>Alan</td>-->
-<!--        <td>Jellybean</td>-->
-<!--        <td>$3.76</td>-->
-<!--        <td><a class="waves-effect orange darken-3  waves-light btn"><i-->
-<!--                    class="material-icons center">remove_red_eye</i></a>-->
-<!--        </td>-->
-<!--        <td><a class="waves-effect blue darken-3  waves-light btn"><i-->
-<!--                    class="material-icons center">create</i></a></td>-->
-<!--        <td><a class="waves-effect red darken-3  waves-light btn"><i-->
-<!--                    class="material-icons center">delete</i></a></td>-->
-<!--    </tr>-->
-<!--    <tr>-->
-<!--        <td>Jonathan</td>-->
-<!--        <td>Lollipop</td>-->
-<!--        <td>$7.00</td>-->
-<!--        <td><a class="waves-effect orange darken-3  waves-light btn"><i-->
-<!--                    class="material-icons center">remove_red_eye</i></a>-->
-<!--        </td>-->
-<!--        <td><a class="waves-effect blue darken-3  waves-light btn"><i-->
-<!--                    class="material-icons center">create</i></a></td>-->
-<!--        <td><a class="waves-effect red darken-3  waves-light btn"><i-->
-<!--                    class="material-icons center">delete</i></a></td>-->
-<!--    </tr>-->
+
 
 
     </tbody>
 </table>
+<ul class="pagination center">
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active"><a href="#">1</a></li>
+    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+</ul>
