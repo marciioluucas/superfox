@@ -31,5 +31,8 @@ class FuncoesString
         }
     }
 
+    public static final function passarPrimeiraLetraParaCaixaAlta($string) {
+        return ucfirst($string);
+    }
     
 }
