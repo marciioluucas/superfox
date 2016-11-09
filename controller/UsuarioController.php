@@ -65,16 +65,8 @@ class UsuarioController
                 }
             }
 
-            if ($_GET['action'] == "pesquisar") {
-                try {
-                    header('Content-Type: application/json');
-                    echo json_encode($this->pesquisarUsuario());
-                } catch (Exception $e) {
-                    echo $e->getMessage();
-                }
-            }
         }
-
+        return false;
     }
 
 
@@ -142,8 +134,17 @@ class UsuarioController
 
     public function pesquisarUsuario()
     {
-        return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario, ["pk_usuario" => $_GET['id'],
-            "nome" => $_GET['nome'], "login" => $_GET['login']]);
+        $id = isset($_GET['id']) ? $_GET['id'] : "";
+        $nome = isset($_GET['nome']) ? $_GET['nome'] : "";
+        $email = isset($_GET['email']) ? $_GET['email'] : "";
+        $login = isset($_GET['login']) ? $_GET['login'] : "";
+        if($id != "" && $nome != "" && $email != "" && $login != ""){
+
+            return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario, ["pk_usuario" => $id,
+                "nome" => $nome, "email" => $email, "login" => $login]);
+        }else {
+            return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario);
+        }
     }
 
 

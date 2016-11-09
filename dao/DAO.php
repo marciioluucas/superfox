@@ -1,7 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/model/Banco.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/util/FuncoesReflections.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/util/FuncoesString.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Banco.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/util/FuncoesReflections.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/util/FuncoesString.php");
 
 /**
  * Created by PhpStorm.
@@ -188,53 +188,70 @@ abstract class DAO
         return $pdo->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function innerJoin($obj1, $obj2, $condicoes, $retornaSoPrimeiro = false)
+    public function innerJoin($obj1, $obj2, $condicoes = null, $retornaSoPrimeiro = false)
     {
         $tabela1 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj1));
         $tabela2 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj2));
 
         $nomeCampos = [];
-        $condicoesComIndexInt = array_keys($condicoes);
-        for ($i = 0; $i < count($condicoes); $i++) {
-            $nomeCampos[$i] = $condicoesComIndexInt[$i];
-        }
-        $valoresCampos = [];
-        for ($j = 0; $j < count($condicoes); $j++) {
-            if ($condicoes[$nomeCampos[$j]] != "") {
+
+        if ($condicoes != null) {
+            $condicoesComIndexInt = array_keys($condicoes);
+            for ($i = 0; $i < count($condicoes); $i++) {
+                $nomeCampos[$i] = $condicoesComIndexInt[$i];
+            }
+            $valoresCampos = [];
+            for ($j = 0; $j < count($condicoes); $j++) {
+                if ($condicoes[$nomeCampos[$j]] != "") {
 //                echo $condicoes[$nomeCampos[$j]];
-                $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
-            }
-        }
-        $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where ";
-        $nomeCamposNovo = [];
-        for ($x = 0; $x < count($nomeCampos); $x++) {
-            if ($x != count($nomeCampos) - 1) {
-                if ($condicoes[$nomeCampos[$x]] != "") {
-                    $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . " and ";
-                    $nomeCamposNovo[$x] = $nomeCampos[$x];
-                }
-            } else {
-                if ($condicoes[$nomeCampos[$x]] != "") {
-                    $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . "";
-                    $nomeCamposNovo[$x] = $nomeCampos[$x];
+                    $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
                 }
             }
-        }
-        $nomeCamposNovo = array_values($nomeCamposNovo);
-//        echo $sql;
-        $pdo = Banco::getConnection()->prepare($sql);
-        $valoresCampos = array_values($valoresCampos);
+
+            $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where ";
+            $nomeCamposNovo = [];
+            for ($x = 0; $x < count($nomeCampos); $x++) {
+                if ($x != count($nomeCampos) - 1) {
+                    if ($condicoes[$nomeCampos[$x]] != "") {
+                        if (count($valoresCampos) > 1) {
+                            $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . " and ";
+                        } else {
+                            $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . "";
+                        }
+                        $nomeCamposNovo[$x] = $nomeCampos[$x];
+                    }
+                } else {
+                    if ($condicoes[$nomeCampos[$x]] != "") {
+                        $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . "";
+                        $nomeCamposNovo[$x] = $nomeCampos[$x];
+                    }
+                }
+            }
+            $nomeCamposNovo = array_values($nomeCamposNovo);
+//            echo $sql;
+            $pdo = Banco::getConnection()->prepare($sql);
+            $valoresCampos = array_values($valoresCampos);
 //        print_r($valoresCampos);
 //        print_r($nomeCamposNovo);
-        for ($i = 0; $i < count($nomeCamposNovo); $i++) {
-            $pdo->bindValue($nomeCamposNovo[$i], $valoresCampos[$i]);
-        }
-        $pdo->execute();
+            for ($i = 0; $i < count($nomeCamposNovo); $i++) {
+                $pdo->bindValue($nomeCamposNovo[$i], $valoresCampos[$i]);
+            }
+            $pdo->execute();
 //        print_r($pdo->fetchAll(PDO::FETCH_ASSOC));
-        if ($retornaSoPrimeiro) {
-            return $pdo->fetch(PDO::FETCH_ASSOC);
+            if ($retornaSoPrimeiro) {
+                return $pdo->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return $pdo->fetchAll(PDO::FETCH_ASSOC);
+            }
         } else {
-            return $pdo->fetchAll(PDO::FETCH_ASSOC);
+            $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2`";
+            $pdo = Banco::getConnection()->prepare($sql);
+            $pdo->execute();
+            if ($retornaSoPrimeiro) {
+                return $pdo->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return $pdo->fetchAll(PDO::FETCH_ASSOC);
+            }
         }
     }
 }

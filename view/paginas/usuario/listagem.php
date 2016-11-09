@@ -42,70 +42,7 @@
                 </div>
             </div>
         <div class="row">
-            <table class="responsive-table">
-                <thead>
-                <tr>
-                    <th data-field="id">Nome</th>
-                    <th data-field="name">Login</th>
-                    <th data-field="email">Email</th>
-                    <th data-field="ver" width="18">Ver</th>
-                    <th data-field="editar" width="18">Editar</th>
-                    <th data-field="excluir" width="18">Excluir</th>
-                </tr>
-                </thead>
-
-                <tbody class="tabela-pesquisa">
-                <?php
-                require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/UsuarioController.php";
-
-                ?>
-                <tr>
-                    <td>Alvin</td>
-                    <td>Eclair</td>
-                    <td>$0.87</td>
-                    <td>
-                        <button class="waves-effect orange darken-3  waves-light btn" data-target="modalAcoes"
-                                onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/ver.php?<?php echo "id=1&nome=Marcio Lucas&cargo=Gerente&login=marciioluucas&email=marciioluucas@gmail.com"; ?>'))">
-                            <i
-                                class="material-icons center" >remove_red_eye</i></button>
-                    </td>
-                    <td>
-                        <button class="waves-effect blue darken-3  waves-light btn" data-target="modalAcoes"
-                                onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/alteracao.php?<?php echo "id=1&nome=Marcio Lucas&cargo=Gerente&login=marciioluucas&email=marciioluucas@gmail.com"; ?>'))">
-                            <i
-                                class="material-icons center">create</i></button>
-                    </td>
-                    <td><a class="waves-effect red darken-3  waves-light btn"><i
-                                class="material-icons center">delete</i></a></td>
-                </tr>
-                <tr>
-                    <td>Alan</td>
-                    <td>Jellybean</td>
-                    <td>$3.76</td>
-                    <td><a class="waves-effect orange darken-3  waves-light btn"><i
-                                class="material-icons center">remove_red_eye</i></a>
-                    </td>
-                    <td><a class="waves-effect blue darken-3  waves-light btn"><i
-                                class="material-icons center">create</i></a></td>
-                    <td><a class="waves-effect red darken-3  waves-light btn"><i
-                                class="material-icons center">delete</i></a></td>
-                </tr>
-                <tr>
-                    <td>Jonathan</td>
-                    <td>Lollipop</td>
-                    <td>$7.00</td>
-                    <td><a class="waves-effect orange darken-3  waves-light btn"><i
-                                class="material-icons center">remove_red_eye</i></a>
-                    </td>
-                    <td><a class="waves-effect blue darken-3  waves-light btn"><i
-                                class="material-icons center">create</i></a></td>
-                    <td><a class="waves-effect red darken-3  waves-light btn"><i
-                                class="material-icons center">delete</i></a></td>
-                </tr>
-
-
-                </tbody>
-            </table>
+            <div class="pesquisa"></div>
         </div>
     </section>
 </article>
@@ -117,37 +54,49 @@
     var nome = '';
     var login = '';
     var id = '';
+    var email = '';
 
     $('input').on("keyup", function () {
         nome = $('#nome').val();
         login = $('#login').val();
         id = $('#id').val();
+        email = $('#email').val();
+
+//        nome = nome == undefined ? "" : nome;
+//        login = login == undefined ? "" : login;
+//        id = id == undefined ? "" : id;
+//        email = email == undefined ? "" : email;
     });
 
     var objetoPesquisa;
-    $('.btn-pesquisar').on("click", function () {
-//        ajaxComCallback();
-        var url = encodeURI("../controller/UsuarioController.php?action=pesquisar&id=" + id + "&nome=" + nome + "&login=" + login);
-//        alert(url);
-//        ajaxGenerico('.tabela-pesquisa', url);
-        ajaxComCallback(url);
-        alert(objetoPesquisa);
-    });
+
 
 
     function ajaxComCallback(url) {
         $.ajax({
             url: url,
-            type: "post",
+            type: "get",
             datatype: 'json',
             success: function (data) {
                 objetoPesquisa = data;
+                alert("Id: "+objetoPesquisa.pk_usuario+" | Nome: "+objetoPesquisa.nome + " | Email: "+objetoPesquisa.email);
             },
             error: function () {
                 console.log("Erro na requisição AJAX");
             }
         });
     }
+
+    $('.btn-pesquisar').on("click", function () {
+//        ajaxComCallback();
+        var url = encodeURI("../usuario/lista.php?id=" + id + "&nome=" + nome + "&login=" + login);
+//        alert(url);
+//        ajaxGenerico('.tabela-pesquisa', url);
+
+        ajaxGenerico(".pesquisa",url);
+//        ajaxComCallback(url);
+    });
+
 
 
     $(document).ready(function () {

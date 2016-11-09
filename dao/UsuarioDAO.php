@@ -1,8 +1,8 @@
 <?php
 require_once("DAO.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/model/Usuario.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/model/Funcionario.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/util/FuncoesMensagens.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Usuario.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Funcionario.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/util/FuncoesMensagens.php");
 
 /**
  * Created by PhpStorm.
@@ -65,7 +65,7 @@ class UsuarioDAO extends DAO
      * @param $condicoes
      *
      */
-    public function pesquisarUsuario($obj1, $obj2, $condicoes)
+    public function pesquisarUsuario($obj1, $obj2, $condicoes = false)
     {
         return $this->innerJoin($obj1, $obj2, $condicoes, false);
     }
@@ -136,11 +136,11 @@ class UsuarioDAO extends DAO
 
 }
 
-//
+//$funcionario = new Funcionario();
 //$usuario = new Usuario();
 //$usuarioDAO = new UsuarioDAO();
 //
-//print_r($usuarioDAO->quantidadeRegistros($usuario, ["email" => "marciioluucas@gmail.com", "senha" => "123456"]));
-
+//$usuarioDAO->innerJoin($usuario, $funcionario, ["pk_usuario" => "",
+//    "nome" => "", "login" => "marciioluucas"]);
 
 
