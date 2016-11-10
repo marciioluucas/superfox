@@ -72,24 +72,7 @@
 //        email = email == undefined ? "" : email;
     });
 
-    var objetoPesquisa;
 
-
-
-    function ajaxComCallback(url) {
-        $.ajax({
-            url: url,
-            type: "get",
-            datatype: 'json',
-            success: function (data) {
-                objetoPesquisa = data;
-                alert("Id: "+objetoPesquisa.pk_usuario+" | Nome: "+objetoPesquisa.nome + " | Email: "+objetoPesquisa.email);
-            },
-            error: function () {
-                console.log("Erro na requisição AJAX");
-            }
-        });
-    }
 
     $('.btn-pesquisar').on("click", function () {
 //        ajaxComCallback();

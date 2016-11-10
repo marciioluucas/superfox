@@ -61,7 +61,16 @@
         </div>
     </div>
 </footer>
-<?php include_once '../layout/libs-layout.php' ?>
+<link rel='stylesheet' href='../libs/materializecss/css/materialize.css'/>
+<link rel='stylesheet' href='../libs/morris-charts/morris.min.css'/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src='../libs/jquery/jquery-3.1.1.min.js'></script>
+<script src='../libs/materializecss/js/materialize.min.js'></script>
+<script src='../libs/trianglify/trianglify.min.js'></script>
+<script src="../libs/morris-charts/morris.min.js"></script>
+<script src="../libs/morris-charts/raphael.min.js"></script>
+<script src='../libs/script.js'></script>
+
 <script>
 
 </script>

@@ -22,9 +22,9 @@ class UsuarioDAO extends DAO
         $fk_funcionario = FuncoesReflections::pegaValorAtributoEspecifico($obj, "fk_funcionario");
         if ($this->quantidadeRegistros($obj, ["fk_funcionario" => $fk_funcionario]) == 0) {
             $this->create($obj);
-            return FuncoesMensagens::geraJSONMensagem("Usuario cadastrado com sucesso!", "sucesso");
+            return FuncoesMensagens::geraMensagem("Usuario cadastrado com sucesso!", "sucesso");
         }
-        return FuncoesMensagens::geraJSONMensagem("Funcionário já relacionado com um usuário!", "erro");
+        return FuncoesMensagens::geraMensagem("Funcionário já relacionado com um usuário!", "erro");
     }
 
 
@@ -85,14 +85,15 @@ class UsuarioDAO extends DAO
         try {
             $qntRegistros = $this->quantidadeRegistros($obj, ["email" => $email, "senha" => $senha]);
             $linhaUsuario = $this->buscaPorCondicoes($obj, ["email" => $email, "senha" => $senha], true);
+            echo $qntRegistros;
             if ($qntRegistros > 0) {
-                if (!isset($_SESSION['session_usuario'])) session_start();
+//                if (!isset($_SESSION['session_usuario'])) session_start();
                 $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
-                $this->redirecionar("../view/paginas/layout/");
-                return true;
+//                $this->redirecionar("../view/paginas/layout/");
+                return  FuncoesMensagens::geraMensagem("Usuário logado com sucesso", "sucesso");
             } else {
-                echo FuncoesMensagens::geraJSONMensagem("Usuário e/ou senha não ou não conhecidem existem.", "erro");
-                return false;
+                return  FuncoesMensagens::geraMensagem("Usuário e/ou senha não ou não conhecidem existem.", "erro");
+
             }
         } catch (Exception $e) {
             throw new Exception("Excessao capturada", 0, $e);

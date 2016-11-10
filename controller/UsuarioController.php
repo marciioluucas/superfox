@@ -35,10 +35,10 @@ class UsuarioController
             if ($_POST['action'] == "logar") {
                 echo "aqui";
                 try {
-                    if ($this->logar()) {
+                    if ($msg = $this->logar()) {
                         $this->usuarioDAO->redirecionar('../view/paginas/layout');
                     } else {
-                        $this->usuarioDAO->redirecionar('../view/paginas/login.php');
+                        $this->usuarioDAO->redirecionar('../view/paginas/login.php?'.$msg);
                     }
                 } catch (Exception $e) {
                     echo $e->getMessage();
@@ -153,5 +153,6 @@ class UsuarioController
 $uController = new UsuarioController();
 session_start();
 if (!isset($_SESSION['session_usuario'])) {
-    $uController->usuarioDAO->redirecionar("../view/paginas/login.php");
+    $msg = FuncoesMensagens::geraMensagem("Você foi redirecionado pois nao esta logado","erro");
+    $uController->usuarioDAO->redirecionar("../view/paginas/login.php?".$msg);
 }

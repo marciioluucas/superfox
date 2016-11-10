@@ -16,7 +16,7 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
     <section>
         <h5>Cadastro de usuário</h5>
         <div class="row">
-            <form class="col s12">
+            <div class="col s12">
                 <div class="row">
                     <div class="input-field col s9 m4 l4">
                         <input type="text" id="funcionario" class="autocomplete" autocomplete="off">
@@ -26,8 +26,6 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
                     <div class="col s3 m2 l2 valign-wrapper" style="padding-top: 22px;">
                         <a class="waves-effect waves-light btn escolher-outro"><i class="material-icons center">repeat</i></a>
                     </div>
-                </div>
-                <div class="row">
                     <div class="input-field col s12 m6 l6">
                         <input id="email" type="email" class="validate input-normal">
                         <label for="email">Email</label>
@@ -38,14 +36,17 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
                         <input id="senha" type="password" class="validate input-normal">
                         <label for="senha">Senha</label>
                     </div>
-                </div>
-                <div class="row">
+
                     <div class="input-field col s12 m6 l6">
                         <input id="senha" type="text" class="validate input-normal">
                         <label for="senha">Login</label>
                     </div>
                 </div>
-            </form>
+                <div class="row">
+                    <button class="waves-effect waves-light btn waves-light" id="enviar">Enviar</button>
+                    <button class="waves-effect waves-light btn red waves-light" id="limpar-campos">Limpar campos</button>
+                </div>
+            </div>
         </div>
     </section>
 </article>
@@ -69,5 +70,16 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
 
     $(document).ready(function () {
         $('.input-normal').attr("disabled", "true");
-    })
+    });
+
+    $('#enviar').on("click", function() {
+        ajaxComCallback("../../controller/UsuarioController.php?action=cadastrar","post")
+    });
+
+    $("#limpar-campos").on("click", function() {
+        $('input').val("");
+        $('.input-normal').attr("disabled", "true");
+        $('input.autocomplete').removeAttr("disabled").val("");
+    });
+
 </script>

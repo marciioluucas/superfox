@@ -14,4 +14,8 @@ class FuncoesMensagens
         header('Content-Type: application/json; charset=utf-8');
         return json_encode(array("mensagem" => $mensagem, "tipo" =>$tipo));
     }
+
+    public static function geraMensagem($mensagem, $tipo) {
+        return "mensagem=".urlencode($mensagem)."&tipo=".$tipo;
+    }
 }
