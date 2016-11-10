@@ -57,7 +57,8 @@ class UsuarioController
                 try {
                     session_start();
                     session_destroy();
-                    $this->usuarioDAO->redirecionar('../view/paginas/login.php');
+                    $msg = FuncoesMensagens::geraJSONMensagem("Você foi deslogado com sucesso","sucesso");
+                    $this->usuarioDAO->redirecionar('../view/paginas/login.php?'.$msg);
                 } catch (Exception $e) {
 
                 }

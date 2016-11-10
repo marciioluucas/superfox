@@ -9,7 +9,7 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/superfox/controller/UsuarioController.php");
 require_once ($_SERVER['DOCUMENT_ROOT']."/superfox/model/Funcionario.php");
 $usuarioController = new UsuarioController();
-
+$usuarioController->protecaoLoggin();
 
 ?>
 <!DOCTYPE html>
