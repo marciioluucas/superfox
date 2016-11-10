@@ -39,11 +39,10 @@ $usuarioController = new UsuarioController();
 <body class="grey lighten-1">
 <aside>
     <nav>
-
         <ul id="slide-out" class="side-nav fixed">
             <li>
-                <div class="userView">
-                    <img class="background" src="../../dist/imgs/default-user-background.jpg">
+                <div class="userView" style="height: 220px">
+                    <img class="background" src="../../dist/imgs/default-user-background.jpg" >
                     <a href="#user"><img class="circle" src="../../dist/imgs/default-user-img-fox.jpg"></a>
                     <a href="#name"><span
                             class="white-text name">
@@ -111,9 +110,9 @@ $usuarioController = new UsuarioController();
 <aside id="configuracoes" class="modal bottom-sheet">
 
 </aside>
-<link rel='stylesheet' href='../../libs/materializecss/css/materialize.min.css'/>
+<link rel='stylesheet' href='../../libs/materializecss/css/materialize.css'/>
 <link rel='stylesheet' href='../../libs/morris-charts/morris.min.css'/>
-<link href="../../libs/materializecss/css/material-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src='../../libs/jquery/jquery-3.1.1.min.js'></script>
 <script src='../../libs/materializecss/js/materialize.min.js'></script>
 <script src='../../libs/trianglify/trianglify.min.js'></script>
