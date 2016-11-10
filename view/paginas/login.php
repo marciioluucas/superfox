@@ -77,7 +77,7 @@
         console.log(keyValuePairs);
         keyValuePairs.forEach(function (keyValuePair) {
             keyValuePair = keyValuePair.split('=');
-            result[decodeURI(keyValuePair[0])] = decodeURI(keyValuePair[1]) || '';
+            result[decodeURIComponent(keyValuePair[0])] = decodeURIComponent(keyValuePair[1]) || '';
         });
         return result;
     }

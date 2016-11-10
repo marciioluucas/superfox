@@ -24,7 +24,8 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
                     </div>
 
                     <div class="col s3 m2 l2 valign-wrapper" style="padding-top: 22px;">
-                        <a class="waves-effect waves-light btn escolher-outro"><i class="material-icons center">repeat</i></a>
+                        <a class="waves-effect waves-light btn escolher-outro"><i
+                                class="material-icons center">repeat</i></a>
                     </div>
                     <div class="input-field col s12 m6 l6">
                         <input id="email" type="email" class="validate input-normal">
@@ -44,7 +45,8 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
                 </div>
                 <div class="row">
                     <button class="waves-effect waves-light btn waves-light" id="enviar">Enviar</button>
-                    <button class="waves-effect waves-light btn red waves-light" id="limpar-campos">Limpar campos</button>
+                    <button class="waves-effect waves-light btn red waves-light" id="limpar-campos">Limpar campos
+                    </button>
                 </div>
             </div>
         </div>
@@ -72,14 +74,29 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
         $('.input-normal').attr("disabled", "true");
     });
 
-    $('#enviar').on("click", function() {
-        ajaxComCallback("../../controller/UsuarioController.php?action=cadastrar","post")
+    $('#enviar').on("click", function () {
+        var funcionario = $("#funcionario").val();
+        var email = $("#email").val();
+        var login = $("#login").val();
+        var senha = $("#senha").val();
+
+        $.post("../../../controller/UsuarioController.php", {
+            "action": "cadastrar",
+            "funcionario": funcionario,
+            "email": email,
+            "login": login,
+            "senha": senha
+        }).done(function (data) {
+            alert(data);
+            Materialize.toast(data.mensagem, 4000)
+        });
     });
 
-    $("#limpar-campos").on("click", function() {
+    $("#limpar-campos").on("click", function () {
         $('input').val("");
         $('.input-normal').attr("disabled", "true");
         $('input.autocomplete').removeAttr("disabled").val("");
     });
+
 
 </script>
