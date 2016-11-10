@@ -16,6 +16,6 @@ class FuncoesMensagens
     }
 
     public static function geraMensagem($mensagem, $tipo) {
-        return "mensagem=".urlencode($mensagem)."&tipo=".$tipo;
+        return "mensagem=".urlencode($mensagem)."&tipo=".urlencode($tipo);
     }
 }

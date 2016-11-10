@@ -87,13 +87,15 @@ class UsuarioDAO extends DAO
             $linhaUsuario = $this->buscaPorCondicoes($obj, ["email" => $email, "senha" => $senha], true);
             echo $qntRegistros;
             if ($qntRegistros > 0) {
-//                if (!isset($_SESSION['session_usuario'])) session_start();
+                if (!isset($_SESSION['session_usuario'])) session_start();
                 $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
-//                $this->redirecionar("../view/paginas/layout/");
-                return  FuncoesMensagens::geraMensagem("Usuário logado com sucesso", "sucesso");
+                $msg = FuncoesMensagens::geraMensagem("Usuário logado com sucesso", "sucesso");
+                $this->redirecionar("../view/paginas/layout/?".$msg);
+                return true;
             } else {
-                return  FuncoesMensagens::geraMensagem("Usuário e/ou senha não ou não conhecidem existem.", "erro");
-
+                $msg = FuncoesMensagens::geraMensagem("Usuário e/ou senha não ou não conhecidem existem.", "erro");
+                $this->redirecionar("../view/paginas/login.php?".$msg);
+                return false;
             }
         } catch (Exception $e) {
             throw new Exception("Excessao capturada", 0, $e);

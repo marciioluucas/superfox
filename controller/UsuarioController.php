@@ -31,15 +31,12 @@ class UsuarioController
         $this->usuario->setEmail(isset($_POST['email']) ? $_POST['email'] : null);
         $this->usuario->setSenha(isset($_POST['senha']) ? $_POST['senha'] : null);
         $this->usuario->setFk_Funcionario(isset($_POST['funcionario']) ? $_POST['funcionario'] : null);
+//        echo $_POST['action'];
         if (isset($_POST['action'])) {
             if ($_POST['action'] == "logar") {
                 echo "aqui";
                 try {
-                    if ($msg = $this->logar()) {
-                        $this->usuarioDAO->redirecionar('../view/paginas/layout');
-                    } else {
-                        $this->usuarioDAO->redirecionar('../view/paginas/login.php?'.$msg);
-                    }
+                    $this->logar();
                 } catch (Exception $e) {
                     echo $e->getMessage();
                 }
@@ -89,7 +86,7 @@ class UsuarioController
     public function porId($pk_usuario)
     {
         $this->usuario->setPk_usuario($pk_usuario);
-       return $this->usuarioDAO->porIdUsuario($this->usuario);
+        return $this->usuarioDAO->porIdUsuario($this->usuario);
     }
 
     public function listarAll()
@@ -100,7 +97,7 @@ class UsuarioController
     public function logar()
     {
         try {
-            return $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
+             $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
         } catch (Exception $e) {
             echo $e->getMessage();
         }
@@ -140,9 +137,9 @@ class UsuarioController
         $email = isset($_GET['email']) ? $_GET['email'] : "";
         $login = isset($_GET['login']) ? $_GET['login'] : "";
 //        echo $_GET['nome'];
-        if($id == "" && $nome == "" && $email == "" && $login == ""){
+        if ($id == "" && $nome == "" && $email == "" && $login == "") {
             return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario);
-        }else {
+        } else {
             return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario, ["pk_usuario" => $id,
                 "nome" => $nome, "email" => $email, "login" => $login]);
         }
@@ -150,9 +147,5 @@ class UsuarioController
 
 
 }
-$uController = new UsuarioController();
-session_start();
-if (!isset($_SESSION['session_usuario'])) {
-    $msg = FuncoesMensagens::geraMensagem("Você foi redirecionado pois nao esta logado","erro");
-    $uController->usuarioDAO->redirecionar("../view/paginas/login.php?".$msg);
-}
+new UsuarioController();
+//
