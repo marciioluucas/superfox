@@ -99,7 +99,7 @@ class UsuarioDAO extends DAO
                 $this->redirecionar("../view/paginas/layout/?" . $msg);
                 return true;
             } else {
-                $msg = FuncoesMensagens::geraMensagem("Usuário e/ou senha não ou não conhecidem existem.", "erro");
+                $msg = FuncoesMensagens::geraMensagem("Usuário e/ou senha não existem ou não se conhecidem.", "erro");
                 $this->redirecionar("../view/paginas/login.php?" . $msg);
                 return false;
             }

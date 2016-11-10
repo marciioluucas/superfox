@@ -72,7 +72,22 @@
 <script src='../libs/script.js'></script>
 
 <script>
+    function queryObj() {
+        var result = {}, keyValuePairs = location.search.slice(1).split("&");
+        console.log(keyValuePairs);
+        keyValuePairs.forEach(function (keyValuePair) {
+            keyValuePair = keyValuePair.split('=');
+            result[decodeURI(keyValuePair[0])] = decodeURI(keyValuePair[1]) || '';
+        });
+        return result;
+    }
+    var json = queryObj();
+    for (var i = 0; i < json.mensagem.length; i++) {
+        json.mensagem = json.mensagem.replace("+", " ");
+    }
 
+
+    Materialize.toast(json.mensagem, 4000);
 </script>
 </body>
 </html>
