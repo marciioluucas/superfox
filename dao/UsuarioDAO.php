@@ -21,10 +21,16 @@ class UsuarioDAO extends DAO
     {
         $fk_funcionario = FuncoesReflections::pegaValorAtributoEspecifico($obj, "fk_funcionario");
         if ($this->quantidadeRegistros($obj, ["fk_funcionario" => $fk_funcionario]) == 0) {
+            if ($this->quantidadeRegistros($obj, ["email" => FuncoesReflections::pegaValorAtributoEspecifico($obj, "email")]) != 0) {
+                return FuncoesMensagens::geraJSONMensagem("Email ja está cadastrado", "erro");
+            }
+            if ($this->quantidadeRegistros($obj, ["login" => FuncoesReflections::pegaValorAtributoEspecifico($obj, "login")]) != 0) {
+                return FuncoesMensagens::geraJSONMensagem("Login já está cadastrado", "erro");
+            }
             $this->create($obj);
-            return FuncoesMensagens::geraMensagem("Usuario cadastrado com sucesso!", "sucesso");
+            return FuncoesMensagens::geraJSONMensagem("Usuario cadastrado com sucesso!", "sucesso");
         }
-        return FuncoesMensagens::geraMensagem("Funcionário já relacionado com um usuário!", "erro");
+        return FuncoesMensagens::geraJSONMensagem("Funcionário já relacionado com um usuário!", "erro");
     }
 
 
@@ -90,11 +96,11 @@ class UsuarioDAO extends DAO
                 if (!isset($_SESSION['session_usuario'])) session_start();
                 $_SESSION['session_usuario'] = $linhaUsuario['pk_usuario'];
                 $msg = FuncoesMensagens::geraMensagem("Usuário logado com sucesso", "sucesso");
-                $this->redirecionar("../view/paginas/layout/?".$msg);
+                $this->redirecionar("../view/paginas/layout/?" . $msg);
                 return true;
             } else {
                 $msg = FuncoesMensagens::geraMensagem("Usuário e/ou senha não ou não conhecidem existem.", "erro");
-                $this->redirecionar("../view/paginas/login.php?".$msg);
+                $this->redirecionar("../view/paginas/login.php?" . $msg);
                 return false;
             }
         } catch (Exception $e) {
