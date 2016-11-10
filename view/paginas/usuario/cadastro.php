@@ -18,14 +18,13 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
         <div class="row">
             <form class="col s12">
                 <div class="row">
-                    <div class="input-field col s12 m4 l4">
+                    <div class="input-field col s9 m4 l4">
                         <input type="text" id="funcionario" class="autocomplete" autocomplete="off">
                         <label for="funcionario">Funcionário</label>
                     </div>
 
-                    <div class="col s12 m2 l2 valign-wrapper" style="padding-top: 22px;">
-                        <a class="waves-effect waves-light btn escolher-outro"><i class="material-icons left">repeat</i>escolher
-                            outro</a>
+                    <div class="col s3 m2 l2 valign-wrapper" style="padding-top: 22px;">
+                        <a class="waves-effect waves-light btn escolher-outro"><i class="material-icons center">repeat</i></a>
                     </div>
                 </div>
                 <div class="row">

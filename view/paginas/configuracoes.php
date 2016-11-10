@@ -44,6 +44,6 @@
     </div>
 
     <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect waves-light btn orange darken-3">Salvar</a>
+        <a href="#!" class=" modal-action modal-close waves-effect waves-light btn ">Salvar</a>
     </div>
 </div>

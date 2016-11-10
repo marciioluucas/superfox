@@ -34,7 +34,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/UsuarioController
             <td><?php echo $arrayDados[$i]['login']; ?></td>
             <td><?php echo $arrayDados[$i]['email']; ?></td>
             <td>
-                <button class="waves-effect orange darken-3  waves-light btn" data-target="modalAcoes"
+                <button class="waves-effect waves-light btn" data-target="modalAcoes"
                         onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/ver.php?<?php echo "id=".$arrayDados[$i]['nome']."&nome=".$arrayDados[$i]['nome']."&cargo=Gerente&login=".$arrayDados[$i]['login']."&email=".$arrayDados[$i]['email']; ?>'))">
                     <i
                         class="material-icons center">remove_red_eye</i></button>

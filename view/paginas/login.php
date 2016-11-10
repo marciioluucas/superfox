@@ -45,14 +45,14 @@
                     </div>
                 </div>
                 <div class="card-action">
-                    <input type="submit" class="waves-effect waves-light btn orange darken-4">
+                    <input type="submit" class="waves-effect waves-light btn ">
                 </div>
             </form>
         </div>
     </div>
     <div class="col offset-l4 offset-m3"></div>
 </div>
-<footer class="page-footer orange darken-4" style="bottom: 0; position: fixed; width: 100%; z-index: 9999; margin-top: 15px">
+<footer class="page-footer" style="bottom: 0; position: fixed; width: 100%; z-index: 9999; margin-top: 15px">
     <div class="footer-copyright">
         <div class="container">
             © 2016 - Superfox - Todos os direitos reservados.

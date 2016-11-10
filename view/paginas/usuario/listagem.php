@@ -34,7 +34,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <a class="waves-effect orange darken-3 waves-light btn btn-pesquisar"
+                                <a class="waves-effect waves-light btn btn-pesquisar"
                                 >Pesquisar</a>
                             </div>
                         </form>
