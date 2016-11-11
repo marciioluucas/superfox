@@ -64,4 +64,4 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
 
 
 </script>
-<script src="../usuario/usuario.js"></script>
+<script src="../usuario/cadastro.js"></script>

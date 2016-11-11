@@ -19,21 +19,6 @@ function ajaxGenerico(seletor, url) {
     })
 }
 
-var objetoPesquisa;
-function ajaxComCallback(url, tipoRequisicao) {
-    $.ajax({
-        url: encodeURI(url),
-        type: tipoRequisicao,
-        datatype: 'json',
-        success: function (data) {
-            objetoPesquisa = data;
-        },
-        error: function () {
-            console.log("Erro na requisição AJAX");
-        }
-    });
-}
-
 function ajaxPost(url, parametros = {}) {
     $.post(url, parametros).done(function (data) {
         console.log(data);

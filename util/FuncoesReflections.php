@@ -105,21 +105,18 @@ class FuncoesReflections
     }
 
     /**
-     * Passa o objeto, os atributos e os valores que você quer injetar, se caso queira injetar valores
-     * em todos atributos do objeto, você deixa o 2nd parametro vazio.
+     * Passa o objeto, os atributos e os valores que você quer injetar
      * @param $obj
      * @param array $atributos
      * @param array $valor
      */
     public static function injetaValorAtributo($obj, $atributos = [], $valor = [])
     {
-        $nomeAtributos = self::pegaAtributosDoObjeto($obj);
         $reflectionClass = new ReflectionClass($obj);
         if (count($atributos) >= 0) {
             for ($i = 0; $i < count($atributos); $i++) {
                 $reflectionProperty = $reflectionClass->getProperty($atributos[$i]);
                 $reflectionProperty->setAccessible(true);
-
                 $reflectionProperty->setValue($obj, $valor[$i]);
             }
         }

@@ -8,8 +8,8 @@
  */
 $id = $_GET['id'];
 require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/UsuarioController.php");
-$usuarioController =  new UsuarioController();
- $usuario = $usuarioController->porId($id);
+$usuarioController = new UsuarioController();
+$usuario = $usuarioController->porId($id);
 ?>
 
 <!-- Modal Structure -->
@@ -20,16 +20,21 @@ $usuarioController =  new UsuarioController();
 
             <div class="row">
 
-                <div class="input-field inline col s12">
-                    <input  value="<?php echo $usuario['login']; ?>" id="login" type="text" class="validate" autocomplete="false">
-                                            <label class="active" for="login">Login</label>
+                <div class="input-field col s12 m6 l6">
+                    <input value="<?php echo $usuario['login']; ?>" id="login" type="text" class="validate"
+                           autocomplete="false">
+                    <label class="active" for="login">Login</label>
+                </div>
+
+                <div class="input-field col s12 m6 l6">
+                    <input value="<?php echo $usuario['email'] ?>" id="email" type="email" class="validate">
+                    <label class="active" for="email">Email</label>
                 </div>
             </div>
             <div class="row">
-
-                <div class="input-field inline col s12">
-                    <input  value="<?php echo $usuario['email'] ?>" id="email" type="email" class="validate">
-                                            <label class="active" for="email">Email</label>
+                <div class="input-field col s12 m6 l6">
+                    <input value="<?php echo $usuario['senha'] ?>" id="senha" type="password" class="validate">
+                    <label class="active" for="senha">Senha</label>
                 </div>
             </div>
         </form>
@@ -40,4 +45,4 @@ $usuarioController =  new UsuarioController();
     <a href="#!" class="modal-action modal-close waves-effect waves-orange btn-flat"
        onclick="$('#modalAcoes').modal('close');">Fechar</a>
 </div>
-
+<script src="alteracao.js"></script>
