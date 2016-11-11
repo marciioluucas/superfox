@@ -45,7 +45,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/UsuarioController
                     <i
                         class="material-icons center">create</i></button>
             </td>
-            <td><a class="waves-effect red darken-3  waves-light btn"><i
+            <td><a class="waves-effect red darken-3  waves-light btn" data-target="modalAcoes"
+                   onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/exclusao.php?<?php echo "id=".$arrayDados[$i]['pk_usuario']; ?>'))">
+                    <i
                         class="material-icons center">delete</i></a></td>
         </tr>
     <?php } ?>

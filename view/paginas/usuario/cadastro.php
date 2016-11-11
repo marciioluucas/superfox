@@ -57,11 +57,5 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
             <?php echo "" . $funcionarioController->montaJSONParaConsultaFuncionarioCPF() . ""; ?>
         }
     });
-
-
-
-
-
-
 </script>
 <script src="../usuario/cadastro.js"></script>

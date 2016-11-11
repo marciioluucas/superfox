@@ -45,10 +45,16 @@ class UsuarioController
                 try {
                     $this->salvar();
                 } catch (Exception $e) {
-                    echo $e->getMessage();
+                    echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
                 }
             }
-
+            if ($_POST['action'] == "alterar") {
+                try {
+                    $this->alterar();
+                } catch (Exception $e) {
+                    echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
+                }
+            }
 
         }
         if (isset($_GET['action'])) {
@@ -83,7 +89,7 @@ class UsuarioController
                 if ($this->usuario->getLogin() != "undefined" || $this->usuario->getLogin() != "") {
                     if ($this->usuario->getSenha() != "undefined" || $this->usuario->getSenha() != "") {
                         $this->usuarioDAO->criarUsuario($this->usuario);
-                    }else{
+                    } else {
                         echo FuncoesMensagens::geraJSONMensagem("O campo senha não foi informado", "erro");
                     }
                 } else {
@@ -99,6 +105,8 @@ class UsuarioController
 
     public function alterar()
     {
+        $this->usuario->setPk_usuario($_POST['id']);
+        $this->usuario->setData_Ultima_Alteracao(date('Y-d-m'));
         $this->usuarioDAO->updateUsuario($this->usuario, $_POST['id']);
     }
 
