@@ -31,7 +31,6 @@ class UsuarioController
         $this->usuario->setLogin(isset($_POST['login']) ? $_POST['login'] : null);
         $this->usuario->setEmail(isset($_POST['email']) ? $_POST['email'] : null);
         $this->usuario->setSenha(isset($_POST['senha']) ? $_POST['senha'] : null);
-        $this->usuario->setFk_Funcionario(isset($_POST['funcionario']) ? $_POST['funcionario'] : null);
         if (isset($_POST['action'])) {
             if ($_POST['action'] == "logar") {
                 echo "aqui";
@@ -79,7 +78,23 @@ class UsuarioController
         $funcionario->setCpf($CPFFuncionario);
         $pkFuncionario = $funcionarioDAO->buscaPorCondicoes($funcionario, ["cpf" => $funcionario->getCpf()], true);
         $this->usuario->setFk_Funcionario($pkFuncionario['pk_funcionario']);
-        $this->usuarioDAO->criarUsuario($this->usuario);
+        if ($_POST['funcionario'] != "undefined" || $_POST['funcionario'] != "") {
+            if ($this->usuario->getEmail() != "undefined" || $this->usuario->getEmail() != "") {
+                if ($this->usuario->getLogin() != "undefined" || $this->usuario->getLogin() != "") {
+                    if ($this->usuario->getSenha() != "undefined" || $this->usuario->getSenha() != "") {
+                        $this->usuarioDAO->criarUsuario($this->usuario);
+                    }else{
+                        echo FuncoesMensagens::geraJSONMensagem("O campo senha não foi informado", "erro");
+                    }
+                } else {
+                    echo FuncoesMensagens::geraJSONMensagem("O campo login não foi informado", "erro");
+                }
+            } else {
+                echo FuncoesMensagens::geraJSONMensagem("O campo e-mail não foi informado", "erro");
+            }
+        } else {
+            echo FuncoesMensagens::geraJSONMensagem("O campo funcionario não foi informado", "erro");
+        }
     }
 
     public function alterar()

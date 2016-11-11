@@ -46,3 +46,7 @@ function ajaxPost(url, parametros = {}) {
         Materialize.toast("<span><i class='material-icons left'>" + icon + "</i>" + data.mensagem + "</span>", 4000)
     });
 }
+
+function montaToastComIcone(mensagem,icone) {
+    Materialize.toast("<span><i class='material-icons left'>" + icone + "</i>" + mensagem + "</span>", 4000)
+}

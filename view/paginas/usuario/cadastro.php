@@ -19,7 +19,7 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
             <div class="col s12">
                 <div class="row">
                     <div class="input-field col s9 m4 l4">
-                        <input type="text" id="funcionario" class="autocomplete" autocomplete="off">
+                        <input type="text" id="funcionario" name="funcionário" class="autocomplete" autocomplete="off">
                         <label for="funcionario">Funcionário</label>
                     </div>
 
@@ -28,17 +28,17 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
                                 class="material-icons center">repeat</i></a>
                     </div>
                     <div class="input-field col s12 m6 l6">
-                        <input id="email" type="email" class="validate input-normal">
+                        <input id="email" type="email" name="e-mail" class="validate input-normal">
                         <label for="email">Email</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6 l6">
-                        <input id="loginn" type="text" class="validate input-normal">
+                        <input id="loginn" type="text" name="login" class="validate input-normal">
                         <label for="loginn">Login</label>
                     </div>
                     <div class="input-field col s12 m6 l6">
-                        <input id="senha" type="password" class="validate input-normal">
+                        <input id="senha" type="password" name="senha" class="validate input-normal">
                         <label for="senha">Senha</label>
                     </div>
                 </div>
