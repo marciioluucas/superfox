@@ -57,8 +57,8 @@ class UsuarioController
                 try {
                     session_start();
                     session_destroy();
-                    $msg = FuncoesMensagens::geraMensagem("Você foi deslogado com sucesso","sucesso");
-                    $this->usuarioDAO->redirecionar('../view/paginas/login.php?'.$msg);
+                    $msg = FuncoesMensagens::geraMensagem("Você foi deslogado com sucesso", "sucesso");
+                    $this->usuarioDAO->redirecionar('../view/paginas/login.php?' . $msg);
                 } catch (Exception $e) {
 
                 }
@@ -71,6 +71,7 @@ class UsuarioController
 
     public function salvar()
     {
+
         $this->usuarioDAO->criarUsuario($this->usuario);
     }
 
@@ -98,7 +99,7 @@ class UsuarioController
     public function logar()
     {
         try {
-             $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
+            $this->usuarioDAO->logarUsuario($this->usuario, $this->usuario->getEmail(), $this->usuario->getSenha());
         } catch (Exception $e) {
             echo $e->getMessage();
         }
@@ -148,5 +149,6 @@ class UsuarioController
 
 
 }
+
 new UsuarioController();
 //

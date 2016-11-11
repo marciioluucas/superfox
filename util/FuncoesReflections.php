@@ -1,4 +1,5 @@
 <?php
+require_once 'FuncoesString.php';
 
 /**
  * Created by PhpStorm.
@@ -27,32 +28,15 @@ class FuncoesReflections
      */
     public static function pegaAtributosDoObjeto($obj)
     {
-        $metodos = FuncoesReflections::pegaNomesMetodosClasse($obj);
 
-        $metodosGet = array_filter($metodos, function ($au) {
-            return FuncoesString::verificaStringExistente($au, "get");
-        });
-
-        $nomeAtributos = array_map(function ($aux) {
-            return substr(strtolower($aux), 3);
-        }, $metodosGet);
-
-
-        $nomeAtributos = array_values($nomeAtributos);
-        $nomesFinal = [];
-
-
-        $reflectionClass = new ReflectionClass(self::pegaNomeClasseObjeto($obj));
-        for ($i = 0; $i < count($nomeAtributos); $i++) {
-            $reflectionProperty = $reflectionClass->getProperty($nomeAtributos[$i]);
-            $reflectionProperty->setAccessible(true);
-            if ($reflectionClass->hasProperty($nomeAtributos[$i])) {
-                $nomesFinal[$i] = $reflectionProperty->getName();
-            }
+        $reflectionClass = new ReflectionClass($obj);
+        $propriedades = $reflectionClass->getProperties(ReflectionProperty::IS_PUBLIC |
+            ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE);
+        $p = [];
+        for ($i = 0; $i < count($propriedades); $i++) {
+            $p[$i] = $propriedades[$i]->name;
         }
-
-        $nomesFinal = array_values($nomesFinal);
-        return $nomesFinal;
+        return $p;
     }
 
     /**
@@ -135,7 +119,7 @@ class FuncoesReflections
                 $reflectionMethod = new ReflectionMethod($obj, "set" . ucfirst($atributos[$i]));
                 $reflectionMethod->invoke($obj, $valor);
             }
-        }else{
+        } else {
             for ($i = 0; $i < count($nomeAtributos); $i++) {
                 $reflectionMethod = new ReflectionMethod($obj, "set" . ucfirst($nomeAtributos[$i]));
                 $reflectionMethod->invoke($obj, self::pegaValoresAtributoDoObjeto($obj));
@@ -145,3 +129,7 @@ class FuncoesReflections
     }
 
 }
+
+require_once '../model/Usuario.php';
+$usuario = new Usuario();
+print_r(FuncoesReflections::pegaAtributosDoObjeto($usuario));

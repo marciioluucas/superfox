@@ -81,13 +81,14 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
         var senha = $("#senha").val();
 
         $.post("../../../controller/UsuarioController.php", {
-            "action": "cadastrar",
+            "action": "salvar",
             "funcionario": funcionario,
             "email": email,
             "login": login,
             "senha": senha
         }).done(function (data) {
             alert(data);
+            console.log("SUCESSO!");
             Materialize.toast(data.mensagem, 4000)
         });
     });

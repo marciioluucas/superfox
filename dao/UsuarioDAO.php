@@ -20,17 +20,22 @@ class UsuarioDAO extends DAO
     public function criarUsuario($obj)
     {
         $fk_funcionario = FuncoesReflections::pegaValorAtributoEspecifico($obj, "fk_funcionario");
+
         if ($this->quantidadeRegistros($obj, ["fk_funcionario" => $fk_funcionario]) == 0) {
             if ($this->quantidadeRegistros($obj, ["email" => FuncoesReflections::pegaValorAtributoEspecifico($obj, "email")]) != 0) {
-                return FuncoesMensagens::geraJSONMensagem("Email ja está cadastrado", "erro");
+                echo FuncoesMensagens::geraJSONMensagem("Email já está cadastrado", "erro");
+                return false;
             }
             if ($this->quantidadeRegistros($obj, ["login" => FuncoesReflections::pegaValorAtributoEspecifico($obj, "login")]) != 0) {
-                return FuncoesMensagens::geraJSONMensagem("Login já está cadastrado", "erro");
+                echo FuncoesMensagens::geraJSONMensagem("Login já está cadastrado", "erro");
+                return false;
             }
             $this->create($obj);
-            return FuncoesMensagens::geraJSONMensagem("Usuario cadastrado com sucesso!", "sucesso");
+            echo FuncoesMensagens::geraJSONMensagem("Usuario cadastrado com sucesso!", "sucesso");
+            return true;
         }
-        return FuncoesMensagens::geraJSONMensagem("Funcionário já relacionado com um usuário!", "erro");
+        echo FuncoesMensagens::geraJSONMensagem("Funcionário já relacionado com um usuário!", "erro");
+        return false;
     }
 
 

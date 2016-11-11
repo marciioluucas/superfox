@@ -44,10 +44,11 @@ abstract class DAO
             for ($i = 0; $i < count($camposNome); $i++) {
                 $pdo->bindValue($camposNome[$i], $camposValores[$i]);
             }
-
-            return $pdo->execute();
+            $pdo->execute();
+            echo $sqlInsert;
+            return true;
         } catch (Exception $e) {
-            throw new Exception("Erro ao processar query", $e);
+            throw new Exception("Erro ao processar query",0, $e);
         }
     }
 
@@ -185,9 +186,9 @@ abstract class DAO
             $pdo->bindValue($nomeCampos[$i], $valoresCampos[$i]);
         }
         $pdo->execute();
-        if($retornaPrimeiroValor){
+        if ($retornaPrimeiroValor) {
             return $pdo->fetch(PDO::FETCH_ASSOC);
-        }else{
+        } else {
             return $pdo->fetchAll(PDO::FETCH_ASSOC);
         }
     }
