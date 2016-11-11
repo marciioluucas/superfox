@@ -31,7 +31,6 @@ class UsuarioController
         $this->usuario->setEmail(isset($_POST['email']) ? $_POST['email'] : null);
         $this->usuario->setSenha(isset($_POST['senha']) ? $_POST['senha'] : null);
         $this->usuario->setFk_Funcionario(isset($_POST['funcionario']) ? $_POST['funcionario'] : null);
-//        echo $_POST['action'];
         if (isset($_POST['action'])) {
             if ($_POST['action'] == "logar") {
                 echo "aqui";
@@ -118,7 +117,7 @@ class UsuarioController
     {
         if (!isset($_SESSION)) session_start();
         if (!$this->usuarioDAO->isLogado()) {
-            $this->usuarioDAO->redirecionar("../view/paginas/login.php");
+            $this->usuarioDAO->redirecionar("../../../view/paginas/login.php");
         }
     }
 

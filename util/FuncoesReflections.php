@@ -129,7 +129,3 @@ class FuncoesReflections
     }
 
 }
-
-require_once '../model/Usuario.php';
-$usuario = new Usuario();
-print_r(FuncoesReflections::pegaAtributosDoObjeto($usuario));

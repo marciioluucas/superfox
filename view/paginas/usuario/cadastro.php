@@ -34,13 +34,12 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6 l6">
+                        <input id="loginn" type="text" class="validate input-normal">
+                        <label for="loginn">Login</label>
+                    </div>
+                    <div class="input-field col s12 m6 l6">
                         <input id="senha" type="password" class="validate input-normal">
                         <label for="senha">Senha</label>
-                    </div>
-
-                    <div class="input-field col s12 m6 l6">
-                        <input id="senha" type="text" class="validate input-normal">
-                        <label for="senha">Login</label>
                     </div>
                 </div>
                 <div class="row">
@@ -77,9 +76,10 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
     $('#enviar').on("click", function () {
         var funcionario = $("#funcionario").val();
         var email = $("#email").val();
-        var login = $("#login").val();
+        var login = $("#loginn").val();
         var senha = $("#senha").val();
 
+        alert(login);
         $.post("../../../controller/UsuarioController.php", {
             "action": "salvar",
             "funcionario": funcionario,
@@ -87,7 +87,7 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
             "login": login,
             "senha": senha
         }).done(function (data) {
-            alert(data);
+            console.log(data);
             console.log("SUCESSO!");
             Materialize.toast(data.mensagem, 4000)
         });
