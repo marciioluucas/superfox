@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Usuario.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/dao/UsuarioDAO.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/dao/FuncionarioDAO.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Funcionario.php");
 
 /**
@@ -72,8 +73,12 @@ class UsuarioController
     {
         $posStringCPF = FuncoesString::pegaPosStringDeterminada($_POST['funcionario'], "| ");
         $CPFFuncionario = FuncoesString::separaString($_POST['funcionario'], $posStringCPF);
+
         $funcionario = new Funcionario();
+        $funcionarioDAO = new FuncionarioDAO();
         $funcionario->setCpf($CPFFuncionario);
+        $pkFuncionario = $funcionarioDAO->buscaPorCondicoes($funcionario, ["cpf" => $funcionario->getCpf()], true);
+        $this->usuario->setFk_Funcionario($pkFuncionario['pk_funcionario']);
         $this->usuarioDAO->criarUsuario($this->usuario);
     }
 

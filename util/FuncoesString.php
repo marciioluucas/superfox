@@ -42,9 +42,14 @@ class FuncoesString
         }
     }
 
+    /*
+    * Retorna a posicao final da ocorrencia.
+    *
+    */
     public static final function pegaPosStringDeterminada($string, $strBusca)
     {
-        return strripos($string, $strBusca);
+        $tamanhoStrBusca = strlen($strBusca);
+        return stripos($string, $strBusca) + $tamanhoStrBusca + 1;
     }
 
 }

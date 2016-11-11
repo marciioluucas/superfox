@@ -34,6 +34,15 @@ function ajaxComCallback(url, tipoRequisicao) {
     });
 }
 
-function ajaxPost(formulario, JSONInfos) {
-
+function ajaxPost(url, parametros = {}) {
+    $.post(url, parametros).done(function (data) {
+        console.log(data);
+        var icon;
+        if (data.tipo == "erro") {
+            icon = "close";
+        } else if (data.tipo == "sucesso") {
+            icon = "check";
+        }
+        Materialize.toast("<span><i class='material-icons left'>" + icon + "</i>" + data.mensagem + "</span>", 4000)
+    });
 }

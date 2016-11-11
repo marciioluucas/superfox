@@ -58,46 +58,10 @@ $jsonFuncionarios = $funcionarioController->pesquisarFuncionarioCPF();
         }
     });
 
-    $('ul.autocomplete-content').on("click", function () {
-        $('input.autocomplete').attr("disabled", "true");
-        $('.input-normal').removeAttr("disabled");
-    });
 
-    $('.escolher-outro').on("click", function () {
-        $('input.autocomplete').removeAttr("disabled").val("");
-        $('.input-normal').attr("disabled", "true");
 
-    });
 
-    $(document).ready(function () {
-        $('.input-normal').attr("disabled", "true");
-    });
-
-    $('#enviar').on("click", function () {
-        var funcionario = $("#funcionario").val();
-        var email = $("#email").val();
-        var login = $("#loginn").val();
-        var senha = $("#senha").val();
-
-        alert(login);
-        $.post("../../../controller/UsuarioController.php", {
-            "action": "salvar",
-            "funcionario": funcionario,
-            "email": email,
-            "login": login,
-            "senha": senha
-        }).done(function (data) {
-            console.log(data);
-            console.log("SUCESSO!");
-            Materialize.toast(data.mensagem, 4000)
-        });
-    });
-
-    $("#limpar-campos").on("click", function () {
-        $('input').val("");
-        $('.input-normal').attr("disabled", "true");
-        $('input.autocomplete').removeAttr("disabled").val("");
-    });
 
 
 </script>
+<script src="../usuario/usuario.js"></script>
