@@ -2,7 +2,7 @@ Bem-vindo ao SUPERFOX
 ===================
 
 
-<center>![SUPERFOX LOGO](http://i65.tinypic.com/2uqj951.png)</center>
+<center>![SUPERFOX LOGO](http://i68.tinypic.com/20qj0no.png)</center>
 
 <justify>Oi, eu sou Márcio Lucas, um dos criadores do SUPERFOX.
 O SUPERFOX é um sistema open source para supermercados feito em PHP e implementando uma tecnologia elaborada por mim e meu amigo @kbral99 chamada **Phiber**<i class="icon-cog"></i>.</justify>
