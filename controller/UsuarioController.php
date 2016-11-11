@@ -71,7 +71,10 @@ class UsuarioController
 
     public function salvar()
     {
-
+        $posStringCPF = FuncoesString::pegaPosStringDeterminada($_POST['funcionario'], "| ");
+        $CPFFuncionario = FuncoesString::separaString($_POST['funcionario'], $posStringCPF);
+        $funcionario = new Funcionario();
+        $funcionario->setCpf($CPFFuncionario);
         $this->usuarioDAO->criarUsuario($this->usuario);
     }
 
@@ -151,4 +154,3 @@ class UsuarioController
 }
 
 new UsuarioController();
-//

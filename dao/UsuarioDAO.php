@@ -21,7 +21,8 @@ class UsuarioDAO extends DAO
     {
         $fk_funcionario = FuncoesReflections::pegaValorAtributoEspecifico($obj, "fk_funcionario");
         $funcionario = new Funcionario();
-        if ($this->quantidadeRegistros($funcionario, ["cpf" => $fk_funcionario]) == 0) {
+        //TODO: VERIFICAR PELO CPF DO FUNCIONARIO E RETORNAR A PK_FUNCIONARIO PARA SETAR NA FK_FUNCIONARIO
+        if ($this->quantidadeRegistros($obj, ["fk_funcionario" => $fk_funcionario]) == 0) {
             if ($this->quantidadeRegistros($obj, ["email" => FuncoesReflections::pegaValorAtributoEspecifico($obj, "email")]) != 0) {
                 echo FuncoesMensagens::geraJSONMensagem("Email já está cadastrado", "erro");
                 return false;
