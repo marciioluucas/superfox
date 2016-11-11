@@ -112,4 +112,5 @@ class Usuario extends Funcionario
         $this->fk_funcionario = $fk_funcionario;
     }
 
+
 }

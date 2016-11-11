@@ -7,9 +7,6 @@
  * Date: 20/10/2016
  * Time: 10:41
  */
-
-
-
 class FuncoesString
 {
     public static final function paraCaixaAlta($string)
@@ -31,8 +28,23 @@ class FuncoesString
         }
     }
 
-    public static final function passarPrimeiraLetraParaCaixaAlta($string) {
+    public static final function passarPrimeiraLetraParaCaixaAlta($string)
+    {
         return ucfirst($string);
     }
-    
+
+    public static final function separaString($string, $posInicial, $posFinal = null)
+    {
+        if ($posFinal == null) {
+            return substr($string, $posInicial - 1);
+        } else {
+            return substr($string, $posInicial - 1, ($posFinal - 1) * (-1));
+        }
+    }
+
+    public static final function pegaPosStringDeterminada($string, $strBusca)
+    {
+        return strripos($string, $strBusca);
+    }
+
 }
