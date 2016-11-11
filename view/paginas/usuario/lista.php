@@ -35,23 +35,22 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/UsuarioController
             <td><?php echo $arrayDados[$i]['email']; ?></td>
             <td>
                 <button class="waves-effect waves-light btn" data-target="modalAcoes"
-                        onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/ver.php?<?php echo "id=".$arrayDados[$i]['nome']."&nome=".$arrayDados[$i]['nome']."&cargo=Gerente&login=".$arrayDados[$i]['login']."&email=".$arrayDados[$i]['email']; ?>'))">
+                        onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/ver.php?<?php echo "id=" . $arrayDados[$i]['nome'] . "&nome=" . $arrayDados[$i]['nome'] . "&cargo=Gerente&login=" . $arrayDados[$i]['login'] . "&email=" . $arrayDados[$i]['email']; ?>'))">
                     <i
                         class="material-icons center">remove_red_eye</i></button>
             </td>
             <td>
                 <button class="waves-effect blue darken-3  waves-light btn" data-target="modalAcoes"
-                        onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/alteracao.php?<?php echo "id=".$arrayDados[$i]['pk_usuario']; ?>'))">
+                        onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/alteracao.php?<?php echo "id=" . $arrayDados[$i]['pk_usuario']; ?>'))">
                     <i
                         class="material-icons center">create</i></button>
             </td>
             <td><a class="waves-effect red darken-3  waves-light btn" data-target="modalAcoes"
-                   onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/exclusao.php?<?php echo "id=".$arrayDados[$i]['pk_usuario']; ?>'))">
+                   onclick="ajaxGenerico('.dialogModal', encodeURI('../usuario/exclusao.php?<?php echo "id=" . $arrayDados[$i]['pk_usuario']; ?>'))">
                     <i
                         class="material-icons center">delete</i></a></td>
         </tr>
     <?php } ?>
-
 
 
     </tbody>

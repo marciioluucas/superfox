@@ -113,7 +113,7 @@ abstract class DAO
             for ($i = 0; $i < count($camposNome); $i++) {
                 $pdo->bindValue($camposNome[$i], $camposValores[$i]);
             }
-            echo FuncoesMensagens::geraJSONMensagem($camposValores, "sucesso");
+//            echo FuncoesMensagens::geraJSONMensagem($camposValores, "sucesso");
 //            print_r($sqlUpdate);
             return $pdo->execute();
 //                $pdo->execute();

@@ -59,7 +59,13 @@ class UsuarioDAO extends DAO
      */
     public function updateUsuario($obj, $id)
     {
-        $this->update($obj, $id);
+        if ($this->update($obj, $id)){
+            echo FuncoesMensagens::geraJSONMensagem("Usuario alterado com sucesso", "sucesso");
+            return true;
+        }else {
+            echo FuncoesMensagens::geraJSONMensagem("Erro ao alterar usuario", "erro");
+            return false;
+        }
     }
 
     /**

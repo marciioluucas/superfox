@@ -56,6 +56,14 @@ class UsuarioController
                 }
             }
 
+            if($_POST['action'] == "excluir") {
+                try {
+                    $this->excluir();
+                } catch (Exception $e) {
+                    echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
+                }
+            }
+
         }
         if (isset($_GET['action'])) {
             if ($_GET['action'] == "sair") {
@@ -107,7 +115,21 @@ class UsuarioController
     {
         $this->usuario->setPk_usuario($_POST['id']);
         $this->usuario->setData_Ultima_Alteracao(date('Y-d-m'));
-        $this->usuarioDAO->updateUsuario($this->usuario, $_POST['id']);
+
+        if ($this->usuario->getEmail() != "undefined" || $this->usuario->getEmail() != "") {
+            if ($this->usuario->getLogin() != "undefined" || $this->usuario->getLogin() != "") {
+                if ($this->usuario->getSenha() != "undefined" || $this->usuario->getSenha() != "") {
+                    $this->usuarioDAO->updateUsuario($this->usuario, $_POST['id']);
+                } else {
+                    echo FuncoesMensagens::geraJSONMensagem("O campo senha não foi informado", "erro");
+                }
+            } else {
+                echo FuncoesMensagens::geraJSONMensagem("O campo login não foi informado", "erro");
+            }
+        } else {
+            echo FuncoesMensagens::geraJSONMensagem("O campo e-mail não foi informado", "erro");
+        }
+
     }
 
     public function excluir()

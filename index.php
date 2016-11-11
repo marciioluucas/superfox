@@ -49,9 +49,8 @@
 
 </div>
 
-<link rel='stylesheet' href='view/libs/materializecss/css/materialize.min.css'/>
+<link rel='stylesheet' href='view/libs/materializecss/css/materialize.css'/>
 <script src='view/libs/jquery/jquery-3.1.1.min.js'></script>
 <script src='view/libs/materializecss/js/materialize.min.js'></script>
-<script src='view/libs/trianglify/trianglify.min.js'></script>
 </body>
 </html>
