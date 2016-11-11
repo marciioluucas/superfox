@@ -45,7 +45,6 @@ abstract class DAO
                 $pdo->bindValue($camposNome[$i], $camposValores[$i]);
             }
             $pdo->execute();
-            echo $sqlInsert;
             return true;
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query",0, $e);

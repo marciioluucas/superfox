@@ -14,6 +14,7 @@ class Usuario extends Funcionario
     private $email;
     private $senha;
     private $data_cadastro;
+    private $data_ultima_alteracao;
     private $fk_funcionario;
 
     /**
@@ -94,6 +95,22 @@ class Usuario extends Funcionario
     public function setData_Cadastro($data_cadastro)
     {
         $this->data_cadastro = $data_cadastro;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function get_Data_Ultima_Alteracao()
+    {
+        return $this->data_ultima_alteracao;
+    }
+
+    /**
+     * @param mixed $data_ultima_alteracao
+     */
+    public function setData_Ultima_Alteracao($data_ultima_alteracao)
+    {
+        $this->data_ultima_alteracao = $data_ultima_alteracao;
     }
 
     /**
