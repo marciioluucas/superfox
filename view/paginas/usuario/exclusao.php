@@ -18,7 +18,7 @@ $usuario = $usuarioController->porId($id);
         <h5>Você tem certeza que quer excluir este usuário?</h5>
     </div>
     <div class="row center-align">
-        <input type="text" value="<?php echo $id ?>" hidden="hidden">
+        <input type="text" value="<?php echo $id ?>" hidden="hidden" id="identificacao">
         <button class="waves-effect waves-light red btn-excluir btn"><i class="material-icons left">close</i>Sim
         </button>
         <button class="modal-action modal-close waves-effect waves-light blue btn-fechar btn"><i
@@ -28,10 +28,10 @@ $usuario = $usuarioController->porId($id);
 </div>
 
 <script>
-    $(".btn-excluir").on("click", function(){
+    $(".btn-excluir").on("click", function () {
         var id = $('#identificacao').val();
         ajaxPost("../../../controller/UsuarioController.php",
-            {"action":"excluir","id" : id}
+            {"action": "excluir", "id": id}
         )
     })
 </script>

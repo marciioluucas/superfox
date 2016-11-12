@@ -16,6 +16,7 @@ class Usuario extends Funcionario
     private $data_cadastro;
     private $data_ultima_alteracao;
     private $fk_funcionario;
+    private $ativado;
 
     /**
      * @return mixed
@@ -127,6 +128,22 @@ class Usuario extends Funcionario
     public function setFk_Funcionario($fk_funcionario)
     {
         $this->fk_funcionario = $fk_funcionario;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAtivado()
+    {
+        return $this->ativado;
+    }
+
+    /**
+     * @param mixed $ativado
+     */
+    public function setAtivado($ativado)
+    {
+        $this->ativado = $ativado;
     }
 
 

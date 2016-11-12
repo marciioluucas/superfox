@@ -56,7 +56,7 @@ class UsuarioController
                 }
             }
 
-            if($_POST['action'] == "excluir") {
+            if ($_POST['action'] == "excluir") {
                 try {
                     $this->excluir();
                 } catch (Exception $e) {
@@ -134,7 +134,12 @@ class UsuarioController
 
     public function excluir()
     {
-        $this->usuarioDAO->deleteUsuario($this->usuario, $_GET['id']);
+        if (isset($_POST['id'])) {
+            $this->usuario->setAtivado("0");
+            $this->usuarioDAO->deleteUsuario($this->usuario, $_POST['id']);
+        } else {
+            echo FuncoesMensagens::geraJSONMensagem("ID deve ser formado", "erro");
+        }
     }
 
     public function porId($pk_usuario)

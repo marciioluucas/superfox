@@ -56,6 +56,7 @@ class UsuarioDAO extends DAO
     /**
      * @param $obj
      * @param $id
+     * @return bool
      */
     public function updateUsuario($obj, $id)
     {
@@ -75,7 +76,13 @@ class UsuarioDAO extends DAO
      */
     public function deleteUsuario($obj, $id)
     {
-        $this->update($obj, $id);
+        if($this->update($obj, $id)){
+            echo FuncoesMensagens::geraJSONMensagem("Usuario deletado com sucesso", "sucesso");
+            return true;
+        }else{
+            echo FuncoesMensagens::geraJSONMensagem("Falha ao deletar usuário", "erro");
+            return false;
+        }
     }
 
     /**
@@ -86,6 +93,7 @@ class UsuarioDAO extends DAO
      * @param $obj2
      * @param $condicoes
      *
+     * @return array|bool|mixed
      */
     public function pesquisarUsuario($obj1, $obj2, $condicoes = false)
     {
@@ -160,11 +168,10 @@ class UsuarioDAO extends DAO
 
 }
 
-//$funcionario = new Funcionario();
-//$usuario = new Usuario();
-//$usuarioDAO = new UsuarioDAO();
-//
-//$usuarioDAO->innerJoin($usuario, $funcionario, ["pk_usuario" => "",
-//    "nome" => "", "login" => "marciioluucas"]);
+$funcionario = new Funcionario();
+$usuario = new Usuario();
+$usuarioDAO = new UsuarioDAO();
+
+print_r($usuarioDAO->innerJoin($usuario, $funcionario, ['ativado' => 1]));
 
 

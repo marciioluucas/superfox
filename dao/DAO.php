@@ -99,7 +99,7 @@ abstract class DAO
             $camposNome = array_values($camposNome);
             $camposValores = array_values($camposValores);
 
-//            print_r(FuncoesMensagens::geraJSONMensagem($camposNome,"sucesso"));
+            print_r(FuncoesMensagens::geraJSONMensagem($camposNome,"sucesso"));
             $sqlUpdate = "UPDATE $tabela SET ";
 
             for ($i = 0; $i < count($camposNome); $i++) {
@@ -250,11 +250,11 @@ abstract class DAO
                 }
             }
             $nomeCamposNovo = array_values($nomeCamposNovo);
-//            echo $sql;
             $pdo = Banco::getConnection()->prepare($sql);
             $valoresCampos = array_values($valoresCampos);
 //        print_r($valoresCampos);
 //        print_r($nomeCamposNovo);
+            echo $sql;
             for ($i = 0; $i < count($nomeCamposNovo); $i++) {
                 $pdo->bindValue($nomeCamposNovo[$i], $valoresCampos[$i]);
             }
