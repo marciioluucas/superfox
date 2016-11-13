@@ -197,10 +197,10 @@ class UsuarioController
         $login = isset($_GET['login']) ? $_GET['login'] : "";
 //        echo $_GET['nome'];
         if ($id == "" && $nome == "" && $email == "" && $login == "") {
-            return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario);
+            return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario, ["usuario.ativado" => 1]);
         } else {
             return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario, ["pk_usuario" => $id,
-                "nome" => $nome, "email" => $email, "login" => $login]);
+                "nome" => $nome, "email" => $email, "login" => $login, "usuario.ativado" => 1]);
         }
     }
 

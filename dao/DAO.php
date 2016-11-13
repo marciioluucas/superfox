@@ -236,15 +236,15 @@ abstract class DAO
                 if ($x != count($nomeCampos) - 1) {
                     if ($condicoes[$nomeCampos[$x]] != "") {
                         if (count($valoresCampos) > 1) {
-                            $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . " and ";
+                            $sql .= $nomeCampos[$x] . " = ? and ";
                         } else {
-                            $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . "";
+                            $sql .= $nomeCampos[$x] . " = ?";
                         }
                         $nomeCamposNovo[$x] = $nomeCampos[$x];
                     }
                 } else {
                     if ($condicoes[$nomeCampos[$x]] != "") {
-                        $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . "";
+                        $sql .= $nomeCampos[$x] . " = ?";
                         $nomeCamposNovo[$x] = $nomeCampos[$x];
                     }
                 }
@@ -254,9 +254,9 @@ abstract class DAO
             $valoresCampos = array_values($valoresCampos);
 //        print_r($valoresCampos);
 //        print_r($nomeCamposNovo);
-            echo $sql;
-            for ($i = 0; $i < count($nomeCamposNovo); $i++) {
-                $pdo->bindValue($nomeCamposNovo[$i], $valoresCampos[$i]);
+//            echo $sql;
+            for ($i = 1; $i <= count($nomeCamposNovo); $i++) {
+                $pdo->bindValue($i, $valoresCampos[$i-1]);
             }
             $pdo->execute();
 //        print_r($pdo->fetchAll(PDO::FETCH_ASSOC));

@@ -12,9 +12,9 @@
     <title>Superfox - Login</title>
 </head>
 <body class="white-text grey darken-3">
-<div class="row" style="margin: 0">
-    <div class="col offset-l4 offset-m3"></div>
-    <div class="col l4 m10 s12" style="margin-bottom: 50px">
+<div class="row container">
+    <div class="col offset-l3"></div>
+    <div class="col l6" style="margin-bottom: 50px">
         <div class="row center-align" style="margin: 0 !important;">
             <img src="../dist/imgs/logo-superfox-login.png" alt="logo superfox" class="responsive-img" style="">
         </div>
@@ -50,7 +50,6 @@
             </form>
         </div>
     </div>
-    <div class="col offset-l4 offset-m3"></div>
 </div>
 <footer class="page-footer" style="bottom: 0; position: fixed; width: 100%; z-index: 9999; margin-top: 15px">
     <div class="footer-copyright">
@@ -66,7 +65,6 @@
 <link href="../libs/materializecss/css/material-icons.css" rel="stylesheet">
 <script src='../libs/jquery/jquery-3.1.1.min.js'></script>
 <script src='../libs/materializecss/js/materialize.min.js'></script>
-<script src='../libs/trianglify/trianglify.min.js'></script>
 <script src="../libs/morris-charts/morris.min.js"></script>
 <script src="../libs/morris-charts/raphael.min.js"></script>
 <script src='../libs/script.js'></script>
