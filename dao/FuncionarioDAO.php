@@ -39,7 +39,13 @@ class FuncionarioDAO extends DAO
      */
     public function updateFuncionario($obj, $id)
     {
-        $this->update($obj, $id);
+        if ($this->update($obj, $id)) {
+            echo FuncoesMensagens::geraJSONMensagem("Funcionário alterado com sucesso!", "sucesso");
+            return true;
+        } else {
+            echo FuncoesMensagens::geraJSONMensagem("Erro ao alterar Funcionário.", "erro");
+            return false;
+        }
     }
 
     /**
@@ -49,7 +55,13 @@ class FuncionarioDAO extends DAO
      */
     public function deleteFuncionario($obj, $id)
     {
-        $this->update($obj, $id);
+        if ($this->update($obj, $id)) {
+            echo FuncoesMensagens::geraJSONMensagem("Funcionário deletado com sucesso!", "sucesso");
+            return true;
+        } else {
+            echo FuncoesMensagens::geraJSONMensagem("Erro ao deletar Funcionário.", "erro");
+            return false;
+        }
     }
 
     /**
