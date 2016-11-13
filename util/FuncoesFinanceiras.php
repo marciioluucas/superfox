@@ -16,7 +16,7 @@ class FuncoesFinanceiras
         $url = "http://api.fixer.io/latest?base=USD";
 
         $dadosSite = file_get_contents($url);
-        $json = json_decode($dadosSite,true);
+        $json = json_decode($dadosSite, true);
 
         $arrayRetorno = array(
             "moeda_base" => $json['base'],
@@ -26,11 +26,18 @@ class FuncoesFinanceiras
         return $arrayRetorno;
     }
 
-    public static final function convertReaisEmCentavos($reais) {
-        return $reais / 100;
+    public static final function convertReaisEmCentavos($reais)
+    {
+        return $reais * 100;
     }
 
-    public static final function converteVirgulasReaisEmPontos($reais) {
-        return str_replace(",",".", $reais);
+    public static final function converteCentavosEmReais($centavos)
+    {
+        return $centavos / 100;
+    }
+
+    public static final function converteVirgulasReaisEmPontos($reais)
+    {
+        return str_replace(",", ".", $reais);
     }
 }
