@@ -1,49 +1,7 @@
-<!-- * Created by PhpStorm.-->
-<!-- * User: Márcio Lucas-->
-<!-- * E-mail: marciioluucas@gmail.com-->
-<!-- * Date: 08/11/2016-->
-<!-- * Time: 15:22-->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-    <script
-            src="../view/libs/jquery/jquery-3.1.1.min.js"
-    ></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="../view/libs/materializecss/js/materialize.min.js"></script>
-    <script src="../view/libs/script.js"></script>
-    <script>
-        $(document).ready(function () {
-            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        });
-    </script>
-</head>
-<body>
-<!-- Modal Trigger -->
-<a class="modal-trigger waves-effect waves-light btn" href="#modal1">Modal</a>
-<aside class="modal  modal-fixed-footer" id="modal1">
-    <div class="la"></div>
-</aside>
-
-
 <script>
-    $(document).ready(function () {
-        var nome = "jao lopes";
-
-        $.post("test-example.php", {
-            "nome": nome
-        }).done(function (data) {
-            console.log(data);
-            console.log("SUCESSO!");
-            Materialize.toast(data.mensagem, 4000)
-        });
-    });
+    function Execultar(){
+        var shell = new ActiveXObject( "WScript.shell" );
+        shell.run( '"C:\\Windows\\System32\\notepad.exe"', 1, true );}
 </script>
-</body>
-</html>
+
+<a href="superfox:">Open Owf Form</a>

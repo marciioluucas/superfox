@@ -11,6 +11,7 @@ class Cargo
     private $pk_cargo;
     private $nome;
     private $descricao;
+    private $ativado;
 
     /**
      * @return mixed
@@ -59,6 +60,24 @@ class Cargo
     {
         $this->pk_cargo = $pk_cargo;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAtivado()
+    {
+        return $this->ativado;
+    }
+
+    /**
+     * @param mixed $ativado
+     */
+    public function setAtivado($ativado)
+    {
+        $this->ativado = $ativado;
+    }
+
+
 
 
 

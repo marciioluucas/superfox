@@ -148,11 +148,6 @@ class UsuarioController
         return $this->usuarioDAO->porIdUsuario($this->usuario);
     }
 
-    public function listarAll()
-    {
-
-    }
-
     public function logar()
     {
         try {
@@ -195,7 +190,6 @@ class UsuarioController
         $nome = isset($_GET['nome']) ? $_GET['nome'] : "";
         $email = isset($_GET['email']) ? $_GET['email'] : "";
         $login = isset($_GET['login']) ? $_GET['login'] : "";
-//        echo $_GET['nome'];
         if ($id == "" && $nome == "" && $email == "" && $login == "") {
             return $this->usuarioDAO->pesquisarUsuario($this->usuario, $this->funcionario, ["usuario.ativado" => 1]);
         } else {
