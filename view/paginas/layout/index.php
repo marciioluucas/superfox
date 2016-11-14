@@ -72,6 +72,8 @@ $usuarioController->protecaoLoggin();
 
             <li><a href="#funcionarios" class="waves-effect" onclick="ajaxConteudo('../funcionario/index.php')"><i
                         class="material-icons">person</i>Funcionários</a></li>
+            <li><a href="#funcionarios" class="waves-effect" onclick="ajaxConteudo('../cargo/index.php')"><i
+                        class="material-icons">work</i>Cargos</a></li>
 
             <li>
                 <div class="divider"></div>

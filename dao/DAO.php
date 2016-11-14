@@ -21,8 +21,23 @@ abstract class DAO
     {
         try {
             $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
-            $camposNome = FuncoesReflections::pegaAtributosDoObjeto($obj);
-            $camposValores = FuncoesReflections::pegaValoresAtributoDoObjeto($obj);
+            $campos = FuncoesReflections::pegaAtributosDoObjeto($obj);
+            $camposV = FuncoesReflections::pegaValoresAtributoDoObjeto($obj);
+            $camposNome = [];
+            $camposValores = [];
+            for ($i = 0; $i < count($campos); $i++) {
+                if ($camposV[$i] != null) {
+                    $camposNome[$i] = $campos[$i];
+                }
+            }
+
+            for ($i = 0; $i < count($camposV); $i++) {
+                if ($camposV[$i] != null) {
+                    $camposValores[$i] = $camposV[$i];
+                }
+            }
+            $camposNome = array_values($camposNome);
+            $camposValores = array_values($camposValores);
             $sqlInsert = "INSERT INTO $tabela (";
 
             for ($i = 0; $i < count($camposNome); $i++) {
@@ -44,11 +59,16 @@ abstract class DAO
             for ($i = 0; $i < count($camposNome); $i++) {
                 $pdo->bindValue($camposNome[$i], $camposValores[$i]);
             }
-            $pdo->execute();
-            return true;
+            echo $sqlInsert. "<br><br><br>";
+            print_r($camposValores);
+            print_r($camposNome);
+            if($pdo->execute()){
+                return true;
+            };
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query", 0, $e);
         }
+        return false;
     }
 
 

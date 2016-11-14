@@ -1,8 +1,9 @@
 <?php
 require_once("DAO.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/model/Cliente.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/superfox/model/Cargo.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/superfox/util/FuncoesReflections.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/superfox/util/FuncoesString.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/superfox/util/FuncoesMensagens.php");
 
 /**
  * Created by PhpStorm.
@@ -14,20 +15,18 @@ class CargoDAO extends DAO
 {
     public function criarCargo($obj)
     {
-        $fk_cargo = FuncoesReflections::pegaValorAtributoEspecifico($obj, "fk_cargo");
+        $nome_cargo = FuncoesReflections::pegaValorAtributoEspecifico($obj, "nome");
         FuncoesReflections::injetaValorAtributo($obj,["data_cadastro","data_ultima_alteracao"],[date("Y-d-m"), date("Y-d-m")]);
-        if ($this->quantidadeRegistros($obj, ["fk_cargo" => $fk_cargo]) == 0) {
-
-
+        if ($this->quantidadeRegistros($obj, ["nome" => $nome_cargo]) == 0) {
             if($this->create($obj)){
                 echo FuncoesMensagens::geraJSONMensagem("Cargo cadastrado com sucesso!", "sucesso");
                 return true;
             }else{
-                echo FuncoesMensagens::geraJSONMensagem("Erro ao cadastrar o Cargo", "erro");
+                echo FuncoesMensagens::geraJSONMensagem("Erro ao cadastrar o cargo", "erro");
                 return false;
             }
         }else{
-            echo FuncoesMensagens::geraJSONMensagem("Cargo já Cadastrado no Sistema.", "erro");
+            echo FuncoesMensagens::geraJSONMensagem("Cargo já cadastrado no sistema.", "erro");
             return false;
         }
 
@@ -61,3 +60,12 @@ class CargoDAO extends DAO
     }
 
 }
+$cargoDAO = new CargoDAO();
+$cargo = new Cargo();
+
+$cargo->setNome("asdasddt");
+$cargo->setDescricao("423423");
+$cargo->setData_Cadastro(date("Y-m-d"));
+$cargo->setData_Ultima_Alteracao(date("Y-m-d"));
+
+$cargoDAO->criarCargo($cargo);

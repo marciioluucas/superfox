@@ -3,6 +3,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Usuario.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/dao/UsuarioDAO.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/dao/FuncionarioDAO.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Funcionario.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/util/FuncoesMensagens.php");
 
 /**
  * Created by PhpStorm.

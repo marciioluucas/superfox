@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Cargo.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/dao/CargoDAO.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/util/FuncoesMensagens.php");
 
 /**
  * Created by PhpStorm.
@@ -15,6 +16,7 @@ class CargoController
 
     public function __construct()
     {
+
         $this->cargo = new Cargo();
         $this->cargoDAO = new CargoDAO();
 
@@ -84,3 +86,4 @@ class CargoController
 
 
 }
+new CargoController();

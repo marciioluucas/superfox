@@ -11,6 +11,8 @@ class Cargo
     private $pk_cargo;
     private $nome;
     private $descricao;
+    private $data_cadastro;
+    private $data_ultima_alteracao;
     private $ativado;
 
     /**
@@ -76,6 +78,40 @@ class Cargo
     {
         $this->ativado = $ativado;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDataCadastro()
+    {
+        return $this->data_cadastro;
+    }
+
+    /**
+     * @param mixed $data_cadastro
+     */
+    public function setData_Cadastro($data_cadastro)
+    {
+        $this->data_cadastro = $data_cadastro;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getData_Ultima_Alteracao()
+    {
+        return $this->data_ultima_alteracao;
+    }
+
+    /**
+     * @param mixed $data_ultima_alteracao
+     */
+    public function setData_Ultima_Alteracao($data_ultima_alteracao)
+    {
+        $this->data_ultima_alteracao = $data_ultima_alteracao;
+    }
+
+
 
 
 
