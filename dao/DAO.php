@@ -59,11 +59,10 @@ abstract class DAO
             for ($i = 0; $i < count($camposNome); $i++) {
                 $pdo->bindValue($camposNome[$i], $camposValores[$i]);
             }
-            echo $sqlInsert . "<br><br><br>";
             print_r($camposValores);
             print_r($camposNome);
             if ($pdo->execute()) {
-                return true;
+                return $sqlInsert;
             };
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query", 0, $e);
