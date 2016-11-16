@@ -16,7 +16,7 @@ class CargoDAO extends DAO
     public function criarCargo($obj)
     {
         $nome_cargo = FuncoesReflections::pegaValorAtributoEspecifico($obj, "nome");
-        FuncoesReflections::injetaValorAtributo($obj, ["data_cadastro", "data_ultima_alteracao"], [date("Y-d-m"), date("Y-d-m")]);
+        FuncoesReflections::injetaValorAtributo($obj, ["data_cadastro", "data_ultima_alteracao"], [date("Y-m-d"), date("Y-m-d")]);
         if ($this->quantidadeRegistros($obj, ["nome" => $nome_cargo, "ativado" => 1]) == 0) {
             if ($this->create($obj)) {
                 echo FuncoesMensagens::geraJSONMensagem("Cargo cadastrado com sucesso!", "sucesso");

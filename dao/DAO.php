@@ -59,10 +59,9 @@ abstract class DAO
             for ($i = 0; $i < count($camposNome); $i++) {
                 $pdo->bindValue($camposNome[$i], $camposValores[$i]);
             }
-            print_r($camposValores);
-            print_r($camposNome);
+
             if ($pdo->execute()) {
-                return $sqlInsert;
+                return true;
             };
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query", 0, $e);
@@ -154,7 +153,6 @@ abstract class DAO
             $sqlUpdate = "DELETE FROM $tabela WHERE pk_" . $tabela . " = :pk_" . $tabela;
             $pdo = Banco::getConnection()->prepare($sqlUpdate);
             $pdo->bindValue("pk_" . $tabela, $id);
-//            print_r($sqlUpdate);
             return $pdo->execute();
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query", $e);
@@ -188,8 +186,8 @@ abstract class DAO
             }
         }
         $pdo = Banco::getConnection()->prepare($sql);
-        for ($i = 0; $i < count($nomeCampos); $i++) {
-            $pdo->bindValue($nomeCampos[$i], $valoresCampos[$i]);
+        for ($i = 1; $i <= count($nomeCampos); $i++) {
+            $pdo->bindValue($i, $valoresCampos[$i-1]);
         }
         $pdo->execute();
         return $pdo->rowCount();
@@ -202,14 +200,17 @@ abstract class DAO
         $nomeCampos = [];
 
         if ($condicoes != null) {
+
             $condicoesComIndexInt = array_keys($condicoes);
+
             for ($i = 0; $i < count($condicoes); $i++) {
                 $nomeCampos[$i] = $condicoesComIndexInt[$i];
             }
+
             $valoresCampos = [];
+
             for ($j = 0; $j < count($condicoes); $j++) {
                 if ($condicoes[$nomeCampos[$j]] != "") {
-//                echo $condicoes[$nomeCampos[$j]];
                     $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
                 }
             }
@@ -236,14 +237,12 @@ abstract class DAO
             $nomeCamposNovo = array_values($nomeCamposNovo);
             $pdo = Banco::getConnection()->prepare($sql);
             $valoresCampos = array_values($valoresCampos);
-//        print_r($valoresCampos);
-//        print_r($nomeCamposNovo);
-//            echo $sql;
+
             for ($i = 1; $i <= count($nomeCamposNovo); $i++) {
                 $pdo->bindValue($i, $valoresCampos[$i - 1]);
             }
             $pdo->execute();
-//        print_r($pdo->fetchAll(PDO::FETCH_ASSOC));
+
             if ($retornaPrimeiroValor) {
                 return $pdo->fetch(PDO::FETCH_ASSOC);
             } else {
@@ -303,14 +302,11 @@ abstract class DAO
             $nomeCamposNovo = array_values($nomeCamposNovo);
             $pdo = Banco::getConnection()->prepare($sql);
             $valoresCampos = array_values($valoresCampos);
-//        print_r($valoresCampos);
-//        print_r($nomeCamposNovo);
-//            echo $sql;
+
             for ($i = 1; $i <= count($nomeCamposNovo); $i++) {
                 $pdo->bindValue($i, $valoresCampos[$i - 1]);
             }
             $pdo->execute();
-//        print_r($pdo->fetchAll(PDO::FETCH_ASSOC));
             if ($retornaSoPrimeiro) {
                 return $pdo->fetch(PDO::FETCH_ASSOC);
             } else {
