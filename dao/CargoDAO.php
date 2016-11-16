@@ -50,6 +50,7 @@ class CargoDAO extends DAO
 
     public function deleteCargo($obj, $id)
     {
+//        return $this->update($obj, $id);
         if ($this->update($obj, $id)) {
             echo FuncoesMensagens::geraJSONMensagem("Cargo deletado com sucesso!", "sucesso");
             return true;
@@ -67,8 +68,8 @@ class CargoDAO extends DAO
 }
 
 //
+//
 //$cargoDAO = new CargoDAO();
 //$cargo = new Cargo();
 //
-//
-//print_r($cargoDAO->pesquisarCargo($cargo, ["nome" => "teste", "ativado" => 1]));
+//$cargo->setAtivado(0);

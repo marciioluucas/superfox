@@ -50,7 +50,7 @@ class Cargo
     /**
      * @return mixed
      */
-    public function getPkCargo()
+    public function getPk_Cargo()
     {
         return $this->pk_cargo;
     }
@@ -58,7 +58,7 @@ class Cargo
     /**
      * @param mixed $pk_cargo
      */
-    public function setPkCargo($pk_cargo)
+    public function setPk_Cargo($pk_cargo)
     {
         $this->pk_cargo = $pk_cargo;
     }
@@ -82,7 +82,7 @@ class Cargo
     /**
      * @return mixed
      */
-    public function getDataCadastro()
+    public function getData_Cadastro()
     {
         return $this->data_cadastro;
     }

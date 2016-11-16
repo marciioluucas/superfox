@@ -101,23 +101,23 @@ abstract class DAO
             $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
             $campos = FuncoesReflections::pegaAtributosDoObjeto($obj);
             $camposV = FuncoesReflections::pegaValoresAtributoDoObjeto($obj);
+
             $camposNome = [];
             $camposValores = [];
             for ($i = 0; $i < count($campos); $i++) {
-                if ($camposV[$i] != null) {
+                if ($camposV[$i] != null || $camposV[$i] != "") {
                     $camposNome[$i] = $campos[$i];
                 }
             }
 
             for ($i = 0; $i < count($camposV); $i++) {
-                if ($camposV[$i] != null) {
+                if ($camposV[$i] != null || $camposV[$i] != "") {
                     $camposValores[$i] = $camposV[$i];
                 }
             }
             $camposNome = array_values($camposNome);
             $camposValores = array_values($camposValores);
 
-            print_r(FuncoesMensagens::geraJSONMensagem($camposNome, "sucesso"));
             $sqlUpdate = "UPDATE $tabela SET ";
 
             for ($i = 0; $i < count($camposNome); $i++) {
@@ -133,7 +133,13 @@ abstract class DAO
             }
 //            echo FuncoesMensagens::geraJSONMensagem($camposValores, "sucesso");
 //            print_r($sqlUpdate);
-            return $pdo->execute();
+            if ($pdo->execute()) {
+
+                return true;
+            }else{
+                echo $sqlUpdate;
+                return false;
+            }
 //                $pdo->execute();
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query", $e);
@@ -187,7 +193,7 @@ abstract class DAO
         }
         $pdo = Banco::getConnection()->prepare($sql);
         for ($i = 1; $i <= count($nomeCampos); $i++) {
-            $pdo->bindValue($i, $valoresCampos[$i-1]);
+            $pdo->bindValue($i, $valoresCampos[$i - 1]);
         }
         $pdo->execute();
         return $pdo->rowCount();

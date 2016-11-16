@@ -137,10 +137,11 @@ class UsuarioController
     {
         if (isset($_POST['id'])) {
             $this->usuario->setAtivado("0");
-            $this->usuarioDAO->deleteUsuario($this->usuario, $_POST['id']);
+            return $this->usuarioDAO->deleteUsuario($this->usuario, $_POST['id']);
         } else {
             echo FuncoesMensagens::geraJSONMensagem("ID deve ser formado", "erro");
         }
+        return false;
     }
 
     public function porId($pk_usuario)

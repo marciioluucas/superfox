@@ -51,6 +51,12 @@ class CargoController
         }
     }
 
+    public function porId($id)
+    {
+        $this->cargo->setPk_Cargo($id);
+        return $this->cargoDAO->porIdCargo($this->cargo);
+    }
+
     public
     function salvar()
     {
@@ -79,14 +85,14 @@ class CargoController
         }
     }
 
-    public
-    function excluir()
+    public function excluir()
     {
-        if (isset($_GET['id'])) {
+        if (isset($_POST['id'])) {
             $this->cargo->setAtivado(0);
-            $this->cargoDAO->updateCargo($this->cargo, $_GET['id']);
+            return $this->cargoDAO->deleteCargo($this->cargoDAO, $_POST['id']);
         } else {
-            echo FuncoesMensagens::geraJSONMensagem("O campo ID não foi informado", "erro");
+            echo FuncoesMensagens::geraJSONMensagem("ID deve ser formado", "erro");
+            return false;
         }
     }
 
