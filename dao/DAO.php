@@ -59,10 +59,10 @@ abstract class DAO
             for ($i = 0; $i < count($camposNome); $i++) {
                 $pdo->bindValue($camposNome[$i], $camposValores[$i]);
             }
-            echo $sqlInsert. "<br><br><br>";
+            echo $sqlInsert . "<br><br><br>";
             print_r($camposValores);
             print_r($camposNome);
-            if($pdo->execute()){
+            if ($pdo->execute()) {
                 return true;
             };
         } catch (Exception $e) {
@@ -119,7 +119,7 @@ abstract class DAO
             $camposNome = array_values($camposNome);
             $camposValores = array_values($camposValores);
 
-            print_r(FuncoesMensagens::geraJSONMensagem($camposNome,"sucesso"));
+            print_r(FuncoesMensagens::geraJSONMensagem($camposNome, "sucesso"));
             $sqlUpdate = "UPDATE $tabela SET ";
 
             for ($i = 0; $i < count($camposNome); $i++) {
@@ -183,9 +183,9 @@ abstract class DAO
 
         for ($x = 0; $x < count($nomeCampos); $x++) {
             if ($x != count($nomeCampos) - 1) {
-                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . " and ";
+                $sql .= $nomeCampos[$x] . " = ? and ";
             } else {
-                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x];
+                $sql .= $nomeCampos[$x] . " = ?";
             }
         }
         $pdo = Banco::getConnection()->prepare($sql);
@@ -199,34 +199,66 @@ abstract class DAO
     public function buscaPorCondicoes($obj, $condicoes, $retornaPrimeiroValor = false)
     {
         $tabela = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj));
-        $nomeCampos = [];
-        $condicoesComIndexInt = array_keys($condicoes);
-        for ($i = 0; $i < count($condicoes); $i++) {
-            $nomeCampos[$i] = $condicoesComIndexInt[$i];
-        }
-        $valoresCampos = [];
-        for ($j = 0; $j < count($condicoes); $j++) {
-            $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
-        }
-        $sql = "SELECT * FROM $tabela WHERE ";
 
-        for ($x = 0; $x < count($nomeCampos); $x++) {
-            if ($x != count($nomeCampos) - 1) {
-                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . " and ";
-            } else {
-                $sql .= $nomeCampos[$x] . " = :" . $nomeCampos[$x] . "";
+        $nomeCampos = [];
+
+        if ($condicoes != null) {
+            $condicoesComIndexInt = array_keys($condicoes);
+            for ($i = 0; $i < count($condicoes); $i++) {
+                $nomeCampos[$i] = $condicoesComIndexInt[$i];
             }
-        }
-        $pdo = Banco::getConnection()->prepare($sql);
-        for ($i = 0; $i < count($nomeCampos); $i++) {
-//            echo $nomeCampos[$i] . " | " . $valoresCampos[$i];
-            $pdo->bindValue($nomeCampos[$i], $valoresCampos[$i]);
-        }
-        $pdo->execute();
-        if ($retornaPrimeiroValor) {
-            return $pdo->fetch(PDO::FETCH_ASSOC);
+            $valoresCampos = [];
+            for ($j = 0; $j < count($condicoes); $j++) {
+                if ($condicoes[$nomeCampos[$j]] != "") {
+//                echo $condicoes[$nomeCampos[$j]];
+                    $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
+                }
+            }
+
+            $sql = "SELECT * FROM $tabela WHERE ";
+            $nomeCamposNovo = [];
+            for ($x = 0; $x < count($nomeCampos); $x++) {
+                if ($x != count($nomeCampos) - 1) {
+                    if ($condicoes[$nomeCampos[$x]] != "") {
+                        if (count($valoresCampos) > 1) {
+                            $sql .= $nomeCampos[$x] . " = ? and ";
+                        } else {
+                            $sql .= $nomeCampos[$x] . " = ?";
+                        }
+                        $nomeCamposNovo[$x] = $nomeCampos[$x];
+                    }
+                } else {
+                    if ($condicoes[$nomeCampos[$x]] != "") {
+                        $sql .= $nomeCampos[$x] . " = ?";
+                        $nomeCamposNovo[$x] = $nomeCampos[$x];
+                    }
+                }
+            }
+            $nomeCamposNovo = array_values($nomeCamposNovo);
+            $pdo = Banco::getConnection()->prepare($sql);
+            $valoresCampos = array_values($valoresCampos);
+//        print_r($valoresCampos);
+//        print_r($nomeCamposNovo);
+//            echo $sql;
+            for ($i = 1; $i <= count($nomeCamposNovo); $i++) {
+                $pdo->bindValue($i, $valoresCampos[$i - 1]);
+            }
+            $pdo->execute();
+//        print_r($pdo->fetchAll(PDO::FETCH_ASSOC));
+            if ($retornaPrimeiroValor) {
+                return $pdo->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return $pdo->fetchAll(PDO::FETCH_ASSOC);
+            }
         } else {
-            return $pdo->fetchAll(PDO::FETCH_ASSOC);
+            $sql = "SELECT * FROM $tabela";
+            $pdo = Banco::getConnection()->prepare($sql);
+            $pdo->execute();
+            if ($retornaPrimeiroValor) {
+                return $pdo->fetch(PDO::FETCH_ASSOC);
+            } else {
+                return $pdo->fetchAll(PDO::FETCH_ASSOC);
+            }
         }
     }
 
@@ -276,7 +308,7 @@ abstract class DAO
 //        print_r($nomeCamposNovo);
 //            echo $sql;
             for ($i = 1; $i <= count($nomeCamposNovo); $i++) {
-                $pdo->bindValue($i, $valoresCampos[$i-1]);
+                $pdo->bindValue($i, $valoresCampos[$i - 1]);
             }
             $pdo->execute();
 //        print_r($pdo->fetchAll(PDO::FETCH_ASSOC));

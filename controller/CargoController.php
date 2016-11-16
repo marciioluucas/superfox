@@ -23,32 +23,36 @@ class CargoController
         $this->cargo->setNome(isset($_POST['nome']) ? $_POST['nome'] : null);
         $this->cargo->setDescricao(isset($_POST['descricao']) ? $_POST['descricao'] : null);
 
+        if (isset($_POST['action'])) {
 
-        if ($_POST['action'] == "salvar") {
-            try {
-                $this->salvar();
-            } catch (Exception $e) {
-                echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
-            }
-        }
-        if ($_POST['action'] == "alterar") {
-            try {
-                $this->alterar();
-            } catch (Exception $e) {
-                echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
-            }
-        }
 
-        if ($_POST['action'] == "excluir") {
-            try {
-                $this->excluir();
-            } catch (Exception $e) {
-                echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
+            if ($_POST['action'] == "salvar") {
+                try {
+                    $this->salvar();
+                } catch (Exception $e) {
+                    echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
+                }
+            }
+            if ($_POST['action'] == "alterar") {
+                try {
+                    $this->alterar();
+                } catch (Exception $e) {
+                    echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
+                }
+            }
+
+            if ($_POST['action'] == "excluir") {
+                try {
+                    $this->excluir();
+                } catch (Exception $e) {
+                    echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
+                }
             }
         }
     }
 
-    public function salvar()
+    public
+    function salvar()
     {
         if (!$this->cargo->getNome() == "undefined" || !$this->cargo->getNome() == "") {
             if (!$this->cargo->getDescricao() == "undefined" || !$this->cargo->getDescricao() == "") {
@@ -61,7 +65,8 @@ class CargoController
         }
     }
 
-    public function alterar()
+    public
+    function alterar()
     {
         if (!$this->cargo->getNome() == "undefined" || !$this->cargo->getNome() == "") {
             if (!$this->cargo->getDescricao() == "undefined" || !$this->cargo->getDescricao() == "") {
@@ -74,16 +79,33 @@ class CargoController
         }
     }
 
-    public function excluir()
+    public
+    function excluir()
     {
-        if(isset($_GET['id'])){
+        if (isset($_GET['id'])) {
             $this->cargo->setAtivado(0);
             $this->cargoDAO->updateCargo($this->cargo, $_GET['id']);
-        }else{
+        } else {
             echo FuncoesMensagens::geraJSONMensagem("O campo ID não foi informado", "erro");
         }
     }
 
+    public
+    function pesquisarCargo()
+    {
+        $id = isset($_GET['id']) ? $_GET['id'] : "";
+        $nome = isset($_GET['nome']) ? $_GET['nome'] : "";
+        if ($id == "" && $nome == "") {
+            return $this->cargoDAO->pesquisarCargo($this->cargo, ["ativado" => 1]);
+        } else {
+            return $this->cargoDAO->pesquisarCargo($this->cargo, ["pk_cargo" => $id,
+                "nome" => $nome, "ativado" => 1]);
+        }
+
+
+    }
+
 
 }
+
 new CargoController();

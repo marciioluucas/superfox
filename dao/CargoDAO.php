@@ -1,9 +1,9 @@
 <?php
 require_once("DAO.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/model/Cargo.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/util/FuncoesReflections.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/util/FuncoesString.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/superfox/util/FuncoesMensagens.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Cargo.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/util/FuncoesReflections.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/util/FuncoesString.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/util/FuncoesMensagens.php");
 
 /**
  * Created by PhpStorm.
@@ -16,16 +16,16 @@ class CargoDAO extends DAO
     public function criarCargo($obj)
     {
         $nome_cargo = FuncoesReflections::pegaValorAtributoEspecifico($obj, "nome");
-        FuncoesReflections::injetaValorAtributo($obj,["data_cadastro","data_ultima_alteracao"],[date("Y-d-m"), date("Y-d-m")]);
-        if ($this->quantidadeRegistros($obj, ["nome" => $nome_cargo]) == 0) {
-            if($this->create($obj)){
+        FuncoesReflections::injetaValorAtributo($obj, ["data_cadastro", "data_ultima_alteracao"], [date("Y-d-m"), date("Y-d-m")]);
+        if ($this->quantidadeRegistros($obj, ["nome" => $nome_cargo, "ativado" => 1]) == 0) {
+            if ($this->create($obj)) {
                 echo FuncoesMensagens::geraJSONMensagem("Cargo cadastrado com sucesso!", "sucesso");
                 return true;
-            }else{
+            } else {
                 echo FuncoesMensagens::geraJSONMensagem("Erro ao cadastrar o cargo", "erro");
                 return false;
             }
-        }else{
+        } else {
             echo FuncoesMensagens::geraJSONMensagem("Cargo já cadastrado no sistema.", "erro");
             return false;
         }
@@ -59,13 +59,16 @@ class CargoDAO extends DAO
         }
     }
 
+    public function pesquisarCargo($obj, $condicoes = [])
+    {
+        return $this->buscaPorCondicoes($obj, $condicoes);
+    }
+
 }
-$cargoDAO = new CargoDAO();
-$cargo = new Cargo();
 
-$cargo->setNome("asdasddt");
-$cargo->setDescricao("423423");
-$cargo->setData_Cadastro(date("Y-m-d"));
-$cargo->setData_Ultima_Alteracao(date("Y-m-d"));
-
-$cargoDAO->criarCargo($cargo);
+//
+//$cargoDAO = new CargoDAO();
+//$cargo = new Cargo();
+//
+//
+//print_r($cargoDAO->pesquisarCargo($cargo, ["nome" => "teste", "ativado" => 1]));
