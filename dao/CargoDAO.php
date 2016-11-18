@@ -73,3 +73,4 @@ class CargoDAO extends DAO
 //$cargo = new Cargo();
 //
 //$cargo->setAtivado(0);
+//$cargoDAO->deleteCargo($cargo,1);

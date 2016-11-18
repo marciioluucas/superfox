@@ -29,10 +29,10 @@
 <script>
     $(document).ready(function(){
         $('ul.tabs').tabs();
-        ajaxGenerico('#listagem', '../usuario/listagem.php')
+        ajaxGenerico('#listagem', '../usuario/listagem.php');
         $("a[href='#listagem']").on("click", function() {
             ajaxGenerico('#listagem', '../usuario/listagem.php')
-        })
+        });
         $("a[href='#cadastros']").on("click", function() {
             ajaxGenerico('#cadastros', '../usuario/cadastro.php')
         })

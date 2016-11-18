@@ -18,17 +18,15 @@ function verificaSeTemValorNosCampos(seletoresCampos = []) {
 }
 
 $('#btn-alterar').on("click", function () {
-    var id = $("#identificacao").val();
-    var email = $("#email").val();
-    var login = $("#loginn").val();
-    var senha = $("#senha").val();
-    if (verificaSeTemValorNosCampos(["#identificacao", "#email", "#loginn", "#senha"])) {
-        ajaxPost("../../../controller/UsuarioController.php", {
+    var id = $(".identificacao").val();
+    var nome = $(".nome").val();
+    var descricao = $(".loginn").val();
+    if (verificaSeTemValorNosCampos([".identificacao", ".nome", ".descricao"])) {
+        ajaxPost("../../../controller/CargoController.php", {
             "action": "alterar",
             "id": id,
-            "email": email,
-            "login": login,
-            "senha": senha
+            "nome": nome,
+            "descricao": descricao
         })
     }
 

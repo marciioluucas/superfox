@@ -14,7 +14,6 @@ $(document).ready(function () {
 });
 
 function ajaxGenerico(seletor, url) {
-    alert(url);
     $(seletor).load(url, function () {
         console.log('Sucesso!');
     })

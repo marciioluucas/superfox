@@ -172,6 +172,6 @@ class UsuarioDAO extends DAO
 //$usuario = new Usuario();
 //$usuarioDAO = new UsuarioDAO();
 //
-//print_r($usuarioDAO->innerJoin($usuario, $funcionario, ['usuario.ativado' => 1]));
-//
+//print_r($usuarioDAO->deleteUsuario($usuario, 23));
+
 

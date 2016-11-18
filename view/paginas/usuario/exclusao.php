@@ -32,7 +32,8 @@ $usuario = $usuarioController->porId($id);
         var id = $('#identificacao').val();
         ajaxPost("../../../controller/UsuarioController.php",
             {"action": "excluir", "id": id}
-        )
+        );
+        ajaxGenerico('#listagem', '../usuario/listagem.php')
     })
 </script>
 

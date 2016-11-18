@@ -88,8 +88,8 @@ class CargoController
     public function excluir()
     {
         if (isset($_POST['id'])) {
-            $this->cargo->setAtivado(0);
-            return $this->cargoDAO->deleteCargo($this->cargoDAO, $_POST['id']);
+            $this->cargo->setAtivado("0");
+            return $this->cargoDAO->deleteCargo($this->cargo, $_POST['id']);
         } else {
             echo FuncoesMensagens::geraJSONMensagem("ID deve ser formado", "erro");
             return false;
