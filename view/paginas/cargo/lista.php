@@ -25,7 +25,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/CargoController.p
     <?php
     $cargoController = new CargoController();
     $arrayDados = $cargoController->pesquisarCargo();
-//    print_r($arrayDados);
+    //    print_r($arrayDados);
     for ($i = 0; $i < count($arrayDados); $i++) {
 
         ?>
@@ -34,7 +34,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/CargoController.p
             <td><?php echo $arrayDados[$i]['nome']; ?></td>
             <td>
                 <button class="waves-effect waves-light btn" data-target="modalAcoes"
-                        onclick="ajaxGenerico('.dialogModal', encodeURI('../cargo/ver.php?<?php echo "id=" . $arrayDados[$i]['pk_cargo'] . "&nome=" . $arrayDados[$i]['nome']; ?>'))">
+                        onclick="ajaxGenerico('.dialogModal',
+                            encodeURI('../cargo/ver.php?<?php echo "id=" . $arrayDados[$i]['pk_cargo'] .
+                            "&nome=" . $arrayDados[$i]['nome'] . "&descricao=" . $arrayDados[$i]['descricao']; ?>'))">
                     <i
                         class="material-icons center">remove_red_eye</i></button>
             </td>
