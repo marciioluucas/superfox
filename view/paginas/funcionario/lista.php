@@ -14,8 +14,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/FuncionarioContro
     <thead>
     <tr>
         <th data-field="id">Nome</th>
-        <th data-field="name">Login</th>
-        <th data-field="email">Email</th>
+        <th data-field="name">Cargo</th>
+        <th data-field="email">CPF</th>
         <th data-field="ver" width="18">Ver</th>
         <th data-field="editar" width="18">Editar</th>
         <th data-field="excluir" width="18">Excluir</th>
@@ -26,14 +26,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/FuncionarioContro
     <?php
     $funcionarioController = new Funcionariocontroller();
     $arrayDados = $funcionarioController->pesquisarFuncionario();
-    print_r($arrayDados);
     for ($i = 0; $i < count($arrayDados); $i++) {
 
         ?>
         <tr>
-            <td><?php echo $arrayDados[$i]['funcionario.nome']; ?></td>
+            <td><?php echo $arrayDados[$i]['funcName']; ?></td>
+            <td><?php echo $arrayDados[$i]['cargName']; ?></td>
             <td><?php echo $arrayDados[$i]['cpf']; ?></td>
-            <td><?php echo $arrayDados[$i]['cargo.nome']; ?></td>
             <td>
                 <button class="waves-effect waves-light btn" data-target="modalAcoes"
                         onclick="ajaxGenerico('.dialogModal', encodeURI('../funcionario/ver.php?<?php echo "id=" . $arrayDados[$i]['nome'] . "&nome=" . $arrayDados[$i]['nome'] . "&cargo=Gerente&login=" . $arrayDados[$i]['login'] . "&email=" . $arrayDados[$i]['email']; ?>'))">

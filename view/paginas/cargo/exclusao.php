@@ -29,7 +29,6 @@
         ajaxPost("../../../controller/CargoController.php",
             {"action": "excluir", "id": id});
         var url = encodeURI("../cargo/lista.php");
-        alert(url);
         ajaxGenerico(".pesquisa", url);
     })
 </script>
