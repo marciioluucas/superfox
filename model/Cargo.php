@@ -1,4 +1,6 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Funcionario.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/dao/CargoDAO.php");
 
 /**
  * Created by PhpStorm.
@@ -112,10 +114,16 @@ class Cargo
     }
 
 
-
-
-
-
+    public function verificaCargoAtivadoNoFuncionario()
+    {
+        $funcionario = new Funcionario();
+        $cargoDAO = new CargoDAO();
+        if ($cargoDAO->quantidadeRegistros($funcionario, ["fk_cargo" => $this->pk_cargo]) > 0) {
+            return false;
+        }else{
+            return true;
+        }
+    }
 
 
 }

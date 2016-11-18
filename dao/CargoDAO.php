@@ -39,6 +39,7 @@ class CargoDAO extends DAO
 
     public function updateCargo($obj, $id)
     {
+        FuncoesReflections::injetaValorAtributo($obj, ["data_ultima_alteracao"], [date("Y-m-d")]);
         if ($this->update($obj, $id)) {
             echo FuncoesMensagens::geraJSONMensagem("Cargo alterado com sucesso!", "sucesso");
             return true;
@@ -50,7 +51,6 @@ class CargoDAO extends DAO
 
     public function deleteCargo($obj, $id)
     {
-//        return $this->update($obj, $id);
         if ($this->update($obj, $id)) {
             echo FuncoesMensagens::geraJSONMensagem("Cargo deletado com sucesso!", "sucesso");
             return true;

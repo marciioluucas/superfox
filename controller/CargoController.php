@@ -76,7 +76,7 @@ class CargoController
     {
         if (!$this->cargo->getNome() == "undefined" || !$this->cargo->getNome() == "") {
             if (!$this->cargo->getDescricao() == "undefined" || !$this->cargo->getDescricao() == "") {
-                $this->cargoDAO->updateCargo($this->cargo, $_GET['id']);
+                $this->cargoDAO->updateCargo($this->cargo, $_POST['id']);
             } else {
                 echo FuncoesMensagens::geraJSONMensagem("O campo descrição não foi informado", "erro");
             }
@@ -87,9 +87,17 @@ class CargoController
 
     public function excluir()
     {
+
         if (isset($_POST['id'])) {
-            $this->cargo->setAtivado("0");
-            return $this->cargoDAO->deleteCargo($this->cargo, $_POST['id']);
+            $this->cargo->setPk_Cargo($_POST['id']);
+            if($this->cargo->verificaCargoAtivadoNoFuncionario()){
+                $this->cargo->setAtivado("0");
+                return $this->cargoDAO->deleteCargo($this->cargo, $_POST['id']);
+            }else{
+                echo FuncoesMensagens::geraJSONMensagem("Impossível excluir pois possuem funcionarios com este cargo", "erro");
+                return false;
+            }
+
         } else {
             echo FuncoesMensagens::geraJSONMensagem("ID deve ser formado", "erro");
             return false;
