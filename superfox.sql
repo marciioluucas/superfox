@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 08-Nov-2016 às 23:04
+-- Generation Time: 18-Nov-2016 às 21:03
 -- Versão do servidor: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -30,18 +30,23 @@ CREATE TABLE `cargo` (
   `pk_cargo` int(11) NOT NULL,
   `nome` varchar(150) NOT NULL,
   `descricao` text,
-  `ativado` tinyint(1) NOT NULL DEFAULT '1'
+  `ativado` tinyint(1) NOT NULL DEFAULT '1',
+  `data_cadastro` date NOT NULL,
+  `data_ultima_alteracao` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `cargo`
 --
 
-INSERT INTO `cargo` (`pk_cargo`, `nome`, `descricao`, `ativado`) VALUES
-(1, 'teste', 'teste', 1),
-(2, 'Repositor', 'Repoe os produtos na prateleira', 1),
-(3, 'Gerente', 'Gerencia as dependencias do mercado', 1),
-(4, 'Caixa', 'Passa as compras dos clientes e cadastra as vendas.', 1);
+INSERT INTO `cargo` (`pk_cargo`, `nome`, `descricao`, `ativado`, `data_cadastro`, `data_ultima_alteracao`) VALUES
+(1, 'teste', 'teste', 1, '0000-00-00', NULL),
+(2, 'Repositor', 'Repoe os produtos na prateleira', 1, '0000-00-00', NULL),
+(3, 'Gerente', 'Gerencia as dependencias do mercado', 1, '0000-00-00', NULL),
+(4, 'Caixa', 'Passa as compras dos clientes e cadastra as vendas.', 1, '0000-00-00', NULL),
+(5, 't', '423423', 1, '0000-00-00', '0000-00-00'),
+(7, 'Dorama', 'efdhfgghb', 1, '0000-00-00', '0000-00-00'),
+(10, 'asdasddt', '423423', 1, '0000-00-00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -54,7 +59,9 @@ CREATE TABLE `categoria` (
   `nome` varchar(180) NOT NULL,
   `descricao` text,
   `fk_produto` int(11) NOT NULL,
-  `ativado` tinyint(1) NOT NULL DEFAULT '1'
+  `ativado` tinyint(1) NOT NULL DEFAULT '1',
+  `data_cadastro` date NOT NULL,
+  `data_ultima_alteracao` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -68,7 +75,10 @@ CREATE TABLE `cliente` (
   `nome` varchar(180) NOT NULL,
   `cpf_cnpj` varchar(45) DEFAULT NULL,
   `telefone` varchar(45) DEFAULT NULL,
-  `fk_cliente_endereco` int(11) NOT NULL
+  `fk_cliente_endereco` int(11) NOT NULL,
+  `ativado` tinyint(1) NOT NULL DEFAULT '1',
+  `data_cadastro` date NOT NULL,
+  `data_ultima_alteracao` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -84,7 +94,9 @@ CREATE TABLE `cliente_endereco` (
   `rua` varchar(100) NOT NULL,
   `setor` varchar(100) NOT NULL,
   `logradouro` varchar(100) NOT NULL,
-  `cep` varchar(45) NOT NULL
+  `cep` varchar(45) NOT NULL,
+  `data_cadastro` date NOT NULL,
+  `data_ultima_alteracao` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -96,16 +108,18 @@ CREATE TABLE `cliente_endereco` (
 CREATE TABLE `compra` (
   `pk_compra` int(11) NOT NULL,
   `valor` float(10,2) NOT NULL,
-  `data` date NOT NULL,
-  `hora` time NOT NULL
+  `data_cadastro` date NOT NULL,
+  `hora_cadastro` time NOT NULL,
+  `ativado` tinyint(1) NOT NULL DEFAULT '1',
+  `data_ultima_alteracao` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `compra`
 --
 
-INSERT INTO `compra` (`pk_compra`, `valor`, `data`, `hora`) VALUES
-(1, 200.00, '0000-00-00', '00:00:11');
+INSERT INTO `compra` (`pk_compra`, `valor`, `data_cadastro`, `hora_cadastro`, `ativado`, `data_ultima_alteracao`) VALUES
+(1, 200.00, '0000-00-00', '00:00:11', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -121,7 +135,9 @@ CREATE TABLE `fornecedor` (
   `ramo` varchar(45) NOT NULL,
   `representante` varchar(180) NOT NULL,
   `mei` tinyint(1) NOT NULL DEFAULT '0',
-  `ativado` tinyint(1) NOT NULL DEFAULT '1'
+  `ativado` tinyint(1) NOT NULL DEFAULT '1',
+  `data_ultima_alteracao` date DEFAULT NULL,
+  `data_cadastro` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -138,7 +154,9 @@ CREATE TABLE `fornecedor_endereco` (
   `rua` varchar(100) NOT NULL,
   `setor` varchar(100) NOT NULL,
   `logradouro` varchar(100) NOT NULL,
-  `cep` varchar(45) NOT NULL
+  `cep` varchar(45) NOT NULL,
+  `data_cadastro` date NOT NULL,
+  `data_ultima_alteracao` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -246,16 +264,18 @@ CREATE TABLE `produto` (
   `preco` float(10,2) NOT NULL,
   `estoque` int(11) NOT NULL,
   `estoque_minimo` int(11) NOT NULL,
-  `ativado` tinyint(1) NOT NULL DEFAULT '1'
+  `ativado` tinyint(1) NOT NULL DEFAULT '1',
+  `data_cadastro` date NOT NULL,
+  `data_ultima_alteracao` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `produto`
 --
 
-INSERT INTO `produto` (`pk_produto`, `codigo_de_barras`, `nome`, `marca`, `lote`, `validade`, `fabricacao`, `preco`, `estoque`, `estoque_minimo`, `ativado`) VALUES
-(1, 123456789, 'teste1', 'marcateste1', 'lotet1', '11-11-2011', '11-11-2011', 1.00, 10, 2, 1),
-(2, 546456489, 'teste2', 'marcateste2', 'lotet2', '11-11-2011', '11-11-2011', 2.00, 90, 3, 1);
+INSERT INTO `produto` (`pk_produto`, `codigo_de_barras`, `nome`, `marca`, `lote`, `validade`, `fabricacao`, `preco`, `estoque`, `estoque_minimo`, `ativado`, `data_cadastro`, `data_ultima_alteracao`) VALUES
+(1, 123456789, 'teste1', 'marcateste1', 'lotet1', '11-11-2011', '11-11-2011', 1.00, 10, 2, 1, '0000-00-00', NULL),
+(2, 546456489, 'teste2', 'marcateste2', 'lotet2', '11-11-2011', '11-11-2011', 2.00, 90, 3, 1, '0000-00-00', NULL);
 
 -- --------------------------------------------------------
 
@@ -279,12 +299,12 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`pk_usuario`, `login`, `senha`, `data_cadastro`, `data_ultima_alteracao`, `email`, `ativado`, `fk_funcionario`) VALUES
-(23, 'marciioluucas', '123456', '2016-10-27', '0000-00-00', 'marciioluucas@gmail.com', 1, 1),
-(24, 'marco.aurelio', '123', '2016-10-28', NULL, 'kbral99@gmail.com', 1, 2),
+(23, 'marciioluucas', '123456', '2016-10-27', '0000-00-00', 'marciioluucas@gmail.com', 0, 1),
+(24, 'marco.aurelio', '123', '2016-10-28', NULL, 'kbral99@gmail.com', 0, 2),
 (25, 'joao.victor', '123', '2016-10-28', NULL, 'joaogarciafirmino@gmail.com', 1, 3),
 (26, 'juanes-adriano', '123', '2016-10-28', NULL, 'juaneshtk50@gmail.com', 1, 4),
 (27, 'oto.gloria', '123', '2016-10-28', NULL, 'otogloria@gmail.com', 1, 5),
-(28, 'sadrak', '123', '2016-10-28', NULL, 'sadrakss@outlook.com', 1, 6);
+(28, 'sadrak', '123', '2016-10-28', NULL, 'sadrakss@outlook.com', 0, 6);
 
 -- --------------------------------------------------------
 
@@ -297,7 +317,10 @@ CREATE TABLE `venda` (
   `valor` float(10,2) NOT NULL,
   `data` date NOT NULL,
   `hora` time NOT NULL,
-  `fk_usuario` int(11) NOT NULL
+  `fk_usuario` int(11) NOT NULL,
+  `ativado` tinyint(1) NOT NULL,
+  `data_cadastro` date NOT NULL,
+  `data_ultima_alteracao` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -400,7 +423,7 @@ ALTER TABLE `venda`
 -- AUTO_INCREMENT for table `cargo`
 --
 ALTER TABLE `cargo`
-  MODIFY `pk_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pk_cargo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `cliente`
 --
