@@ -90,10 +90,10 @@ class CargoController
 
         if (isset($_POST['id'])) {
             $this->cargo->setPk_Cargo($_POST['id']);
-            if($this->cargo->verificaCargoAtivadoNoFuncionario()){
+            if ($this->cargo->verificaCargoAtivadoNoFuncionario()) {
                 $this->cargo->setAtivado("0");
                 return $this->cargoDAO->deleteCargo($this->cargo, $_POST['id']);
-            }else{
+            } else {
                 echo FuncoesMensagens::geraJSONMensagem("Impossível excluir pois possuem funcionarios com este cargo", "erro");
                 return false;
             }
@@ -104,11 +104,11 @@ class CargoController
         }
     }
 
-    public
-    function pesquisarCargo()
+    public function pesquisarCargo()
     {
         $id = isset($_GET['id']) ? $_GET['id'] : "";
         $nome = isset($_GET['nome']) ? $_GET['nome'] : "";
+
         if ($id == "" && $nome == "") {
             return $this->cargoDAO->pesquisarCargo($this->cargo, ["ativado" => 1]);
         } else {
@@ -117,6 +117,12 @@ class CargoController
         }
 
 
+    }
+
+    //Este método é utilizado no cadastro de funcionário.
+    public function retornaJsonPesquisaCargo()
+    {
+        return json_encode($this->pesquisarCargo());
     }
 
 

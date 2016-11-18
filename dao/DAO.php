@@ -266,7 +266,7 @@ abstract class DAO
         }
     }
 
-    public function innerJoin($obj1, $obj2, $condicoes = null, $retornaSoPrimeiro = false)
+    public function innerJoin($obj1, $obj2, $condicoes = null, $retornaSoPrimeiro = false, $campos = null)
     {
         $tabela1 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj1));
         $tabela2 = FuncoesString::paraCaixaBaixa(FuncoesReflections::pegaNomeClasseObjeto($obj2));
@@ -285,8 +285,20 @@ abstract class DAO
                     $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
                 }
             }
+            if($campos == null){
 
-            $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where ";
+                $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where ";
+            }else{
+                $strCampos = "";
+                for($i = 0; $i < count($campos); $i++){
+                    if($i != count($campos)-1){
+                        $strCampos .= $campos[$i].", ";
+                    }else{
+                        $strCampos .= $campos[$i]. " ";
+                    }
+                }
+                $sql = "SELECT $strCampos FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where ";
+            }
             $nomeCamposNovo = [];
             for ($x = 0; $x < count($nomeCampos); $x++) {
                 if ($x != count($nomeCampos) - 1) {
@@ -319,7 +331,20 @@ abstract class DAO
                 return $pdo->fetchAll(PDO::FETCH_ASSOC);
             }
         } else {
-            $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2`";
+            if($campos == null){
+
+                $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` ";
+            }else{
+                $strCampos = "";
+                for($i = 0; $i < count($campos); $i++){
+                    if($i != count($campos)-1){
+                        $strCampos .= $campos[$i].", ";
+                    }else{
+                        $strCampos .= $campos[$i]. " ";
+                    }
+                }
+                $sql = "SELECT $strCampos FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` ";
+            }
             $pdo = Banco::getConnection()->prepare($sql);
             $pdo->execute();
             if ($retornaSoPrimeiro) {

@@ -74,9 +74,9 @@ class FuncionarioDAO extends DAO
      *
      * @return array|bool|mixed
      */
-    public function pesquisarFuncionario($obj1, $obj2, $condicoes = false)
+    public function pesquisarFuncionario($obj1, $obj2, $condicoes = false, $campos = null)
     {
-        return $this->innerJoin($obj1, $obj2, $condicoes, false);
+        return $this->innerJoin($obj1, $obj2, $condicoes, false, $campos);
     }
 
 

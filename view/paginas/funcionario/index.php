@@ -8,12 +8,34 @@
  */
 ?>
 
-<header>
-    <span class="card-title">Funcionários</span>
-</header>
+<span class="card-title">Funcionários</span>
 <article>
     <section>
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col offset-s1"></li>
+                    <li class="tab col s5"><a class="active" href="#listagem">Listagem</a></li>
+                    <li class="tab col s5"><a href="#cadastros">Cadastros</a></li>
+                    <li class="tab col offset-s1"></li>
+                </ul>
+            </div>
+            <div id="listagem" class="col s12"></div>
+            <div id="cadastros" class="col s12"></div>
 
+        </div>
     </section>
 </article>
+<script>
+    $(document).ready(function(){
+        $('ul.tabs').tabs();
+        ajaxGenerico('#listagem', '../funcionario/listagem.php');
+        $("a[href='#listagem']").on("click", function() {
+            ajaxGenerico('#listagem', '../funcionario/listagem.php')
+        });
+        $("a[href='#cadastros']").on("click", function() {
+            ajaxGenerico('#cadastros', '../funcionario/cadastro.php')
+        })
+    });
+</script>
 
