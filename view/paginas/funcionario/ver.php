@@ -9,8 +9,6 @@
 $id = $_GET['id'];
 $nome = $_GET['nome'];
 $cargo = $_GET['cargo'];
-$login = $_GET['login'];
-$email = $_GET['email'];
 ?>
 
 <!-- Modal Structure -->
@@ -29,22 +27,6 @@ $email = $_GET['email'];
                     Cargo:
                     <input disabled value="<?php echo $cargo ?>" id="cargo" type="text" class="validate">
                     <!--                        <label for="cargo">Cargo</label>-->
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="input-field inline col s12">
-                    Login:
-                    <input disabled value="<?php echo $login; ?>" id="login" type="text" class="validate">
-                    <!--                        <label for="login">Login</label>-->
-                </div>
-            </div>
-            <div class="row">
-
-                <div class="input-field inline col s12">
-                    E-mail:
-                    <input disabled value="<?php echo $email ?>" id="email" type="email" class="validate">
-                    <!--                        <label for="email">Email</label>-->
                 </div>
             </div>
         </form>

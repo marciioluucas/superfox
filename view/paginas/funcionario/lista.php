@@ -35,7 +35,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/FuncionarioContro
             <td><?php echo $arrayDados[$i]['cpf']; ?></td>
             <td>
                 <button class="waves-effect waves-light btn" data-target="modalAcoes"
-                        onclick="ajaxGenerico('.dialogModal', encodeURI('../funcionario/ver.php?<?php echo "id=" . $arrayDados[$i]['nome'] . "&nome=" . $arrayDados[$i]['nome'] . "&cargo=Gerente&login=" . $arrayDados[$i]['login'] . "&email=" . $arrayDados[$i]['email']; ?>'))">
+                        onclick="ajaxGenerico('.dialogModal',
+                            encodeURI('../funcionario/ver.php?<?php echo "id=" . $arrayDados[$i]['pk_funcionario'] .
+                            "&nome=" . $arrayDados[$i]['funcName'] . "&cargo=" . $arrayDados[$i]['cargName'] .
+                            "&cpf=" . $arrayDados[$i]['cpf']; ?>'))">
                     <i
                         class="material-icons center">remove_red_eye</i></button>
             </td>

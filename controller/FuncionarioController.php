@@ -88,11 +88,11 @@ class FuncionarioController
         $cpf = isset($_GET['cpf']) ? $_GET['cpf'] : "";
         if ($id == "" && $nome == "" && $cargo == "" && $cpf == "") {
             return $this->funcionarioDAO->pesquisarFuncionario($this->funcionario, $this->cargo,
-                ["funcionario.ativado" => 1], ["funcionario.nome as funcName", "cargo.nome as cargName", "cpf"]);
+                ["funcionario.ativado" => 1], ["pk_funcionario","funcionario.nome as funcName", "cargo.nome as cargName", "cpf"]);
         } else {
             return $this->funcionarioDAO->pesquisarFuncionario($this->funcionario, $this->funcionario, ["pk_funcionario" => $id,
                 "nome" => $nome, "cargo" => $cargo, "cpf" => $cpf, "funcionario.ativado" => 1],
-                ["funcionario.nome as funcName", "cargo.nome as cargName", "cpf"]);
+                ["pk_funcionario", "funcionario.nome as funcName", "cargo.nome as cargName", "cpf"]);
         }
     }
 

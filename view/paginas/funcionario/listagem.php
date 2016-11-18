@@ -71,10 +71,9 @@
         var cpf = '';
         id = $('.id').val();
         nome = $('.nome').val();
-        cpf= $('.cpf').val();
+        cpf = $('.cpf').val();
         var url = encodeURI("../funcionario/lista.php?id=" + id + "&nome=" + nome + "&cpf=" + cpf);
-//        alert(url);
-
+        alert(url);
         ajaxGenerico(".pesquisa", url);
 //        ajaxComCallback(url);
     });
