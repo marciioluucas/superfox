@@ -18,10 +18,6 @@
                 <div class="col s12">
                     <form class="">
                         <div class="row">
-                            <div class="input-field col s8">
-                                <input id="login" type="text" class="validate" autocomplete="off">
-                                <label for="login">Login</label>
-                            </div>
                             <div class="input-field col s4">
                                 <input id="id" type="text" class="validate" autocomplete="off">
                                 <label for="id">ID</label>
@@ -67,14 +63,10 @@
 
     $('.btn-pesquisar').on("click", function () {
         var nome = '';
-        var login = '';
         var id = '';
-        var email = '';
         nome = $('#nome').val();
-        login = $('#login').val();
         id = $('#id').val();
-        email = $('#email').val();
-        var url = encodeURI("../usuario/lista.php?id=" + id + "&nome=" + nome + "&login=" + login);
+        var url = encodeURI("../cargo/lista.php?id=" + id + "&nome=" + nome);
 //        alert(url);
 
         ajaxGenerico(".pesquisa", url);

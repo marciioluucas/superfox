@@ -8,7 +8,7 @@
  */
 $id = $_GET['id'];
 $nome = $_GET['nome'];
-$descricao = $_GET['descricao'];
+$cargo = $_GET['cargo'];
 ?>
 
 <!-- Modal Structure -->
@@ -19,15 +19,16 @@ $descricao = $_GET['descricao'];
             <div class="row">
 
                 <div class="input-field inline col s6">
-                    <input disabled value="<?php echo $nome ?>" id="nome" type="text">
-                    <label for="nome" class="active">Nome</label>
+                    Nome:
+                    <input disabled value="<?php echo $nome ?>" id="nome" type="text" class="validate">
+                    <!--                        <label for="nome">Nome</label>-->
                 </div>
                 <div class="input-field inline col s6">
-                    <textarea disabled id="descricao" type="text" class="materialize-textarea"> <?php echo $descricao ?> </textarea>
-                    <label for="descricao" class="active">Descrição</label>
+                    Cargo:
+                    <input disabled value="<?php echo $cargo ?>" id="cargo" type="text" class="validate">
+                    <!--                        <label for="cargo">Cargo</label>-->
                 </div>
             </div>
-
         </form>
     </div>
 

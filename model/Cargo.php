@@ -1,4 +1,6 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/model/Funcionario.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/dao/CargoDAO.php");
 
 /**
  * Created by PhpStorm.
@@ -50,7 +52,7 @@ class Cargo
     /**
      * @return mixed
      */
-    public function getPkCargo()
+    public function getPk_Cargo()
     {
         return $this->pk_cargo;
     }
@@ -58,7 +60,7 @@ class Cargo
     /**
      * @param mixed $pk_cargo
      */
-    public function setPkCargo($pk_cargo)
+    public function setPk_Cargo($pk_cargo)
     {
         $this->pk_cargo = $pk_cargo;
     }
@@ -82,7 +84,7 @@ class Cargo
     /**
      * @return mixed
      */
-    public function getDataCadastro()
+    public function getData_Cadastro()
     {
         return $this->data_cadastro;
     }
@@ -112,10 +114,16 @@ class Cargo
     }
 
 
-
-
-
-
+    public function verificaCargoAtivadoNoFuncionario()
+    {
+        $funcionario = new Funcionario();
+        $cargoDAO = new CargoDAO();
+        if ($cargoDAO->quantidadeRegistros($funcionario, ["fk_cargo" => $this->pk_cargo]) > 0) {
+            return false;
+        }else{
+            return true;
+        }
+    }
 
 
 }

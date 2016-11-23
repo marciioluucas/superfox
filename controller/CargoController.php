@@ -23,32 +23,42 @@ class CargoController
         $this->cargo->setNome(isset($_POST['nome']) ? $_POST['nome'] : null);
         $this->cargo->setDescricao(isset($_POST['descricao']) ? $_POST['descricao'] : null);
 
+        if (isset($_POST['action'])) {
 
-        if ($_POST['action'] == "salvar") {
-            try {
-                $this->salvar();
-            } catch (Exception $e) {
-                echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
-            }
-        }
-        if ($_POST['action'] == "alterar") {
-            try {
-                $this->alterar();
-            } catch (Exception $e) {
-                echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
-            }
-        }
 
-        if ($_POST['action'] == "excluir") {
-            try {
-                $this->excluir();
-            } catch (Exception $e) {
-                echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
+            if ($_POST['action'] == "salvar") {
+                try {
+                    $this->salvar();
+                } catch (Exception $e) {
+                    echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
+                }
+            }
+            if ($_POST['action'] == "alterar") {
+                try {
+                    $this->alterar();
+                } catch (Exception $e) {
+                    echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
+                }
+            }
+
+            if ($_POST['action'] == "excluir") {
+                try {
+                    $this->excluir();
+                } catch (Exception $e) {
+                    echo FuncoesMensagens::geraJSONMensagem($e->getMessage(), "erro");
+                }
             }
         }
     }
 
-    public function salvar()
+    public function porId($id)
+    {
+        $this->cargo->setPk_Cargo($id);
+        return $this->cargoDAO->porIdCargo($this->cargo);
+    }
+
+    public
+    function salvar()
     {
         if (!$this->cargo->getNome() == "undefined" || !$this->cargo->getNome() == "") {
             if (!$this->cargo->getDescricao() == "undefined" || !$this->cargo->getDescricao() == "") {
@@ -61,11 +71,12 @@ class CargoController
         }
     }
 
-    public function alterar()
+    public
+    function alterar()
     {
         if (!$this->cargo->getNome() == "undefined" || !$this->cargo->getNome() == "") {
             if (!$this->cargo->getDescricao() == "undefined" || !$this->cargo->getDescricao() == "") {
-                $this->cargoDAO->updateCargo($this->cargo, $_GET['id']);
+                $this->cargoDAO->updateCargo($this->cargo, $_POST['id']);
             } else {
                 echo FuncoesMensagens::geraJSONMensagem("O campo descrição não foi informado", "erro");
             }
@@ -76,14 +87,45 @@ class CargoController
 
     public function excluir()
     {
-        if(isset($_GET['id'])){
-            $this->cargo->setAtivado(0);
-            $this->cargoDAO->updateCargo($this->cargo, $_GET['id']);
-        }else{
-            echo FuncoesMensagens::geraJSONMensagem("O campo ID não foi informado", "erro");
+
+        if (isset($_POST['id'])) {
+            $this->cargo->setPk_Cargo($_POST['id']);
+            if ($this->cargo->verificaCargoAtivadoNoFuncionario()) {
+                $this->cargo->setAtivado("0");
+                return $this->cargoDAO->deleteCargo($this->cargo, $_POST['id']);
+            } else {
+                echo FuncoesMensagens::geraJSONMensagem("Impossível excluir pois possuem funcionarios com este cargo", "erro");
+                return false;
+            }
+
+        } else {
+            echo FuncoesMensagens::geraJSONMensagem("ID deve ser formado", "erro");
+            return false;
         }
+    }
+
+    public function pesquisarCargo()
+    {
+        $id = isset($_GET['id']) ? $_GET['id'] : "";
+        $nome = isset($_GET['nome']) ? $_GET['nome'] : "";
+
+        if ($id == "" && $nome == "") {
+            return $this->cargoDAO->pesquisarCargo($this->cargo, ["ativado" => 1]);
+        } else {
+            return $this->cargoDAO->pesquisarCargo($this->cargo, ["pk_cargo" => $id,
+                "nome" => $nome, "ativado" => 1]);
+        }
+
+
+    }
+
+    //Este método é utilizado no cadastro de funcionário.
+    public function retornaJsonPesquisaCargo()
+    {
+        return json_encode($this->pesquisarCargo());
     }
 
 
 }
+
 new CargoController();

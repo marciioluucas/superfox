@@ -1,8 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Marcio
- * Date: 19/10/2016
- * Time: 19:54
- */
-exec('C:\WINDOWS\system32\notepad.exe');
+require_once($_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/CargoController.php");
+$cargoController = new CargoController();
+echo($cargoController->retornaJsonPesquisaCargo());
+?>

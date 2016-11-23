@@ -7,14 +7,15 @@
  * Time: 14:28
  */
 
-require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/CargoController.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/FuncionarioController.php";
 
 ?>
 <table class="responsive-table">
     <thead>
     <tr>
-        <th data-field="id">ID</th>
-        <th data-field="name">Nome</th>
+        <th data-field="id">Nome</th>
+        <th data-field="name">Cargo</th>
+        <th data-field="email">CPF</th>
         <th data-field="ver" width="18">Ver</th>
         <th data-field="editar" width="18">Editar</th>
         <th data-field="excluir" width="18">Excluir</th>
@@ -23,31 +24,32 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/CargoController.p
 
     <tbody class="tabela-pesquisa">
     <?php
-    $cargoController = new CargoController();
-    $arrayDados = $cargoController->pesquisarCargo();
-    //    print_r($arrayDados);
+    $funcionarioController = new Funcionariocontroller();
+    $arrayDados = $funcionarioController->pesquisarFuncionario();
     for ($i = 0; $i < count($arrayDados); $i++) {
 
         ?>
         <tr>
-            <td><?php echo $arrayDados[$i]['pk_cargo']; ?></td>
-            <td><?php echo $arrayDados[$i]['nome']; ?></td>
+            <td><?php echo $arrayDados[$i]['funcName']; ?></td>
+            <td><?php echo $arrayDados[$i]['cargName']; ?></td>
+            <td><?php echo $arrayDados[$i]['cpf']; ?></td>
             <td>
                 <button class="waves-effect waves-light btn" data-target="modalAcoes"
                         onclick="ajaxGenerico('.dialogModal',
-                            encodeURI('../cargo/ver.php?<?php echo "id=" . $arrayDados[$i]['pk_cargo'] .
-                            "&nome=" . $arrayDados[$i]['nome'] . "&descricao=" . $arrayDados[$i]['descricao']; ?>'))">
+                            encodeURI('../funcionario/ver.php?<?php echo "id=" . $arrayDados[$i]['pk_funcionario'] .
+                            "&nome=" . $arrayDados[$i]['funcName'] . "&cargo=" . $arrayDados[$i]['cargName'] .
+                            "&cpf=" . $arrayDados[$i]['cpf']; ?>'))">
                     <i
                         class="material-icons center">remove_red_eye</i></button>
             </td>
             <td>
                 <button class="waves-effect blue darken-3  waves-light btn" data-target="modalAcoes"
-                        onclick="ajaxGenerico('.dialogModal', encodeURI('../cargo/alteracao.php?<?php echo "id=" . $arrayDados[$i]['pk_cargo']; ?>'))">
+                        onclick="ajaxGenerico('.dialogModal', encodeURI('../funcionario/alteracao.php?<?php echo "id=" . $arrayDados[$i]['pk_funcionario']; ?>'))">
                     <i
                         class="material-icons center">create</i></button>
             </td>
             <td><a class="waves-effect red darken-3  waves-light btn" data-target="modalAcoes"
-                   onclick="ajaxGenerico('.dialogModal', encodeURI('../cargo/exclusao.php?<?php echo "id=" . $arrayDados[$i]['pk_cargo']; ?>'))">
+                   onclick="ajaxGenerico('.dialogModal', encodeURI('../funcionario/exclusao.php?<?php echo "id=" . $arrayDados[$i]['pk_funcionario']; ?>'))">
                     <i
                         class="material-icons center">delete</i></a></td>
         </tr>
