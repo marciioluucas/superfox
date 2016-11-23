@@ -8,6 +8,7 @@
  */
 class Produto
 {
+    private $pk_produto;
     private $codigo_de_barras;
     private $nome;
     private $marca;
@@ -17,7 +18,23 @@ class Produto
     private $preco;
     private $quantidade;
     private $quantidade_minima;
+    private $ativado;
 
+    /**
+     * @return mixed
+     */
+    public function getAtivado()
+    {
+        return $this->ativado;
+    }
+
+    /**
+     * @param mixed $ativado
+     */
+    public function setAtivado($ativado)
+    {
+        $this->ativado = $ativado;
+    }
     /**
      * @return mixed
      */
@@ -162,6 +179,16 @@ class Produto
         $this->quantidade_minima = $quantidade_minima;
     }
 
+    public function getPkProduto()
+    {
+        return $this->pk_produto;
+    }
+
+
+    public function setPkProduto($pk_produto)
+    {
+        $this->pk_produto = $pk_produto;
+    }
 
 
 }

@@ -58,4 +58,8 @@ class ProdutoDAO extends DAO
         }
     }
 
+    public function pesquisarProduto($obj, $condicoes = [])
+    {
+        return $this->buscaPorCondicoes($obj, $condicoes);
+    }
 }
