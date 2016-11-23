@@ -306,11 +306,8 @@ TRIGGER `superfox`.`itens_compra_AFTER_DELETE`
 AFTER DELETE ON `superfox`.`itens_compra`
 FOR EACH ROW
 BEGIN
-
 UPDATE produto SET estoque = estoque - OLD.quantidade
-
 WHERE pk_produto = OLD.fk_produto;
-
 END$$
 
 USE `superfox`$$
@@ -320,11 +317,8 @@ TRIGGER `superfox`.`itens_compra_AFTER_INSERT`
 AFTER INSERT ON `superfox`.`itens_compra`
 FOR EACH ROW
 BEGIN
-
 UPDATE produto SET estoque = estoque + NEW.quantidade
-
 WHERE pk_produto = NEW.fk_produto;
-
 END$$
 
 USE `superfox`$$
@@ -334,11 +328,8 @@ TRIGGER `superfox`.`itens_venda_AFTER_DELETE`
 AFTER DELETE ON `superfox`.`itens_venda`
 FOR EACH ROW
 BEGIN
-
     UPDATE produto SET estoque = estoque + OLD.quantidade
-
 WHERE pk_produto = OLD.fk_produto;
-
 END$$
 
 USE `superfox`$$
@@ -348,11 +339,8 @@ TRIGGER `superfox`.`itens_venda_AFTER_INSERT`
 AFTER INSERT ON `superfox`.`itens_venda`
 FOR EACH ROW
 BEGIN
-
 UPDATE produto SET estoque = estoque - NEW.quantidade
-
 WHERE pk_produto = NEW.fk_produto;
-
 END$$
 
 
