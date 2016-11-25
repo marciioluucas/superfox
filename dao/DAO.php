@@ -136,7 +136,7 @@ abstract class DAO
             if ($pdo->execute()) {
 
                 return true;
-            }else{
+            } else {
                 echo $sqlUpdate;
                 return false;
             }
@@ -281,20 +281,18 @@ abstract class DAO
             $valoresCampos = [];
             for ($j = 0; $j < count($condicoes); $j++) {
                 if ($condicoes[$nomeCampos[$j]] != "") {
-//                echo $condicoes[$nomeCampos[$j]];
                     $valoresCampos[$j] = $condicoes[$nomeCampos[$j]];
                 }
             }
-            if($campos == null){
-
+            if ($campos == null) {
                 $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where ";
-            }else{
+            } else {
                 $strCampos = "";
-                for($i = 0; $i < count($campos); $i++){
-                    if($i != count($campos)-1){
-                        $strCampos .= $campos[$i].", ";
-                    }else{
-                        $strCampos .= $campos[$i]. " ";
+                for ($i = 0; $i < count($campos); $i++) {
+                    if ($i != count($campos) - 1) {
+                        $strCampos .= $campos[$i] . ", ";
+                    } else {
+                        $strCampos .= $campos[$i] . " ";
                     }
                 }
                 $sql = "SELECT $strCampos FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` where ";
@@ -331,16 +329,16 @@ abstract class DAO
                 return $pdo->fetchAll(PDO::FETCH_ASSOC);
             }
         } else {
-            if($campos == null){
+            if ($campos == null) {
 
                 $sql = "SELECT * FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` ";
-            }else{
+            } else {
                 $strCampos = "";
-                for($i = 0; $i < count($campos); $i++){
-                    if($i != count($campos)-1){
-                        $strCampos .= $campos[$i].", ";
-                    }else{
-                        $strCampos .= $campos[$i]. " ";
+                for ($i = 0; $i < count($campos); $i++) {
+                    if ($i != count($campos) - 1) {
+                        $strCampos .= $campos[$i] . ", ";
+                    } else {
+                        $strCampos .= $campos[$i] . " ";
                     }
                 }
                 $sql = "SELECT $strCampos FROM $tabela1 INNER JOIN $tabela2 on `$tabela1`.`fk_$tabela2` = `$tabela2`.`pk_$tabela2` ";

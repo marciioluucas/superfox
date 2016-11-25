@@ -13,7 +13,7 @@ $cargoController = new CargoController();
 
 <article>
     <section>
-        <h5>Cadastro de usuário</h5>
+        <h5>Cadastro de funcionário</h5>
         <div class="row">
             <div class="col s12">
                 <div class="row">
@@ -29,9 +29,6 @@ $cargoController = new CargoController();
                         <div class="input-field col s12 m6 l6">
                             <select id="cargo" class="cargo">
                                 <option value="" disabled selected>Selecione uma opção</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
                             </select>
                             <label for="cargo">Cargo</label>
                         </div>
@@ -52,19 +49,15 @@ $cargoController = new CargoController();
     </section>
 </article>
 <script>
-    $('input.autocomplete').autocomplete({
-        data: {
-            <?php echo "" . $funcionarioController->montaJSONParaConsultaFuncionarioCPF() . ""; ?>
-        }
-    });
     $(document).ready(function () {
-        $('select').material_select();
-        var jsonCargos = <?php $cargoController->retornaJsonPesquisaCargo(); ?>;
-        var html;
+
+        var jsonCargos = JSON.parse('<?php echo $cargoController->retornaJsonPesquisaCargo(); ?>');
+        var html = '';
         for (var i = 0; i < jsonCargos.length; i++) {
             html += "<option value='" + jsonCargos[i].pk_cargo + "'>" + jsonCargos[i].nome + "</option>";
         }
-        $('#cargo').innerHTML = html;
+       document.getElementById("cargo").innerHTML = html;
+        $('select').material_select();
     });
 </script>
 <script src="../funcionario/cadastro.js"></script>
