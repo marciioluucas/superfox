@@ -131,4 +131,55 @@ class FuncoesReflections
             return false;
         }
     }
+
+
+
+    public static function retornaClassesMaes($obj)
+    {
+        $class = new ReflectionClass($obj);
+
+        $parents = [];
+
+        while ($parent = $class->getParentClass()) {
+            $parents[] = $parent->getName();
+            $class = $parent;
+        }
+//        print_r($parents);
+        return $parents;
+    }
+
+
+    public static function retornaNomeAtributosClassesMaes($obj)
+    {
+        $atributos = [];
+        for ($i = 0;
+             $i < count(FuncoesReflections::retornaClassesMaes($obj));
+             $i++) {
+            $atributos[$i] = array(FuncoesReflections::retornaClassesMaes($obj)[$i] =>
+                FuncoesReflections::pegaAtributosDoObjeto(FuncoesReflections::retornaClassesMaes($obj)[$i]));
+        }
+
+        return $atributos;
+    }
+
+    //TODO: Fazer funcionar issaque
+    public static function retornaValoresAtributosClassesMaes($obj)
+    {
+        $nomeClassesMae = self::retornaClassesMaes($obj);
+        $nomeAtributos = self::retornaNomeAtributosClassesMaes($obj);
+        $valores = [];
+        for ($i = 0; $i < count($nomeClassesMae); $i++) {
+            $valores[$i] = self::pegaValoresAtributoDoObjeto($nomeClassesMae[$i]);
+        }
+//        print_r($nomeAtributos);
+        return $valores;
+    }
 }
+//
+//require_once '../model/Usuario.php';
+//require_once '../model/Funcionario.php';
+//$u = new Funcionario();
+//$u->setNome("Marcio Lucas");
+//$u->setCpf("03794335163");
+//print_r(FuncoesReflections::pegaValoresAtributoDoObjeto($u));
+////print_r(FuncoesReflections::pegaValoresAtributoDoObjeto($u));

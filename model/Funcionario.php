@@ -102,7 +102,4 @@ class Funcionario extends Fisica
         $this->ativado = $ativado;
     }
 
-
-
-
 }

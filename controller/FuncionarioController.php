@@ -59,7 +59,10 @@ class FuncionarioController
         if ($_POST['nome'] != "undefined" || $_POST['nome'] != "") {
             if ($_POST['cpf'] != "undefined" || $_POST['cpf'] != "") {
                 if ($_POST['cargo'] != "undefined" || $_POST['cargo'] != "") {
-                  echo  $this->funcionarioDAO->criarFuncionario($this->funcionario);
+                    $this->funcionario->setNome($_POST['nome']);
+                    $this->funcionario->setCpf($_POST['cpf']);
+                    $this->funcionario->setCargo($_POST['cargo']);
+                    $this->funcionarioDAO->criarFuncionario($this->funcionario);
                 } else {
                     echo FuncoesMensagens::geraJSONMensagem("O campo senha não foi informado", "erro");
                 }
@@ -76,23 +79,8 @@ class FuncionarioController
 
     public function alterar()
     {
-        if ($_POST['nome'] != "undefined" || $_POST['nome'] != "") {
-            $this->funcionario->setNome($_POST['nome']);
-            if ($_POST['cpf'] != "undefined" || $_POST['cpf'] != "") {
-                $this->funcionario->setCpf($_POST['cpf']);
-                if ($_POST['cargo'] != "undefined" || $_POST['cargo'] != "") {
-                    $this->funcionario->setCargo($_POST['cargo']);
-                    $this->funcionarioDAO->updateFuncionario($this->funcionario, $_POST['id']);
-                } else {
-                    echo FuncoesMensagens::geraJSONMensagem("O campo senha não foi informado", "erro");
-                }
-            } else {
-                echo FuncoesMensagens::geraJSONMensagem("O campo CPF não foi informado", "erro");
-            }
 
-        } else {
-            echo FuncoesMensagens::geraJSONMensagem("O campo nome não foi informado", "erro");
-        }
+
     }
 
     public function excluir()

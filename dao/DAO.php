@@ -25,7 +25,14 @@ abstract class DAO
             $camposV = FuncoesReflections::pegaValoresAtributoDoObjeto($obj);
             $camposNome = [];
             $camposValores = [];
-            for ($i = 0; $i < count($campos); $i++) {
+            $camposNomeMaes = [];
+            if (FuncoesReflections::verificaSeEClasseFilha($obj)) {
+                $camposNomeMaes = FuncoesReflections::retornaNomeAtributosClassesMaes($obj);
+                for($i = 0; $i < count($camposNomeMaes); $i++){
+                    $camposNome[$i] =  $camposNomeMaes[$i];
+                }
+            }
+            for ($i = count($camposNomeMaes)+1; $i < count($campos)+count($camposNomeMaes); $i++) {
                 if ($camposV[$i] != null) {
                     $camposNome[$i] = $campos[$i];
                 }
