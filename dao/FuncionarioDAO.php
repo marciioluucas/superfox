@@ -15,12 +15,14 @@ class FuncionarioDAO extends DAO
      */
     public function criarFuncionario($obj)
     {
-        $fk_funcionario = FuncoesReflections::pegaValorAtributoEspecifico($obj, "fk_funcionario");
-        if ($this->quantidadeRegistros($obj, ["fk_funcionario" => $fk_funcionario]) == 0) {
-            $this->create($obj);
-            return FuncoesMensagens::geraJSONMensagem("Funcionario cadastrado com sucesso!", "sucesso");
-        }
-        return FuncoesMensagens::geraJSONMensagem("Funcionario já existe", "erro");
+        FuncoesReflections::injetaValorAtributo($obj,["data_cadastro","data_ultima_alteracao"],[date("Y-m-d"), date("Y-m-d")]);
+//            if($this->create($obj)){
+//                return FuncoesMensagens::geraJSONMensagem("Funcionario cadastrado com sucesso!", "sucesso");
+            return FuncoesMensagens::geraJSONMensagem($this->create($obj), "erro");
+//            }else{
+//                return FuncoesMensagens::geraJSONMensagem("Erro ao cadastrar funcionário!", "erro");
+//            }
+
     }
 
 

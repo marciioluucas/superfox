@@ -2,28 +2,13 @@
  * Created by Márcio Lucas on 11/11/2016.
  */
 
-
-$('ul.autocomplete-content').on("click", function () {
-    $('input.autocomplete').attr("disabled", "true");
-    $('.input-normal').removeAttr("disabled");
-});
-
-$('.escolher-outro').on("click", function () {
-    $('input.autocomplete').removeAttr("disabled").val("");
-    $('.input-normal').attr("disabled", "true");
-
-});
-
-$(document).ready(function () {
-    $('.input-normal').attr("disabled", "true");
-});
-
 $('#enviar').on("click", function () {
-    var nome = $(".nome").val();
-    var cargo = $(".cargo").val();
-    var cpf = $(".cpf").val();
+    var nome = $("input[name='nome']").val();
+    var cargo = $("select[name='cargo']").val();
+    var cpf = $("input[name='cpf']").val();
 
-    if (verificaSeTemValorNosCampos([".nome", ".cargo", ".cpf"])) {
+
+    if (verificaSeTemValorNosCampos(["input[name='nome']", "select[name='cargo']", "input[name='cpf']"])) {
         ajaxPost("../../../controller/FuncionarioController.php", {
             "action": "salvar",
             "nome": nome,

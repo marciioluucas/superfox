@@ -66,7 +66,7 @@ abstract class DAO
         } catch (Exception $e) {
             throw new Exception("Erro ao processar query", 0, $e);
         }
-        return false;
+        return $sqlInsert;
     }
 
 

@@ -1,6 +1,7 @@
 <?php
 require_once("Fisica.php");
 require_once("Cargo.php");
+
 /**
  * Created by PhpStorm.
  * User: Márcio Lucas
@@ -13,6 +14,8 @@ class Funcionario extends Fisica
     private $pk_funcionario;
     private $cargo;
     private $data_cadastro;
+    private $data_ultima_alteracao;
+    private $ativado;
 
     function __construct()
     {
@@ -67,6 +70,37 @@ class Funcionario extends Fisica
         $this->pk_funcionario = $pk_funcionario;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDataUltimaAlteracao()
+    {
+        return $this->data_ultima_alteracao;
+    }
+
+    /**
+     * @param mixed $data_ultima_alteracao
+     */
+    public function setDataUltimaAlteracao($data_ultima_alteracao)
+    {
+        $this->data_ultima_alteracao = $data_ultima_alteracao;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAtivado()
+    {
+        return $this->ativado;
+    }
+
+    /**
+     * @param mixed $ativado
+     */
+    public function setAtivado($ativado)
+    {
+        $this->ativado = $ativado;
+    }
 
 
 

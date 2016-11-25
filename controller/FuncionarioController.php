@@ -56,12 +56,43 @@ class FuncionarioController
 
     public function salvar()
     {
+        if ($_POST['nome'] != "undefined" || $_POST['nome'] != "") {
+            if ($_POST['cpf'] != "undefined" || $_POST['cpf'] != "") {
+                if ($_POST['cargo'] != "undefined" || $_POST['cargo'] != "") {
+                  echo  $this->funcionarioDAO->criarFuncionario($this->funcionario);
+                } else {
+                    echo FuncoesMensagens::geraJSONMensagem("O campo senha não foi informado", "erro");
+                }
+            } else {
+                echo FuncoesMensagens::geraJSONMensagem("O campo CPF não foi informado", "erro");
+            }
+
+        } else {
+            echo FuncoesMensagens::geraJSONMensagem("O campo nome não foi informado", "erro");
+        }
+
 
     }
 
     public function alterar()
     {
+        if ($_POST['nome'] != "undefined" || $_POST['nome'] != "") {
+            $this->funcionario->setNome($_POST['nome']);
+            if ($_POST['cpf'] != "undefined" || $_POST['cpf'] != "") {
+                $this->funcionario->setCpf($_POST['cpf']);
+                if ($_POST['cargo'] != "undefined" || $_POST['cargo'] != "") {
+                    $this->funcionario->setCargo($_POST['cargo']);
+                    $this->funcionarioDAO->updateFuncionario($this->funcionario, $_POST['id']);
+                } else {
+                    echo FuncoesMensagens::geraJSONMensagem("O campo senha não foi informado", "erro");
+                }
+            } else {
+                echo FuncoesMensagens::geraJSONMensagem("O campo CPF não foi informado", "erro");
+            }
 
+        } else {
+            echo FuncoesMensagens::geraJSONMensagem("O campo nome não foi informado", "erro");
+        }
     }
 
     public function excluir()
@@ -88,7 +119,7 @@ class FuncionarioController
         $cpf = isset($_GET['cpf']) ? $_GET['cpf'] : "";
         if ($id == "" && $nome == "" && $cargo == "" && $cpf == "") {
             return $this->funcionarioDAO->pesquisarFuncionario($this->funcionario, $this->cargo,
-                ["funcionario.ativado" => "1"], ["pk_funcionario","funcionario.nome as funcName", "cargo.nome as cargName", "cpf"]);
+                ["funcionario.ativado" => "1"], ["pk_funcionario", "funcionario.nome as funcName", "cargo.nome as cargName", "cpf"]);
         } else {
             return $this->funcionarioDAO->pesquisarFuncionario($this->funcionario, $this->funcionario, ["pk_funcionario" => $id,
                 "nome" => $nome, "cargo" => $cargo, "cpf" => $cpf, "funcionario.ativado" => "1"],

@@ -27,15 +27,15 @@ $cargoController = new CargoController();
                         </div>
 
                         <div class="input-field col s12 m6 l6">
-                            <select id="cargo" class="cargo">
-                                <option value="" disabled selected>Selecione uma opção</option>
+                            <select id="cargo" class="cargo" name="cargo">
+
                             </select>
                             <label for="cargo">Cargo</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12 m6 l6">
-                            <input id="cpf" name="CPF" type="text">
+                            <input id="cpf" name="cpf" type="text">
                             <label for="cpf">CPF</label>
                         </div>
                     </div>
@@ -52,7 +52,7 @@ $cargoController = new CargoController();
     $(document).ready(function () {
 
         var jsonCargos = JSON.parse('<?php echo $cargoController->retornaJsonPesquisaCargo(); ?>');
-        var html = '';
+        var html = '<option value="" disabled selected>Selecione uma opção</option>';
         for (var i = 0; i < jsonCargos.length; i++) {
             html += "<option value='" + jsonCargos[i].pk_cargo + "'>" + jsonCargos[i].nome + "</option>";
         }

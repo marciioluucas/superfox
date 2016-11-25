@@ -120,10 +120,15 @@ class FuncoesReflections
                 $reflectionProperty->setValue($obj, $valor[$i]);
             }
         }
-
-
-
-
     }
 
+    public static function verificaSeEClasseFilha($obj)
+    {
+        $class = new ReflectionClass($obj);
+        if ($class->getParentClass()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
