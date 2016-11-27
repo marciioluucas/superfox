@@ -10,11 +10,24 @@ require_once 'FuncoesString.php';
  */
 class FuncoesReflections
 {
+    private static $p;
+
+    /**
+     * FuncoesReflections constructor.
+     * @param $p
+     */
+    public function __construct()
+    {
+        $this->p = [];
+    }
+
     /**
      * Passa o objeto e a função irá retornar o nome da classe do respectivo objeto.
      * @param $obj
      * @return string
      */
+
+
     public static function pegaNomeClasseObjeto($obj)
     {
         return get_class($obj);
@@ -32,11 +45,29 @@ class FuncoesReflections
         $reflectionClass = new ReflectionClass($obj);
         $propriedades = $reflectionClass->getProperties(ReflectionProperty::IS_PUBLIC |
             ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE);
-        $p = [];
+
+        for ($i = 0; $i < count($propriedades); $i++) {
+            self::$p[$i] = $propriedades[$i]->name;
+        }
+        echo spl_object_hash($obj). "    |      ";
+        if($reflectionClass->getParentClass() != null){
+            self::pegaAtributoDoObjeto($reflectionClass->getParentClass(), self::$p);
+        }
+        return self::$p;
+    }
+
+    public static function pegaAtributoDoObjeto($obj, $p) {
+        $reflectionClass = new ReflectionClass($obj);
+        $propriedades = $reflectionClass->getProperties(ReflectionProperty::IS_PUBLIC |
+            ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE);
+
         for ($i = 0; $i < count($propriedades); $i++) {
             $p[$i] = $propriedades[$i]->name;
         }
-        return $p;
+        echo spl_object_hash($reflectionClass);
+        if($reflectionClass->getParentClass() != null) {
+            self::pegaAtributoDoObjeto($reflectionClass->getParentClass()->getName(),$p);
+        }
     }
 
     /**
@@ -48,7 +79,7 @@ class FuncoesReflections
     {
         $nomeAtributos = self::pegaAtributosDoObjeto($obj);
         $valoresAtributosFinal = [];
-        $reflectionClass = new ReflectionClass(self::pegaNomeClasseObjeto($obj));
+        $reflectionClass = new ReflectionClass($obj);
         for ($i = 0; $i < count($nomeAtributos); $i++) {
             $reflectionProperty = $reflectionClass->getProperty($nomeAtributos[$i]);
             $reflectionProperty->setAccessible(true);
@@ -144,7 +175,6 @@ class FuncoesReflections
             $parents[] = $parent->getName();
             $class = $parent;
         }
-//        print_r($parents);
         return $parents;
     }
 
@@ -175,11 +205,17 @@ class FuncoesReflections
         return $valores;
     }
 }
-//
-//require_once '../model/Usuario.php';
-//require_once '../model/Funcionario.php';
-//$u = new Funcionario();
-//$u->setNome("Marcio Lucas");
-//$u->setCpf("03794335163");
+
+require_once '../model/Usuario.php';
+require_once '../model/Funcionario.php';
+require_once '../model/Cargo.php';
+$u = new Funcionario();
+$u->setNome("Marcio Lucas");
+$u->setCpf("03794335163");
+
+$c = new Cargo();
+$c->setNome("PAMONHA");
 //print_r(FuncoesReflections::pegaValoresAtributoDoObjeto($u));
-////print_r(FuncoesReflections::pegaValoresAtributoDoObjeto($u));
+//print_r(FuncoesReflections::pegaValoresAtributoDoObjeto($u));
+
+print_r(FuncoesReflections::pegaAtributosDoObjeto($u));
