@@ -20,6 +20,13 @@
                         <input id="" type="text" name="nome" class="validate nome">
                         <label for="xablau">Nome</label>
                     </div>
+                    <div class="input-field col s12 m6 l6">
+                        <select id="nivel" class="nivel" name="nivel">
+                            <option value="1">Nível 1</option>
+                            <option value="2">Nível 2</option>
+                        </select>
+                        <label for="nivel">Cargo</label>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6 l6">
@@ -37,3 +44,6 @@
     </section>
 </article>
 <script src="../cargo/cadastro.js"></script>
+<script>$(document).ready(function () {
+        $('select').material_select();
+    })</script>

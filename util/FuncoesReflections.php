@@ -48,9 +48,9 @@ class FuncoesReflections
         for ($i = 0; $i < count($propriedades); $i++) {
             self::$p[$i] = $propriedades[$i]->name;
         }
-        if ($reflectionClass->getParentClass() != null) {
-            self::pegaAtributoDoObjeto($reflectionClass->getParentClass());
-        }
+//        if ($reflectionClass->getParentClass() != null) {
+//            self::pegaAtributoDoObjeto($reflectionClass->getParentClass());
+//        }
         return self::$p;
     }
 
@@ -215,4 +215,4 @@ class FuncoesReflections
 ////print_r(FuncoesReflections::pegaValoresAtributoDoObjeto($u));
 ////print_r(FuncoesReflections::pegaValoresAtributoDoObjeto($u));
 //
-//print_r(FuncoesReflections::pegaAtributosDoObjeto($u));
+//print_r(FuncoesReflections::retornaNomeAtributosClassesMaes($u));

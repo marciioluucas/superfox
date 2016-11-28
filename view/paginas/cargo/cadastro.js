@@ -6,12 +6,14 @@
 
 $('#enviar').on("click", function () {
     let nome = $(".nome").val();
+    let nivel = $(".nivel").val();
     let descricao = $("#descricao").val();
 
     if (verificaSeTemValorNosCampos([".nome", "#descricao"])) {
         ajaxPost("../../../controller/CargoController.php", {
             "action": "salvar",
             "nome": nome,
+            "nivel": nivel,
             "descricao": descricao
         })
     }
