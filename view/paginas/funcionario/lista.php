@@ -26,9 +26,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/superfox/controller/FuncionarioContro
     <?php
     $funcionarioController = new Funcionariocontroller();
     $arrayDados = $funcionarioController->pesquisarFuncionario();
-    for ($i = 0; $i < count($arrayDados); $i++) {
-
-        ?>
+    for ($i = 0; $i < count($arrayDados); $i++) {?>
         <tr>
             <td><?php echo $arrayDados[$i]['funcName']; ?></td>
             <td><?php echo $arrayDados[$i]['cargName']; ?></td>

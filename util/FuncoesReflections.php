@@ -41,7 +41,6 @@ class FuncoesReflections
      */
     public static function pegaAtributosDoObjeto($obj)
     {
-
         $reflectionClass = new ReflectionClass($obj);
         $propriedades = $reflectionClass->getProperties(ReflectionProperty::IS_PUBLIC |
             ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE);
@@ -50,7 +49,7 @@ class FuncoesReflections
             self::$p[$i] = $propriedades[$i]->name;
         }
         if ($reflectionClass->getParentClass() != null) {
-            self::pegaAtributoDoObjeto($reflectionClass->getParentClass()->getName());
+            self::pegaAtributoDoObjeto($reflectionClass->getParentClass());
         }
         return self::$p;
     }
@@ -65,7 +64,7 @@ class FuncoesReflections
             self::$p[$i] = $propriedades[$i]->name;
         }
         if ($reflectionClass->getParentClass() != null) {
-            self::pegaAtributoDoObjeto($reflectionClass->getParentClass()->getName());
+            self::pegaAtributoDoObjeto($reflectionClass->getParentClass());
         }
         return self::$p;
     }
@@ -204,17 +203,16 @@ class FuncoesReflections
         return $valores;
     }
 }
-
-require_once '../model/Usuario.php';
-require_once '../model/Funcionario.php';
-require_once '../model/Cargo.php';
-$u = new Funcionario();
-$u->setNome("Marcio Lucas");
-$u->setCpf("03794335163");
-
-$c = new Cargo();
-$c->setNome("PAMONHA");
-//print_r(FuncoesReflections::pegaValoresAtributoDoObjeto($u));
-//print_r(FuncoesReflections::pegaValoresAtributoDoObjeto($u));
-
-print_r(FuncoesReflections::pegaAtributosDoObjeto($u));
+//
+//require_once '../model/Usuario.php';
+//require_once '../model/Funcionario.php';
+//require_once '../model/Cargo.php';
+//$u = new Funcionario();
+//$u->setNome("Marcio Lucas");
+//$u->setCpf("03794335163");
+//$c = new Cargo();
+//$c->setNome("PAMONHA");
+////print_r(FuncoesReflections::pegaValoresAtributoDoObjeto($u));
+////print_r(FuncoesReflections::pegaValoresAtributoDoObjeto($u));
+//
+//print_r(FuncoesReflections::pegaAtributosDoObjeto($u));
