@@ -61,5 +61,8 @@ class FornecedorDAO extends DAO
             return false;
         }
     }
-
+    public function pesquisarFornecedor($obj, $condicoes = [])
+    {
+        return $this->buscaPorCondicoes($obj, $condicoes);
+    }
 }

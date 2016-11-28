@@ -8,9 +8,46 @@
  */
 class Fornecedor extends Juridica
 {
+    private  $pk_fornecedor;
+
+
     private $ramo;
     private $representante;
     private $mei;
+    private $ativado;
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getPkFornecedor()
+    {
+        return $this->pk_fornecedor;
+    }
+
+    /**
+     * @param mixed $pk_fornecedor
+     */
+    public function setPkFornecedor($pk_fornecedor)
+    {
+        $this->pk_fornecedor = $pk_fornecedor;
+    }
+    /**
+     * @return mixed
+     */
+    public function getAtivado()
+    {
+        return $this->ativado;
+    }
+
+    /**
+     * @param mixed $ativado
+     */
+    public function setAtivado($ativado)
+    {
+        $this->ativado = $ativado;
+    }
 
 
     /**

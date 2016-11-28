@@ -9,25 +9,10 @@
  */
 class Juridica extends Pessoa
 {
-    private $nome_empresarial;
+
     private $nome_fantasia;
     private $cnpj;
 
-    /**
-     * @return mixed
-     */
-    public function getNomeEmpresarial()
-    {
-        return $this->nome_empresarial;
-    }
-
-    /**
-     * @param mixed $nome_empresarial
-     */
-    public function setNomeEmpresarial($nome_empresarial)
-    {
-        $this->nome_empresarial = $nome_empresarial;
-    }
 
     /**
      * @return mixed
