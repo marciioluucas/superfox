@@ -49,25 +49,25 @@ class FuncoesReflections
         for ($i = 0; $i < count($propriedades); $i++) {
             self::$p[$i] = $propriedades[$i]->name;
         }
-        echo spl_object_hash($obj). "    |      ";
-        if($reflectionClass->getParentClass() != null){
-            self::pegaAtributoDoObjeto($reflectionClass->getParentClass(), self::$p);
+        if ($reflectionClass->getParentClass() != null) {
+            self::pegaAtributoDoObjeto($reflectionClass->getParentClass()->getName());
         }
         return self::$p;
     }
 
-    public static function pegaAtributoDoObjeto($obj, $p) {
+    public static function pegaAtributoDoObjeto($obj)
+    {
         $reflectionClass = new ReflectionClass($obj);
         $propriedades = $reflectionClass->getProperties(ReflectionProperty::IS_PUBLIC |
             ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE);
 
         for ($i = 0; $i < count($propriedades); $i++) {
-            $p[$i] = $propriedades[$i]->name;
+            self::$p[$i] = $propriedades[$i]->name;
         }
-        echo spl_object_hash($reflectionClass);
-        if($reflectionClass->getParentClass() != null) {
-            self::pegaAtributoDoObjeto($reflectionClass->getParentClass()->getName(),$p);
+        if ($reflectionClass->getParentClass() != null) {
+            self::pegaAtributoDoObjeto($reflectionClass->getParentClass()->getName());
         }
+        return self::$p;
     }
 
     /**
@@ -162,7 +162,6 @@ class FuncoesReflections
             return false;
         }
     }
-
 
 
     public static function retornaClassesMaes($obj)
